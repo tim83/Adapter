@@ -38,4 +38,4 @@ fi
 chmod +x $path/data.desktop $path/gui.desktop
 ln -sf $path/data.desktop ~/.config/autostart/battery-background.desktop
 ln -sf $path/gui.desktop $(xdg-user-dir DESKTOP)/battery-monitor.desktop
-sudo ln -sf $path/gui.desktop /usr/local/bin/battery-monitor.desktop
+sudo ln -sf $path/gui.py /usr/local/bin/battery-monitor
