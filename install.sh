@@ -1,16 +1,14 @@
 #! /bin/bash
 
-PATH=~/.adapter
+path=~/.adapter
 
-mkdir -p $PATH
-cp -rv . $PATH
+mkdir -p $path
+cp -r adapter/ $path
 
 os=$(cat /etc/os-release | grep ID | cut -d '=' -f2)
 if [ "$os" == "manjaro" ]
 	then
-	sudo pacman -S python3 python-pip python-wheel python-pyqt5	
-	sudo pip3 install os
-	sudo pip3 install sys
+	sudo pacman -S python3 python-pip python-wheel python-pyqt5 --needed
 	sudo pip3 install datetime
 	sudo pip3 install Pillow
 	sudo pip3 install matplotlib
@@ -37,7 +35,7 @@ else
 	exit
 fi
 
-chmod +x $PATH/data.desktop $PATH/gui.desktop
-ln -sf $PATH/data.desktop ~/.config/autostart/battery-background.desktop
-ln -sf $PATH/gui.desktop $(xdg-user-dir DESKTOP)/battery-monitor.desktop
-sudo ln -sf $PATH/gui.desktop /usr/local/bin/battery-monitor.desktop
+chmod +x $path/data.desktop $path/gui.desktop
+ln -sf $path/data.desktop ~/.config/autostart/battery-background.desktop
+ln -sf $path/gui.desktop $(xdg-user-dir DESKTOP)/battery-monitor.desktop
+sudo ln -sf $path/gui.desktop /usr/local/bin/battery-monitor.desktop
