@@ -18,5 +18,6 @@ PINID = 'PIN02'
 #
 ENERGY_HOSTNAMES = ['laptop-tim']
 CHARGE_HOSTNAMES = ['notebook-ben']
-DATA_FILE = '/tmp/adapter/data.tsv'
-PLOT_FILE = '/tmp/adapter/plot.tsv'
+DATA_DIR = '/tmp/adapter'
+DATA_FILE = 'data.tsv'
+PLOT_FILE = 'plot.tsv'

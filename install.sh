@@ -13,6 +13,7 @@ if [ "$os" == "manjaro" ]
 	sudo pip3 install Pillow
 	sudo pip3 install matplotlib
 	sudo pip3 install PySerial
+	sudo pip3 install shutil
 	
 elif [ "$os" == "opensuse" ]
 	then
@@ -23,6 +24,7 @@ elif [ "$os" == "opensuse" ]
 	sudo pip3 install Pillow
 	sudo pip3 install matplotlib
 	sudo pip3 install PySerial
+	sudo pip3 install shutil
 else
 	echo 'Distrubutie niet gevonden.'
 	echo 'Gelieven de volgende packatten te installeren voor python3:'

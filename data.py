@@ -4,7 +4,7 @@ from usb import *
 from settings import *
 
 import datetime as dt
-import os
+import os, time, shutil
 
 files = os.listdir(DATA_PATH)
 for file in files:
@@ -18,7 +18,13 @@ class Battery():
 		self.passive = passive
 		while True:
 			self.data = self.get_data()
-			os.sleep(INTERVAL)
+			time.sleep(INTERVAL)
+		
+		if not os.path.exists(dir):
+		    os.makedirs(dir)
+		else:
+		    shutil.rmtree(dir)
+		    os.makedirs(dir)
 
 	def get_data(self):
 		self.data = {}
@@ -30,13 +36,13 @@ class Battery():
 		self.data['percent_max'] = round(self.get_percent()['percent_max'], 2)
 		self.data['name'] = self.get_info()['name']
 		self.data['present'] = self.get_info()['present']
-
-		with open(PLOT_FILE, 'a') as f:
+	
+		with open(os.path.join(DATA_DIR, PLOT_FILE), 'w') as f:
 			f.write('%f\t%f' % (dt.datetime.now().timestamp(), self.data['percent']))
 
-		with open(DATA_FILE, 'a') as f:
+		with open(os.path.join(DATA_DIR, DATA_FILE), 'a') as f:
 			for key in self.data.keys():
-				f.write(key + '\t' + str(self.data[key]))
+				f.write(key + '\t' + str(self.data[key]) + '\n')
 
 
 		if not self.passive:

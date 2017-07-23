@@ -5,7 +5,7 @@ from settings import *
 class Connection():
 	def __init__(self):
 		self.port = self.get_port()
-		self.serial = Serial(self.port.device, 9600)
+		self.serial = Serial(self.port, 9600)
 
 	def send(self, msg):
 		send = PINID + '=' + msg
@@ -14,5 +14,5 @@ class Connection():
 	def get_port(self):
 		for p in ports():
 			if MANUFACTURER in p.manufacturer:
-				return p
+				return p.device
 				break
