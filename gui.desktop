@@ -1,0 +1,19 @@
+[Desktop Entry]
+Comment[nl_BE]=
+Comment=
+Exec=python3 ~/.adapter/gui.py
+GenericName[nl_BE]=
+GenericName=
+Icon=exec
+MimeType=
+Name[nl_BE]=Batterij monitor
+Name=Batterij monitor
+Path=
+StartupNotify=true
+Terminal=false
+TerminalOptions=
+Type=Application
+X-DBUS-ServiceName=
+X-DBUS-StartupType=
+X-KDE-SubstituteUID=false
+X-KDE-Username=
