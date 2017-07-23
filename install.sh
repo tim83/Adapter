@@ -3,7 +3,7 @@
 path=~/.adapter
 
 mkdir -p $path
-cp -r adapter/ $path
+cp -r . $path/
 
 os=$(cat /etc/os-release | grep ID | cut -d '=' -f2)
 if [ "$os" == "manjaro" ]
