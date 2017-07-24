@@ -15,6 +15,7 @@ class Battery():
 	def __init__(self, connection, passive=False):
 		self.passive = passive
 		self.connection = connection
+		self.stop_charge()
 
 		# if not os.path.exists(DATA_DIR):
 		#     os.makedirs(DATA_DIR)
