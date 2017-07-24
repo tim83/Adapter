@@ -2,9 +2,9 @@
 Version=1.0
 Name=Batterij monitor
 Comment=Een applicatie om de data van de batterij monitor weer te geven.
-Exec=$HOME/.adapter/gui.py
-Icon=$HOME/.adapter/icon.png
-Path=$HOME/.adapter/
+Exec=~/.adapter/gui.py
+Icon=~/.adapter/icon.png
+Path=~/.adapter/
 Terminal=true
 Type=Application
 Categories=Utility;Application;
