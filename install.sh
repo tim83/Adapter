@@ -37,7 +37,11 @@ else
 	exit
 fi
 
+sed -i "s/vnctim/$USER/g" $path/gui.desktop
+sed -i "s/vnctim/$USER/g" $path/data.desktop
 chmod +x $path/data.desktop $path/gui.desktop
-ln -sf $path/data.desktop ~/.config/autostart/battery-background.desktop
+
+sudo sh -c "echo "@reboot $HOME/.adapter/data.py" /var/spool/cron/$USER"
 ln -sf $path/gui.desktop $(xdg-user-dir DESKTOP)/battery-monitor.desktop
+ln -sf $path/gui.desktop /usr/share/applications/
 sudo ln -sf $path/gui.py /usr/local/bin/battery-monitor

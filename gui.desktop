@@ -5,6 +5,6 @@ Comment=Een applicatie om de data van de batterij monitor weer te geven.
 Exec=python3 /home/vnctim/.adapter/gui.py
 Icon=~/.adapter/icon.png
 Path=/home/vnctim/.adapter/
-Terminal=true
+Terminal=false
 Type=Application
 Categories=Utility;Application;

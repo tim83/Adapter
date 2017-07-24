@@ -1,17 +1,10 @@
 [Desktop Entry]
-Comment[nl_BE]=
-Comment=
-Exec=~/.adapter/data.py
-GenericName[nl_BE]=Batterij monitor
-GenericName=
-Icon=exec
-MimeType=
-Name[nl_BE]=Batterij data
-Name=
-Path=
-StartupNotify=true
-Terminal=true
-TerminalOptions=
+Version=1.0
+Name=Batterij lader
+Comment=Een achtergrond proces om de lader te controleren.
+Exec=python3 /home/vnctim/.adapter/data.py
+Icon=~/.adapter/icon.png
+Path=/home/vnctim/.adapter/
+Terminal=false
 Type=Application
-X-DBUS-ServiceName=
-X-DBUS-StartupType=
+Categories=Utility;Application;
