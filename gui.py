@@ -188,7 +188,6 @@ class Plot(QWidget):
 if __name__ == '__main__':
 	import sys
 
-	os.system('~/.adapter/update.sh')
 	app = QApplication(sys.argv)
 	gui = Gui()
 	sys.exit(app.exec())
