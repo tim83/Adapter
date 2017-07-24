@@ -2,7 +2,7 @@
 Version=1.0
 Name=Batterij monitor
 Comment=Een applicatie om de data van de batterij monitor weer te geven.
-Exec=~/.adapter/gui.py
+Exec=python3 /home/$USER/.adapter/gui.py
 Icon=~/.adapter/icon.png
 Path=~/.adapter/
 Terminal=true
