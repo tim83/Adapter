@@ -119,7 +119,7 @@ if __name__ == '__main__':
 
 	while True:
 		try:
-			Battery(Connection(), passive=True)
+			Battery(Connection())
 			break
 		except:
 			pass
