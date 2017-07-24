@@ -19,13 +19,13 @@ def style(item, fontsize=12, fontfamily="Noto Sans"):
 class Gui(QMainWindow):
 	def __init__(self):
 		super().__init__()
-		self.font = 10
-		style(self.widget, fontsize=self.font)
+		self.font = 12
 
 		self.widget = Widget()
 		self.setCentralWidget(self.widget)
 		style(self.widget)
 		self.setWindowTitle(self.widget.data['name'])
+		style(self.widget, fontsize=self.font)
 		self.show()
 
 	def fullscreen(self):
@@ -49,15 +49,17 @@ class Widget(QWidget):
 
 	def get_data(self):
 		self.data = {}
-		with open(DATA_FILE, 'r') as f:
-			for l in f.readlines():
-				d = l.split('\t')
-				self.data[d[0]] = d[1]
+		with open(os.path.join(DATA_DIR, DATA_FILE), 'r') as f:
+			lines = f.read().split('\n')
+			for l in lines:
+				if l != '':
+					d = l.split('\t')
+					self.data[d[0]] = d[1]
 
 	def start_ui(self):
 		self.get_data()
 
-		if not self.data['present']:
+		if not bool(self.data['present']):
 			self.error('Geen batterij gevonden.')
 
 		self.layout = QGridLayout()
@@ -91,7 +93,9 @@ class Widget(QWidget):
 		self.show()
 
 	def update(self):
-		if self.data['charging']:
+		self.get_data()
+		charging = bool(self.data['charging'])
+		if charging:
 			self.charging.setText('\u2714')
 		else:
 			self.charging.setText('\u2718')
@@ -139,7 +143,7 @@ class Plot(QWidget):
 	def get_data(self):
 		self.data = []
 		self.time = []
-		with open(PLOT_FILE, 'r') as f:
+		with open(os.path.join(DATA_DIR, PLOT_FILE), 'r') as f:
 			for l in f.readlines():
 				d = l.split('\t')
 				t = dt.datetime.fromtimestamp(float(d[0]))
@@ -147,6 +151,8 @@ class Plot(QWidget):
 				self.data.append(float(d[1]))
 
 	def plot(self, interval):
+		self.get_data()
+
 		nowTime = dt.datetime.now()
 		endTime = nowTime - dt.timedelta(hours=PERIOD)
 		now = mdates.date2num(nowTime)
@@ -182,6 +188,7 @@ class Plot(QWidget):
 if __name__ == '__main__':
 	import sys
 
+	os.system('~/.adapter/update.sh')
 	app = QApplication(sys.argv)
 	gui = Gui()
 	sys.exit(app.exec())

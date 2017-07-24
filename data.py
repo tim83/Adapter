@@ -42,7 +42,7 @@ class Battery():
 
 		with open(os.path.join(DATA_DIR, DATA_FILE), 'w') as f:
 			for key in self.data.keys():
-				f.write(key + '\t' + str(self.data[key]))
+				f.write(key + '\t' + str(self.data[key]) + '\n')
 
 
 		if not self.passive:
@@ -115,9 +115,11 @@ class Battery():
 		self.connection.send(4, 0)
 
 if __name__ == '__main__':
+	os.system('~/.adapter/update.sh')
+
 	while True:
 		try:
-			Battery(Connection())
+			Battery(Connection(), passive=True)
 			break
 		except:
 			pass
