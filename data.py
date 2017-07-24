@@ -11,20 +11,20 @@ for file in files:
 	if "BAT" in file:
 		DATA_PATH += file + '/'
 
-connection = Connection()
-
 class Battery():
-	def __init__(self, passive=False):
+	def __init__(self, connection, passive=False):
 		self.passive = passive
+		self.connection = connection
+
+		# if not os.path.exists(DATA_DIR):
+		#     os.makedirs(DATA_DIR)
+		# else:
+		#     shutil.rmtree(DATA_DIR)
+		#     os.makedirs(DATA_DIR)
+
 		while True:
 			self.data = self.get_data()
 			time.sleep(INTERVAL)
-		
-		if not os.path.exists(dir):
-		    os.makedirs(dir)
-		else:
-		    shutil.rmtree(dir)
-		    os.makedirs(dir)
 
 	def get_data(self):
 		self.data = {}
@@ -37,12 +37,12 @@ class Battery():
 		self.data['name'] = self.get_info()['name']
 		self.data['present'] = self.get_info()['present']
 	
-		with open(os.path.join(DATA_DIR, PLOT_FILE), 'w') as f:
-			f.write('%f\t%f' % (dt.datetime.now().timestamp(), self.data['percent']))
+		with open(os.path.join(DATA_DIR, PLOT_FILE), 'a') as f:
+			f.write('%f\t%f\n' % (dt.datetime.now().timestamp(), self.data['percent']))
 
-		with open(os.path.join(DATA_DIR, DATA_FILE), 'a') as f:
+		with open(os.path.join(DATA_DIR, DATA_FILE), 'w') as f:
 			for key in self.data.keys():
-				f.write(key + '\t' + str(self.data[key]) + '\n')
+				f.write(key + '\t' + str(self.data[key]))
 
 
 		if not self.passive:
@@ -105,10 +105,21 @@ class Battery():
 		return {'name': name, 'present': present}
 
 	def stop_charge(self):
-		connection.send('0')
+		self.connection.send(2, 0)
+		self.connection.send(3, 0)
+		self.connection.send(4, 1)
 
 	def start_charge(self):
-		connection.send('1')
+		self.connection.send(2, 1)
+		self.connection.send(3, 1)
+		self.connection.send(4, 0)
 
 if __name__ == '__main__':
-	Battery()
+	while True:
+		try:
+			Battery(Connection())
+			break
+		except:
+			pass
+		print('No ' + MANUFACTURER + ' found.')
+		time.sleep(INTERVAL)

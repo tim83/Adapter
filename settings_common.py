@@ -12,7 +12,7 @@ PERIOD = 5 # periode die op de grafiek getoond wordt (h)
 #	Arduino
 #
 MANUFACTURER = 'Arduino'
-PINID = 'PIN02'
+PINID_LENGHT = 2
 #
 #	Data
 #

@@ -6,9 +6,13 @@ class Connection():
 	def __init__(self):
 		self.port = self.get_port()
 		self.serial = Serial(self.port, 9600)
+		# self.serial.write('INIT'.encode('utf-8'))
 
-	def send(self, msg):
-		send = PINID + '=' + msg
+	def send(self, pin, msg):
+		pin = str(pin)
+		pinid = '0' * (PINID_LENGHT - len(pin)) + pin
+		send = 'PIN' + pinid + '=' + str(msg)
+		print('To Arduino: ' + send)
 		self.serial.write(send.encode('utf-8'))
 
 	def get_port(self):
