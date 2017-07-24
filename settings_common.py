@@ -3,6 +3,7 @@
 #
 HIGH_LEVEL = 80 # te hoog
 LOW_LEVEL = 30 # te laag
+IDLE = False
 #
 #	Data
 #

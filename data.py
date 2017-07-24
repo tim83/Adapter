@@ -15,7 +15,6 @@ class Battery():
 	def __init__(self, connection, passive=False):
 		self.passive = passive
 		self.connection = connection
-		self.stop_charge()
 
 		# if not os.path.exists(DATA_DIR):
 		#     os.makedirs(DATA_DIR)
@@ -47,10 +46,15 @@ class Battery():
 
 
 		if not self.passive:
-			if self.data['percent'] > HIGH_LEVEL:
-				self.stop_charge()
 			if self.data['percent'] < LOW_LEVEL:
 				self.start_charge()
+			elif self.data['percent'] > HIGH_LEVEL:
+				self.stop_charge()
+			else:
+				if IDLE == False:
+					self.stop_charge()
+				elif IDLE == True:
+					self.start_charge()
 
 		return self.data
 
