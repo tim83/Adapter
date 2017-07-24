@@ -127,6 +127,5 @@ if __name__ == '__main__':
 			Battery(Connection())
 			break
 		except:
-			pass
-		print('No ' + MANUFACTURER + ' found.')
-		time.sleep(INTERVAL)
+			print('No ' + MANUFACTURER + ' found.')
+			time.sleep(INTERVAL)
