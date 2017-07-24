@@ -1,17 +1,10 @@
 [Desktop Entry]
-Comment[nl_BE]=
-Comment=
-Exec=python3 ~/.adapter/gui.py
-GenericName[nl_BE]=Batterij monitor
-GenericName=
-Icon=exec
-MimeType=
-Name[nl_BE]=Batterij monitor
+Version=1.0
 Name=Batterij monitor
-Path=
-StartupNotify=true
+Comment=Een applicatie om de data van de batterij monitor weer te geven.
+Exec=$HOME/.adapter/gui.py
+Icon=$HOME/.adapter/icon.png
+Path=$HOME/.adapter/
 Terminal=true
-TerminalOptions=
 Type=Application
-X-DBUS-ServiceName=
-X-DBUS-StartupType=
+Categories=Utility;Application;

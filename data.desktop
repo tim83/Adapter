@@ -1,7 +1,7 @@
 [Desktop Entry]
 Comment[nl_BE]=
 Comment=
-Exec=python3 ~/.adapter/data.py
+Exec=~/.adapter/data.py
 GenericName[nl_BE]=Batterij monitor
 GenericName=
 Icon=exec
