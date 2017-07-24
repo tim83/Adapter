@@ -55,9 +55,10 @@ class Widget(QWidget):
 				if l != '':
 					d = l.split('\t')
 					self.data[d[0]] = d[1]
+		return self.data
 
 	def start_ui(self):
-		self.get_data()
+		self.data = self.get_data()
 
 		if not bool(self.data['present']):
 			self.error('Geen batterij gevonden.')
@@ -94,8 +95,7 @@ class Widget(QWidget):
 
 	def update(self):
 		self.get_data()
-		charging = bool(self.data['charging'])
-		if charging:
+		if self.data['charging'] == 'True':
 			self.charging.setText('\u2714')
 		else:
 			self.charging.setText('\u2718')
@@ -109,6 +109,7 @@ class Widget(QWidget):
 		print('Thank you for charging with TimAir')
 		self.plot.close()
 		qApp.quit()
+		exit()
 
 	def error(self, error):
 		self.box = QMessageBox()
@@ -149,9 +150,10 @@ class Plot(QWidget):
 				t = dt.datetime.fromtimestamp(float(d[0]))
 				self.time.append(t)
 				self.data.append(float(d[1]))
+		return self.time, self.data
 
 	def plot(self, interval):
-		self.get_data()
+		self.time, self.data = self.get_data()
 
 		nowTime = dt.datetime.now()
 		endTime = nowTime - dt.timedelta(hours=PERIOD)
@@ -184,6 +186,7 @@ class Plot(QWidget):
 
 	def stop(self):
 		qApp.quit()
+		exit()
 
 if __name__ == '__main__':
 	import sys

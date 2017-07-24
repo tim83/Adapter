@@ -6,7 +6,7 @@ LOW_LEVEL = 30 # te laag
 #
 #	Data
 #
-INTERVAL = 10 #tijd tussen updates (s)
+INTERVAL = 5 #tijd tussen updates (s)
 PERIOD = 5 # periode die op de grafiek getoond wordt (h)
 #
 #	Arduino

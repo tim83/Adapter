@@ -4,6 +4,8 @@
     <list default="true" id="f21c9149-e610-4904-90ee-e5ba51a84da1" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gui.py" afterPath="$PROJECT_DIR$/gui.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/settings_common.py" afterPath="$PROJECT_DIR$/settings_common.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/update.sh" afterPath="$PROJECT_DIR$/update.sh" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -27,14 +29,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="gui.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="gui.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gui.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="186" column="0" lean-forward="true" selection-start-line="186" selection-start-column="0" selection-end-line="186" selection-end-column="0" />
+            <state relative-caret-position="252">
+              <caret line="56" column="42" lean-forward="false" selection-start-line="56" selection-start-column="42" selection-end-line="56" selection-end-column="42" />
               <folding>
                 <element signature="e#21#52#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="settings_common.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/settings_common.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="45">
+              <caret line="8" column="12" lean-forward="false" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -67,11 +79,11 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/settings_common.py" />
         <option value="$PROJECT_DIR$/usb.py" />
         <option value="$PROJECT_DIR$/update.sh" />
         <option value="$PROJECT_DIR$/data.py" />
         <option value="$PROJECT_DIR$/gui.py" />
+        <option value="$PROJECT_DIR$/settings_common.py" />
       </list>
     </option>
   </component>
@@ -276,7 +288,14 @@
       <option name="project" value="LOCAL" />
       <updated>1500906718822</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Gui perfecting">
+      <created>1500906853072</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1500906853072</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -360,14 +379,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/settings_common.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="14" column="5" lean-forward="false" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/usb.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
@@ -398,11 +409,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/gui.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="186" column="0" lean-forward="true" selection-start-line="186" selection-start-column="0" selection-end-line="186" selection-end-column="0" />
+        <state relative-caret-position="252">
+          <caret line="56" column="42" lean-forward="false" selection-start-line="56" selection-start-column="42" selection-end-line="56" selection-end-column="42" />
           <folding>
             <element signature="e#21#52#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/settings_common.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="8" column="12" lean-forward="false" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
+          <folding />
         </state>
       </provider>
     </entry>
