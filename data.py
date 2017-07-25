@@ -127,6 +127,6 @@ if __name__ == '__main__':
 		try:
 			Battery(Connection())
 			break
-		except ValueError:
+		except:
 			print('No ' + MANUFACTURER + ' found.')
 			time.sleep(INTERVAL)
