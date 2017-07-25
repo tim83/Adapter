@@ -5,6 +5,6 @@ Comment=Een achtergrond proces om de lader te controleren.
 Exec=python3 /home/vnctim/.adapter/data.py
 Icon=~/.adapter/icon.png
 Path=/home/vnctim/.adapter/
-Terminal=true
+Terminal=false
 Type=Application
 Categories=Utility;Application;
