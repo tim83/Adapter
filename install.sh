@@ -5,6 +5,9 @@ path=~/.adapter
 mkdir -p $path
 cp -r . $path/
 
+home=$HOME
+user=$USER
+
 os=$(cat /etc/os-release | grep ID | cut -d '=' -f2)
 if [ "$os" == "manjaro" ]
 	then
@@ -34,14 +37,13 @@ else
 	echo ' - PyQt5'
 	echo ' - matplotlib'
 	echo ' - PySerial'
-	exit
 fi
 
-sed -i "s/vnctim/$USER/g" $path/gui.desktop
-sed -i "s/vnctim/$USER/g" $path/data.desktop
+sed -i "s/\$home/$home/g" $path/gui.desktop
+sed -i "s/\$home/$home/g" $path/data.desktop
 chmod +x $path/data.desktop $path/gui.desktop
 
-sudo sh -c "echo "@reboot $HOME/.adapter/data.py" /var/spool/cron/$USER"
+sudo sh -c "echo "@reboot python3 $home/.adapter/data.py" /var/spool/cron/$user"
 ln -sf $path/gui.desktop $(xdg-user-dir DESKTOP)/battery-monitor.desktop
 ln -sf $path/gui.desktop /usr/share/applications/
 sudo ln -sf $path/gui.py /usr/local/bin/battery-monitor

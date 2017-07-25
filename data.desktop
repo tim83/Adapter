@@ -2,9 +2,9 @@
 Version=1.0
 Name=Batterij lader
 Comment=Een achtergrond proces om de lader te controleren.
-Exec=python3 /home/vnctim/.adapter/data.py
+Exec=python3 HOME/.adapter/data.py
 Icon=~/.adapter/icon.png
-Path=/home/vnctim/.adapter/
+Path=HOME/.adapter/
 Terminal=false
 Type=Application
 Categories=Utility;Application;
