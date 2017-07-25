@@ -36,7 +36,8 @@ class Battery():
 		self.data['percent_max'] = round(self.get_percent()['percent_max'], 2)
 		self.data['name'] = self.get_info()['name']
 		self.data['present'] = self.get_info()['present']
-	
+		
+		os.makedirs(DATA_DIR, exist_ok=True) 
 		with open(os.path.join(DATA_DIR, PLOT_FILE), 'a') as f:
 			f.write('%f\t%f\n' % (dt.datetime.now().timestamp(), self.data['percent']))
 
@@ -126,6 +127,6 @@ if __name__ == '__main__':
 		try:
 			Battery(Connection())
 			break
-		except:
+		except ValueError:
 			print('No ' + MANUFACTURER + ' found.')
 			time.sleep(INTERVAL)
