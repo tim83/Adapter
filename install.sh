@@ -38,7 +38,7 @@ else
 	echo ' - PySerial'
 fi
 
-sed -i "s/[HOME]/$home/g" $path/gui.desktop
+#sed -i "s/[HOME]/$home/g" $path/gui.desktop
 chmod +x $path/gui.desktop
 
 sudo sh -c "echo @reboot python3 $home/.adapter/data.py > /var/spool/cron/$user"
