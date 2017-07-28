@@ -21,13 +21,12 @@ if [ "$os" == "manjaro" ]
 elif [ "$os" == "opensuse" ]
 	then
 	sudo zypper install python3 python3-pip python3-wheel python3-pyqt5
-	sudo pip3 install os
-	sudo pip3 install sys
 	sudo pip3 install datetime
 	sudo pip3 install Pillow
 	sudo pip3 install matplotlib
 	sudo pip3 install PySerial
-	sudo pip3 install shutil
+	sudo pip3 install PyQt5
+	sudo pip3 install wheel
 else
 	echo 'Distrubutie niet gevonden.'
 	echo 'Gelieven de volgende packatten te installeren voor python3:'
@@ -40,9 +39,9 @@ else
 fi
 
 sed -i "s/\$home/$home/g" $path/gui.desktop
-chmod +x $path/data.desktop $path/gui.desktop
+chmod +x $path/gui.desktop
 
 sudo sh -c "echo "@reboot python3 $home/.adapter/data.py" /var/spool/cron/$user"
 ln -sf $path/gui.desktop $(xdg-user-dir DESKTOP)/battery-monitor.desktop
-ln -sf $path/gui.desktop /usr/share/applications/
+sudo ln -sf $path/gui.desktop /usr/share/applications/
 sudo ln -sf $path/gui.py /usr/local/bin/battery-monitor
