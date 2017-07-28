@@ -22,4 +22,4 @@ CHARGE_HOSTNAMES = ['notebook-ben']
 DATA_DIR = '/tmp/adapter'
 DATA_FILE = 'data.tsv'
 PLOT_FILE = 'plot.tsv'
-OVERWRITE_FILE = 'overwrite.txt'
+OVERRIDE_FILE = 'override.txt'

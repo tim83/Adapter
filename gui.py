@@ -60,13 +60,13 @@ class Gui(QMainWindow):
 			self.font -= 1
 			style(self.widget, fontsize=self.font)
 		elif signal == 'Aan':
-			with open(os.path.join(DATA_DIR, OVERWRITE_FILE), 'w') as f:
+			with open(os.path.join(DATA_DIR, OVERRIDE_FILE), 'w') as f:
 				f.write(str(True))
 		elif signal == 'Uit':
-			with open(os.path.join(DATA_DIR, OVERWRITE_FILE), 'w') as f:
+			with open(os.path.join(DATA_DIR, OVERRIDE_FILE), 'w') as f:
 				f.write(str(False))
 		elif signal == 'Automatisch':
-			with open(os.path.join(DATA_DIR, OVERWRITE_FILE), 'w') as f:
+			with open(os.path.join(DATA_DIR, OVERRIDE_FILE), 'w') as f:
 				f.write(str(None))
 
 	def stop(self):

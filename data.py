@@ -65,10 +65,10 @@ class Battery():
 
 	def get_overwrite(self):
 		try:
-			with open(os.path.join(DATA_DIR, OVERWRITE_FILE), 'r') as f:
+			with open(os.path.join(DATA_DIR, OVERRIDE_FILE), 'r') as f:
 				return literal_eval(f.read())
 		except (FileNotFoundError, ValueError):
-			with open(os.path.join(DATA_DIR, OVERWRITE_FILE), 'w') as f:
+			with open(os.path.join(DATA_DIR, OVERRIDE_FILE), 'w') as f:
 				f.write(str(None))
 			return None
 
