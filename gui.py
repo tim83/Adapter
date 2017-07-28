@@ -106,8 +106,8 @@ class Widget(QWidget):
 
 		self.layout = QGridLayout()
 
-		self.override_warining = QLabel('')
-		self.layout.addWidget(self.override_warning, 0, 0, 1, 2)
+		#self.override_warning = QLabel('')
+		#self.layout.addWidget(self.override_warning, 0, 0, 1, 2)
 		self.layout.addWidget(QLabel('Opladen:'), 1, 1)
 		self.layout.addWidget(QLabel('Percentage:'), 2, 1)
 		self.layout.addWidget(QLabel('Minimum:'), 3, 1)
