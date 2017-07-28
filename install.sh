@@ -8,7 +8,7 @@ cp -r . $path/
 home=$HOME
 user=$USER
 
-os=$(cat /etc/os-release | grep ID | cut -d '=' -f2)
+os=$(cat /etc/os-release | grep ID= | grep -v VERSION | cut -d '=' -f2)
 if [ "$os" == "manjaro" ]
 	then
 	sudo pacman -S python3 python-pip python-wheel python-pyqt5 --needed
