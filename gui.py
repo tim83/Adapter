@@ -138,7 +138,7 @@ class Widget(QWidget):
 
 	def update(self):
 		self.get_data()
-		if self.data['charging']:
+		if literal_eval(self.data['charging']):
 			self.charging.setText('\u2714')
 		else:
 			self.charging.setText('\u2718')
