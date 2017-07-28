@@ -101,13 +101,13 @@ class Widget(QWidget):
 	def start_ui(self):
 		self.data = self.get_data()
 
-		if not ast.literal_eval(self.data['present']):
+		if not literal_eval(self.data['present']):
 			self.error('Geen batterij gevonden.')
 
 		self.layout = QGridLayout()
 
 		self.override_warining = QLabel('')
-		self.layour.addWidget(self.override_warning, 0, 0, 1, 2)
+		self.layout.addWidget(self.override_warning, 0, 0, 1, 2)
 		self.layout.addWidget(QLabel('Opladen:'), 1, 1)
 		self.layout.addWidget(QLabel('Percentage:'), 2, 1)
 		self.layout.addWidget(QLabel('Minimum:'), 3, 1)
