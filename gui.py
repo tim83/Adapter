@@ -10,6 +10,7 @@ import matplotlib.dates as mdates
 import matplotlib.collections as col
 
 import datetime as dt
+import os
 
 from settings import *
 
@@ -21,9 +22,23 @@ class Gui(QMainWindow):
 		super().__init__()
 		self.font = 12
 
+		menu = self.menuBar()
+
+		file_menu = menu.addMenu('Bestand')
+		manual_menu = file_menu.addMenu('Lader')
+		auto_item = manual_menu.addAction('Automatisch')
+		on_item = manual_menu.addAction('Aan')
+		off_item = manual_menu.addAction('Uit')
+		quit_item = file_menu.addAction('Afsluiten')
+
+		view_menu = menu.addMenu('Beeld')
+		large_item = view_menu.addAction('Lettergrootte vergroten')
+		small_item =  view_menu.addAction('Lettergrootte verkleinen')
+
+		menu.triggered.connect(self.selected)
+
 		self.widget = Widget()
 		self.setCentralWidget(self.widget)
-		style(self.widget)
 		self.setWindowTitle(self.widget.data['name'])
 		style(self.widget, fontsize=self.font)
 		self.show()
@@ -32,6 +47,31 @@ class Gui(QMainWindow):
 		self.showMaximized()
 		self.font = 68
 		style(self.widget, fontsize=self.font)
+
+	def selected(self, data):
+		signal = data.text()
+
+		if signal == 'Afsluiten':
+			self.stop()
+		elif signal == 'Lettergrootte vergroten':
+			self.font += 1
+			style(self.widget, fontsize=self.font)
+		elif signal == 'Lettergrootte verkleinen':
+			self.font -= 1
+			style(self.widget, fontsize=self.font)
+		elif signal == 'Aan':
+			with open(os.path.join(DATA_DIR, OVERWRITE_FILE), 'w') as f:
+				f.write(str(True))
+		elif signal == 'Uit':
+			with open(os.path.join(DATA_DIR, OVERWRITE_FILE), 'w') as f:
+				f.write(str(False))
+		elif signal == 'Automatisch':
+			with open(os.path.join(DATA_DIR, OVERWRITE_FILE), 'w') as f:
+				f.write(str(None))
+
+	def stop(self):
+		self.widget.stop()
+
 
 
 class Widget(QWidget):

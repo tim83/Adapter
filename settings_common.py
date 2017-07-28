@@ -1,8 +1,8 @@
 #
 #	Waarschuwingen
 #
-HIGH_LEVEL = 80 # te hoog
-LOW_LEVEL = 70 # te laag
+HIGH_LEVEL = 90 # te hoog
+LOW_LEVEL = 50 # te laag
 IDLE = False
 #
 #	Data
@@ -22,3 +22,4 @@ CHARGE_HOSTNAMES = ['notebook-ben']
 DATA_DIR = '/tmp/adapter'
 DATA_FILE = 'data.tsv'
 PLOT_FILE = 'plot.tsv'
+OVERWRITE_FILE = 'overwrite.txt'

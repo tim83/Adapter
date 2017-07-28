@@ -4,6 +4,7 @@ from usb import *
 from settings import *
 
 import datetime as dt
+from ast import literal_eval
 import os, time, shutil
 
 files = os.listdir(DATA_PATH)
@@ -12,8 +13,7 @@ for file in files:
 		DATA_PATH += file + '/'
 
 class Battery():
-	def __init__(self, connection, passive=False):
-		self.passive = passive
+	def __init__(self, connection):
 		self.connection = connection
 
 		# if not os.path.exists(DATA_DIR):
@@ -36,6 +36,7 @@ class Battery():
 		self.data['percent_max'] = round(self.get_percent()['percent_max'], 2)
 		self.data['name'] = self.get_info()['name']
 		self.data['present'] = self.get_info()['present']
+		self.data['overwrite'] = self.get_overwrite()
 		
 		os.makedirs(DATA_DIR, exist_ok=True) 
 		with open(os.path.join(DATA_DIR, PLOT_FILE), 'a') as f:
@@ -45,8 +46,7 @@ class Battery():
 			for key in self.data.keys():
 				f.write(key + '\t' + str(self.data[key]) + '\n')
 
-
-		if not self.passive:
+		if self.data['overwrite'] == None:
 			if self.data['percent'] < LOW_LEVEL:
 				self.start_charge()
 			elif self.data['percent'] > HIGH_LEVEL:
@@ -56,8 +56,21 @@ class Battery():
 					self.stop_charge()
 				elif IDLE == True:
 					self.start_charge()
+		elif self.data['overwrite'] == True:
+			self.start_charge()
+		elif self.data['overwrite'] == False:
+			self.stop_charge()
 
 		return self.data
+
+	def get_overwrite(self):
+		try:
+			with open(os.path.join(DATA_DIR, OVERWRITE_FILE), 'r') as f:
+				return literal_eval(f.read())
+		except (FileNotFoundError, ValueError):
+			with open(os.path.join(DATA_DIR, OVERWRITE_FILE), 'w') as f:
+				f.write(str(None))
+			return None
 
 	def get_status(self):
 		with open(DATA_PATH + 'status') as file:
