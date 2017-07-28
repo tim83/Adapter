@@ -10,6 +10,7 @@ import matplotlib.dates as mdates
 import matplotlib.collections as col
 
 import datetime as dt
+from ast import literal_eval
 import os
 
 from settings import *
@@ -100,12 +101,14 @@ class Widget(QWidget):
 	def start_ui(self):
 		self.data = self.get_data()
 
-		if not bool(self.data['present']):
+		if not ast.literal_eval(self.data['present']):
 			self.error('Geen batterij gevonden.')
 
 		self.layout = QGridLayout()
 
-		self.layout.addWidget(QLabel('Opladen?:'), 1, 1)
+		self.override_warining = QLabel('')
+		self.layour.addWidget(self.override_warning, 0, 0, 1, 2)
+		self.layout.addWidget(QLabel('Opladen:'), 1, 1)
 		self.layout.addWidget(QLabel('Percentage:'), 2, 1)
 		self.layout.addWidget(QLabel('Minimum:'), 3, 1)
 		self.layout.addWidget(QLabel('Maximum:'), 4, 1)
@@ -135,7 +138,7 @@ class Widget(QWidget):
 
 	def update(self):
 		self.get_data()
-		if self.data['charging'] == 'True':
+		if self.data['charging']:
 			self.charging.setText('\u2714')
 		else:
 			self.charging.setText('\u2718')
