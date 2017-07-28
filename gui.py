@@ -50,7 +50,7 @@ class Gui(QMainWindow):
 		style(self.widget, fontsize=self.font)
 
 	def selected(self, data):
-		signal = data.text()
+		signal = data.text().replace('&','')
 		print(signal)
 
 		if signal == 'Afsluiten':
