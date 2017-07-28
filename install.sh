@@ -20,7 +20,7 @@ if [ "$os" == "manjaro" ]
 	
 elif [ "$os" == "opensuse" ]
 	then
-	sudo zypper install python3 python3-pip python3-wheel python3-pyqt5
+	sudo zypper install python3 python3-pip
 	sudo pip3 install datetime
 	sudo pip3 install Pillow
 	sudo pip3 install matplotlib
