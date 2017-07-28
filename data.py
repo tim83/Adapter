@@ -23,6 +23,11 @@ class Battery():
 		#     shutil.rmtree(DATA_DIR)
 		#     os.makedirs(DATA_DIR)
 
+		if IDLE == False:
+			self.stop_charge()
+		elif IDLE == True:
+			self.start_charge()
+			
 		while True:
 			self.data = self.get_data()
 			time.sleep(INTERVAL)
@@ -51,11 +56,6 @@ class Battery():
 				self.start_charge()
 			elif self.data['percent'] > HIGH_LEVEL:
 				self.stop_charge()
-			else:
-				if IDLE == False:
-					self.stop_charge()
-				elif IDLE == True:
-					self.start_charge()
 		elif self.data['overwrite'] == True:
 			self.start_charge()
 		elif self.data['overwrite'] == False:
