@@ -40,7 +40,6 @@ else
 fi
 
 sed -i "s/\$home/$home/g" $path/gui.desktop
-sed -i "s/\$home/$home/g" $path/data.desktop
 chmod +x $path/data.desktop $path/gui.desktop
 
 sudo sh -c "echo "@reboot python3 $home/.adapter/data.py" /var/spool/cron/$user"
