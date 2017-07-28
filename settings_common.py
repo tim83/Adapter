@@ -7,7 +7,7 @@ IDLE = False
 #
 #	Data
 #
-INTERVAL = 5*60 #tijd tussen updates (s)
+INTERVAL = 30 #tijd tussen updates (s)
 PERIOD = 5 # periode die op de grafiek getoond wordt (h)
 #
 #	Arduino
