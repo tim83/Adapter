@@ -15,6 +15,7 @@ for file in files:
 class Battery():
 	def __init__(self, connection):
 		self.connection = connection
+		os.makedirs(DATA_DIR, exist_ok=True)
 
 		# if not os.path.exists(DATA_DIR):
 		#     os.makedirs(DATA_DIR)
@@ -37,8 +38,7 @@ class Battery():
 		self.data['name'] = self.get_info()['name']
 		self.data['present'] = self.get_info()['present']
 		self.data['overwrite'] = self.get_overwrite()
-		
-		os.makedirs(DATA_DIR, exist_ok=True) 
+		 
 		with open(os.path.join(DATA_DIR, PLOT_FILE), 'a') as f:
 			f.write('%f\t%f\n' % (dt.datetime.now().timestamp(), self.data['percent']))
 
