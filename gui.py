@@ -36,7 +36,7 @@ class Gui(QMainWindow):
 		large_item = view_menu.addAction('Lettergrootte vergroten')
 		small_item =  view_menu.addAction('Lettergrootte verkleinen')
 
-		file_menu.triggered.connect(self.selected)
+		menu.triggered.connect(self.selected)
 
 		self.widget = Widget()
 		self.setCentralWidget(self.widget)
