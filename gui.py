@@ -51,6 +51,7 @@ class Gui(QMainWindow):
 
 	def selected(self, data):
 		signal = data.text()
+		print(signal)
 
 		if signal == 'Afsluiten':
 			self.stop()
