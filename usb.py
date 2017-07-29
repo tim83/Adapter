@@ -11,7 +11,7 @@ class Connection():
 	def send(self, pin, msg):
 		pin = str(pin)
 		pinid = '0' * (PINID_LENGHT - len(pin)) + pin
-		send = 'PIN' + pinid + '=' + str(msg)
+		send = 'PIN' + pinid + '=' + str(msg) + '\n'
 		print('To Arduino: ' + send)
 		self.serial.write(send.encode('utf-8'))
 
