@@ -4,6 +4,7 @@ from usb import *
 from settings import *
 
 import datetime as dt
+from serial.serialutil import SerialException
 from ast import literal_eval
 import os, time, shutil
 
@@ -56,6 +57,12 @@ class Battery():
 				self.start_charge()
 			elif self.data['percent'] > HIGH_LEVEL:
 				self.stop_charge()
+
+			elif self.charge == True:
+				self.start_charge()
+			elif self.charge == False:
+				self.stop_charge()
+
 		elif self.data['overwrite'] == True:
 			self.start_charge()
 		elif self.data['overwrite'] == False:
@@ -124,22 +131,33 @@ class Battery():
 		return {'name': name, 'present': present}
 
 	def stop_charge(self):
-		self.connection.send(2, 0)
-		self.connection.send(3, 0)
-		self.connection.send(4, 1)
+		self.charge = False
+		try:
+			self.connection.send(2, 0)
+			self.connection.send(3, 0)
+			self.connection.send(4, 1)
+		except SerialException as e:
+			print('No %s found' % MANUFACTURER)
+			print('\tError: ' + str(e))
 
 	def start_charge(self):
-		self.connection.send(2, 1)
-		self.connection.send(3, 1)
-		self.connection.send(4, 0)
+		self.charge = True
+		try:
+			self.connection.send(2, 1)
+			self.connection.send(3, 1)
+			self.connection.send(4, 0)
+		except SerialException as e:
+			print('No %s found' % MANUFACTURER)
+			print('\tError: ' + str(e))
 
 if __name__ == '__main__':
 	os.system('~/.adapter/update.sh')
 
-	while True:
-		try:
-			Battery(Connection())
-			break
-		except:
-			print('No ' + MANUFACTURER + ' found.')
-			time.sleep(INTERVAL)
+	#while True:
+	#	try:
+	Battery(Connection())
+	#		break
+	#	except (SerialException) as e:
+	#		print('No ' + MANUFACTURER + ' found.')
+	#		print('\tError: ' + str(e))
+	#		time.sleep(INTERVAL)

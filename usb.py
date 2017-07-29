@@ -12,8 +12,8 @@ class Connection():
 		pin = str(pin)
 		pinid = '0' * (PINID_LENGHT - len(pin)) + pin
 		send = 'PIN' + pinid + '=' + str(msg) + '\n'
-		print('To Arduino: ' + send)
 		self.serial.write(send.encode('utf-8'))
+		print('To Arduino: ' + send, end='')
 
 	def get_port(self):
 		for p in ports():
