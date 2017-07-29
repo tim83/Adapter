@@ -15,8 +15,8 @@ import os
 
 from settings import *
 
-def style(item, fontsize=12, fontfamily="Noto Sans"):
-	item.setStyleSheet('font-size: ' + str(fontsize) + 'pt; font-family: ' + str(fontfamily) + ', sans-serif ;')
+def style(item, fontsize=12, fontfamily="Noto Sans", fontcolor='black'):
+	item.setStyleSheet('font-size: ' + str(fontsize) + 'pt; font-family: ' + str(fontfamily) + ', sans-serif ; color: ' + str(fontcolor) + ';')
 
 class Gui(QMainWindow):
 	def __init__(self):
@@ -41,13 +41,8 @@ class Gui(QMainWindow):
 		self.widget = Widget()
 		self.setCentralWidget(self.widget)
 		self.setWindowTitle(self.widget.data['name'])
-		style(self.widget, fontsize=self.font)
+		style(self, fontsize=self.font)
 		self.show()
-
-	def fullscreen(self):
-		self.showMaximized()
-		self.font = 68
-		style(self.widget, fontsize=self.font)
 
 	def selected(self, data):
 		signal = data.text().replace('&','')
@@ -56,10 +51,10 @@ class Gui(QMainWindow):
 			self.stop()
 		elif signal == 'Lettergrootte vergroten':
 			self.font += 1
-			style(self.widget, fontsize=self.font)
+			style(self, fontsize=self.font)
 		elif signal == 'Lettergrootte verkleinen':
 			self.font -= 1
-			style(self.widget, fontsize=self.font)
+			style(self, fontsize=self.font)
 		elif signal == 'Aan':
 			with open(os.path.join(DATA_DIR, OVERRIDE_FILE), 'w') as f:
 				f.write(str(True))
@@ -106,8 +101,8 @@ class Widget(QWidget):
 
 		self.layout = QGridLayout()
 
-		#self.override_warning = QLabel('')
-		#self.layout.addWidget(self.override_warning, 0, 0, 1, 2)
+		self.override_warning = QLabel('')
+		self.layout.addWidget(self.override_warning, 0, 1, 1, 2)
 		self.layout.addWidget(QLabel('Opladen:'), 1, 1)
 		self.layout.addWidget(QLabel('Percentage:'), 2, 1)
 		self.layout.addWidget(QLabel('Minimum:'), 3, 1)
@@ -142,6 +137,14 @@ class Widget(QWidget):
 			self.charging.setText('\u2714')
 		else:
 			self.charging.setText('\u2718')
+
+		if literal_eval(self.data['override']) == None:
+			self.override_warning.setText('')
+			style(self.override_warning, fontsize=1)
+		else:
+			self.override_warning.setText('Attentie, de lader staat op manuele modus.')
+			style(self.override_warning, fontcolor='red')
+
 		self.percent.setText(str(self.data['percent']) + '%')
 		self.percent_low.setText(str(self.data['percent_low']) + '%')
 		self.percent_high.setText(str(self.data['percent_high']) + '%')

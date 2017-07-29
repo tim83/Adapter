@@ -43,7 +43,7 @@ class Battery():
 		self.data['percent_max'] = round(self.get_percent()['percent_max'], 2)
 		self.data['name'] = self.get_info()['name']
 		self.data['present'] = self.get_info()['present']
-		self.data['overwrite'] = self.get_overwrite()
+		self.data['override'] = self.get_override()
 		 
 		with open(os.path.join(DATA_DIR, PLOT_FILE), 'a') as f:
 			f.write('%f\t%f\n' % (dt.datetime.now().timestamp(), self.data['percent']))
@@ -52,7 +52,7 @@ class Battery():
 			for key in self.data.keys():
 				f.write(key + '\t' + str(self.data[key]) + '\n')
 
-		if self.data['overwrite'] == None:
+		if self.data['override'] == None:
 			if self.data['percent'] < LOW_LEVEL:
 				self.start_charge()
 			elif self.data['percent'] > HIGH_LEVEL:
@@ -63,14 +63,14 @@ class Battery():
 			elif self.charge == False:
 				self.stop_charge()
 
-		elif self.data['overwrite'] == True:
+		elif self.data['override'] == True:
 			self.start_charge()
-		elif self.data['overwrite'] == False:
+		elif self.data['override'] == False:
 			self.stop_charge()
 
 		return self.data
 
-	def get_overwrite(self):
+	def get_override(self):
 		try:
 			with open(os.path.join(DATA_DIR, OVERRIDE_FILE), 'r') as f:
 				return literal_eval(f.read())
