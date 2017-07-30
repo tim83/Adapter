@@ -11,12 +11,24 @@ import matplotlib.collections as col
 
 import datetime as dt
 from ast import literal_eval
-import os
+import os, socket
 
 from settings import *
+from data import Battery
+from usb import Connection
 
 def style(item, fontsize=12, fontfamily="Noto Sans", fontcolor='black'):
 	item.setStyleSheet('font-size: ' + str(fontsize) + 'pt; font-family: ' + str(fontfamily) + ', sans-serif ; color: ' + str(fontcolor) + ';')
+
+def is_connected():
+    try:
+        # connect to the host -- tells us if the host is actually
+        # reachable
+        socket.create_connection(("www.google.com", 80))
+        return True
+    except OSError:
+        pass
+    return False
 
 class Gui(QMainWindow):
 	def __init__(self):
@@ -78,14 +90,21 @@ class Gui(QMainWindow):
 		elif 'Aan' in signal:
 			with open(os.path.join(DATA_DIR, OVERRIDE_FILE), 'w') as f:
 				f.write(str(True))
+			Battery(Connection(), single=True)
 		elif 'Uit' in signal:
 			with open(os.path.join(DATA_DIR, OVERRIDE_FILE), 'w') as f:
 				f.write(str(False))
+			Battery(Connection(), single=True)
 		elif 'Automatisch' in signal:
 			with open(os.path.join(DATA_DIR, OVERRIDE_FILE), 'w') as f:
 				f.write(str(None))
+			Battery(Connection(), single=True)
 		elif signal == 'Update':
-			os.system('~/.adapter/update.sh')
+			if is_connected():
+				os.system('~/.adapter/update.sh')
+				self.widget.message('Het systeem is geupdate.')
+			else:
+				self.widget.error('Geen internetconnectie', fatal=False, detail='Probeer het programma opnieuw op te starten als het probleem zich blijft voordoen.')
 
 	def stop(self):
 		self.widget.stop()
@@ -187,21 +206,35 @@ class Widget(QWidget):
 		# self.progressbar.setProperty("value", int(self.data['percent']))
 
 	def stop(self):
-		print('Thank you for charging with TimAir')
+		self.message('Thank you for charging with TimAir')
 		self.plot.close()
 		qApp.quit()
 		exit()
 
-	def error(self, error):
+	def error(self, error, fatal=True, detail=True):
 		self.box = QMessageBox()
 		self.box.setIcon(QMessageBox.Critical)
 		self.box.setText("Error: %s" % error)
-		self.box.setDetailedText(str(self.data))
+		if detail == True:
+			self.box.setDetailedText(str(self.data))
+		elif type(detail) == str:
+			self.box.setDetailedText(detail)
 		self.box.setWindowTitle("Error")
 		self.box.setStandardButtons(QMessageBox.Close)
 		self.box.show()
+		style(self.box)
 
-		self.box.buttonClicked.connect(self.stop)
+		if fatal:
+			self.box.buttonClicked.connect(self.stop)
+
+	def message(self, error):
+		self.box = QMessageBox()
+		self.box.setIcon(QMessageBox.Information)
+		self.box.setText(error)
+		self.box.setWindowTitle("Batterij montior")
+		self.box.setStandardButtons(QMessageBox.Close)
+		self.box.show()
+		style(self.box)
 
 plt.style.use('ggplot')
 class Plot(QWidget):

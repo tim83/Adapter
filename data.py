@@ -14,7 +14,7 @@ for file in files:
 		DATA_PATH += file + '/'
 
 class Battery():
-	def __init__(self, connection):
+	def __init__(self, connection, single=False):
 		self.connection = connection
 		os.makedirs(DATA_DIR, exist_ok=True)
 
@@ -25,7 +25,10 @@ class Battery():
 			
 		while True:
 			self.data = self.get_data()
-			time.sleep(INTERVAL)
+			if single:
+				break
+			else:
+				time.sleep(INTERVAL)
 
 	def get_data(self):
 		self.data = {}
@@ -60,7 +63,7 @@ class Battery():
 		elif self.data['override'] == True:
 			self.start_charge(override=True)
 		elif self.data['override'] == False:
-			self.stop_charge(overrride=True)
+			self.stop_charge(override=True)
 
 		return self.data
 
@@ -127,24 +130,18 @@ class Battery():
 	def stop_charge(self, override=False):
 		if not override:
 			self.charge = False
-		try:
-			self.connection.send(2, 0)
-			self.connection.send(3, 0)
-			self.connection.send(4, 1)
-		except SerialException as e:
-			print('No %s found' % MANUFACTURER)
-			print('\tError: ' + str(e))
+
+		self.connection.send(2, 0)
+		self.connection.send(3, 0)
+		self.connection.send(4, 1)
 
 	def start_charge(self, override=False):
 		if not override:
 			self.charge = True
-		try:
-			self.connection.send(2, 1)
-			self.connection.send(3, 1)
-			self.connection.send(4, 0)
-		except SerialException as e:
-			with open(os.path.join(DATA_DIR, LOG_FILE), 'a') as o:
-				o.write('Error: ' + str(e) + '\n')
+		self.connection.send(2, 1)
+		self.connection.send(3, 1)
+		self.connection.send(4, 0)
+
 
 if __name__ == '__main__':
 	os.system('~/.adapter/update.sh')
@@ -152,5 +149,6 @@ if __name__ == '__main__':
 	while True:
 		try:
 			Battery(Connection())
-		except:
-			pass
+		except Exception as e:
+			with open(os.path.join(DATA_DIR, LOG_FILE), 'a') as o:
+				o.write('Error: ' + str(e) + '\n')
