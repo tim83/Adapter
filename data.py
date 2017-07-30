@@ -15,7 +15,11 @@ for file in files:
 
 class Battery():
 	def __init__(self, connection, single=False):
-		self.connection = connection
+		try:
+			self.connection = connection
+		except:
+			self.connection = None
+
 		os.makedirs(DATA_DIR, exist_ok=True)
 
 		if IDLE == False:
