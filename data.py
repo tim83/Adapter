@@ -152,12 +152,9 @@ class Battery():
 
 if __name__ == '__main__':
 	os.system('~/.adapter/update.sh')
-
-	#while True:
-	#	try:
-	Battery(Connection())
-	#		break
-	#	except (SerialException) as e:
-	#		print('No ' + MANUFACTURER + ' found.')
-	#		print('\tError: ' + str(e))
-	#		time.sleep(INTERVAL)
+	
+	while True:
+		try:
+			Battery(Connection())
+		except:
+			pass
