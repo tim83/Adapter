@@ -25,6 +25,7 @@ class Battery():
 			
 		while True:
 			self.data = self.get_data()
+			self.set_charge()
 			if single:
 				break
 			else:
@@ -49,6 +50,9 @@ class Battery():
 			for key in self.data.keys():
 				f.write(key + '\t' + str(self.data[key]) + '\n')
 
+		return self.data
+
+	def set_charge(self):
 		if self.data['override'] == None:
 			if self.data['percent'] < LOW_LEVEL:
 				self.start_charge()
@@ -65,7 +69,7 @@ class Battery():
 		elif self.data['override'] == False:
 			self.stop_charge(override=True)
 
-		return self.data
+		self.get_data()
 
 	def get_override(self):
 		try:
