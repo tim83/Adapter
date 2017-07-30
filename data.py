@@ -6,7 +6,7 @@ from settings import *
 import datetime as dt
 from serial.serialutil import SerialException
 from ast import literal_eval
-import os, time, shutil
+import os, time, psutil
 
 files = os.listdir(DATA_PATH)
 for file in files:
@@ -14,8 +14,9 @@ for file in files:
 		DATA_PATH += file + '/'
 
 class Battery():
-	def __init__(self, single=False):
+	def __init__(self, single=False, linux=True):
 		self.connection = Connection()
+		self.linux = linux
 
 		os.makedirs(DATA_DIR, exist_ok=True)
 
@@ -80,55 +81,63 @@ class Battery():
 			return None
 
 	def get_status(self):
-		with open(DATA_PATH + 'status') as file:
-			data = file.read()
+		if self.linux:
+			with open(DATA_PATH + 'status') as file:
+				data = file.read()
 
-		if data == 'Discharging\n':
-			return False
-		elif data == 'Charging\n' or data == 'Full\n':
-			return True
+			if data == 'Discharging\n':
+				return False
+			elif data == 'Charging\n' or data == 'Full\n':
+				return True
+			else:
+				return None
 		else:
-			return None
+			return psutil.sensors_battery().power_plugged
 
 	def get_percent(self):
-		with open(DATA_PATH + PERCENT_MAX_FILE) as file:
-			max = file.read()
+		if self.linux:
+			with open(DATA_PATH + PERCENT_MAX_FILE) as file:
+				max = file.read()
 
-		with open(DATA_PATH + PERCENT_MAX_DESING_FILE) as file:
-			max_design = file.read()
+			with open(DATA_PATH + PERCENT_MAX_DESING_FILE) as file:
+				max_design = file.read()
 
+			with open(DATA_PATH + PERCENT_NOW_FILE) as file:
+				now = file.read()
 
-		with open(DATA_PATH + PERCENT_NOW_FILE) as file:
-			now = file.read()
+			percent = (int(now)/int(max))*100
+			percent_max = (int(max)/int(max_design))*100
 
-		percent = (int(now)/int(max))*100
-		percent_max = (int(max)/int(max_design))*100
-
-		return {'percent': percent, 'percent_max': percent_max}
+			return {'percent': percent, 'percent_max': percent_max}
+		else:
+			return {'percent': psutil.sensors_battery().percent, 'percent_max': 100}
 
 	def get_info(self):
-		with open(DATA_PATH + MANUFACTURER_FILE) as file:
-			manufacturer = file.read()
+		if self.linux:
+			with open(DATA_PATH + MANUFACTURER_FILE) as file:
+				manufacturer = file.read()
 
-		with open(DATA_PATH + MODEL_FILE) as file:
-			model = file.read()
+			with open(DATA_PATH + MODEL_FILE) as file:
+				model = file.read()
 
-		with open(DATA_PATH + PRESENT_FILE) as file:
-			if file.read() == '1\n':
-				present = True
-			else:
-				present = False
+			with open(DATA_PATH + PRESENT_FILE) as file:
+				if file.read() == '1\n':
+					present = True
+				else:
+					present = False
 
-		with open(DATA_PATH + TECHNOLOGY_FILE) as file:
-			technology = file.read()
+			with open(DATA_PATH + TECHNOLOGY_FILE) as file:
+				technology = file.read()
 
-		with open(DATA_PATH + TYPE_FILE) as file:
-			type = file.read()
+			with open(DATA_PATH + TYPE_FILE) as file:
+				type = file.read()
 
-		name = technology + type + ':\n' + manufacturer + model
-		name = ' '.join(name.split('\n'))
+			name = technology + type + ':\n' + manufacturer + model
+			name = ' '.join(name.split('\n'))
 
-		return {'name': name, 'present': present}
+			return {'name': name, 'present': present}
+		else:
+			return {'name': 'Batterij', 'present': True}
 
 	def stop_charge(self, override=False):
 		if not override:
