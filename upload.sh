@@ -5,8 +5,13 @@ path=~/.adapter
 pwd=$PWD
 cd ~/.adapter/
 
-git fetch --all
-git reset --hard origin/master
+sed -i "s|$HOME|HOME|g" $path/gui.desktop
+
+git add .
+git commit -m "$@"
+git push
+
 sed -i "s|HOME|$HOME|g" $path/gui.desktop
+
 
 cd $pwd

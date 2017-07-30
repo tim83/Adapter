@@ -2,8 +2,8 @@
 Version=1.0
 Name=Batterij monitor
 Comment=Een applicatie om de data van de batterij monitor weer te geven.
-Exec=python3 $HOME/.adapter/gui.py
-Path=$HOME/.adapter/
+Exec=python3 /home/vnctim/.adapter/gui.py
+Path=/home/vnctim/.adapter/
 Terminal=false
 Type=Application
 Categories=Utility;Application;
