@@ -23,22 +23,42 @@ class Gui(QMainWindow):
 		super().__init__()
 		self.font = 12
 
-		menu = self.menuBar()
+		self.menu = self.menuBar()
 
-		file_menu = menu.addMenu('Bestand')
-		manual_menu = file_menu.addMenu('Lader')
-		auto_item = manual_menu.addAction('Automatisch')
-		on_item = manual_menu.addAction('Aan')
-		off_item = manual_menu.addAction('Uit')
-		quit_item = file_menu.addAction('Afsluiten')
+		self.file_menu = self.menu.addMenu('Bestand')
+		self.manual_menu = self.file_menu.addMenu('Lader')
 
-		view_menu = menu.addMenu('Beeld')
-		large_item = view_menu.addAction('Lettergrootte vergroten')
-		small_item =  view_menu.addAction('Lettergrootte verkleinen')
+		self.auto_item = QAction('Automatisch', self)
+		self.auto_item.setShortcut('Ctrl+a')
+		self.manual_menu.addAction(self.auto_item)
 
-		menu.triggered.connect(self.selected)
+		self.on_item = QAction('Aan', self)
+		self.on_item.setShortcut('Ctrl+1')
+		self.manual_menu.addAction(self.on_item)
 
-		self.widget = Widget()
+		self.off_item = QAction('Uit', self)
+		self.off_item.setShortcut('Ctrl+0')
+		self.manual_menu.addAction(self.off_item)
+
+		self.quit_item = self.file_menu.addAction('Afsluiten')
+
+		self.view_menu = self.menu.addMenu('Beeld')
+		self.large_item = QAction('Lettergrootte vergroten', self)
+		self.large_item.setShortcut('Ctrl++')
+		self.view_menu.addAction(self.large_item)
+
+		self.small_item = QAction('Lettergrootte verkleinen', self)
+		self.small_item.setShortcut('Ctrl+-')
+		self.view_menu.addAction(self.small_item)
+
+		self.tools_menu = self.menu.addMenu('Hulpmiddelen')
+		self.update_item = QAction('Update', self)
+		self.update_item.setShortcut('Ctrl+U')
+		self.tools_menu.addAction(self.update_item)
+
+		self.menu.triggered.connect(self.selected)
+
+		self.widget = Widget(self)
 		self.setCentralWidget(self.widget)
 		self.setWindowTitle(self.widget.data['name'])
 		style(self, fontsize=self.font)
@@ -55,15 +75,17 @@ class Gui(QMainWindow):
 		elif signal == 'Lettergrootte verkleinen':
 			self.font -= 1
 			style(self, fontsize=self.font)
-		elif signal == 'Aan':
+		elif 'Aan' in signal:
 			with open(os.path.join(DATA_DIR, OVERRIDE_FILE), 'w') as f:
 				f.write(str(True))
-		elif signal == 'Uit':
+		elif 'Uit' in signal:
 			with open(os.path.join(DATA_DIR, OVERRIDE_FILE), 'w') as f:
 				f.write(str(False))
-		elif signal == 'Automatisch':
+		elif 'Automatisch' in signal:
 			with open(os.path.join(DATA_DIR, OVERRIDE_FILE), 'w') as f:
 				f.write(str(None))
+		elif signal == 'Update':
+			os.system('~/.adapter/update.sh')
 
 	def stop(self):
 		self.widget.stop()
@@ -71,8 +93,9 @@ class Gui(QMainWindow):
 
 
 class Widget(QWidget):
-	def __init__(self):
+	def __init__(self, mainwindow):
 		super().__init__()
+		self.mainwindow = mainwindow
 		self.stoped = False
 		self.interval = INTERVAL * 1000
 
@@ -141,9 +164,21 @@ class Widget(QWidget):
 		if literal_eval(self.data['override']) == None:
 			self.override_warning.setText('')
 			style(self.override_warning, fontsize=1)
+			self.mainwindow.auto_item.setText('\u2714 Automatisch')
+			self.mainwindow.on_item.setText('    Aan')
+			self.mainwindow.off_item.setText('    Uit')
+
 		else:
 			self.override_warning.setText('Attentie, de lader staat op manuele modus.')
 			style(self.override_warning, fontcolor='red')
+			if literal_eval(self.data['override']):
+				self.mainwindow.auto_item.setText('    Automatisch')
+				self.mainwindow.on_item.setText('\u2714 Aan')
+				self.mainwindow.off_item.setText('    Uit')
+			else:
+				self.mainwindow.auto_item.setText('    Automatisch')
+				self.mainwindow.on_item.setText('    Aan')
+				self.mainwindow.off_item.setText('\u2714 Uit')
 
 		self.percent.setText(str(self.data['percent']) + '%')
 		self.percent_low.setText(str(self.data['percent_low']) + '%')

@@ -18,12 +18,6 @@ class Battery():
 		self.connection = connection
 		os.makedirs(DATA_DIR, exist_ok=True)
 
-		# if not os.path.exists(DATA_DIR):
-		#     os.makedirs(DATA_DIR)
-		# else:
-		#     shutil.rmtree(DATA_DIR)
-		#     os.makedirs(DATA_DIR)
-
 		if IDLE == False:
 			self.stop_charge()
 		elif IDLE == True:
@@ -64,9 +58,9 @@ class Battery():
 				self.stop_charge()
 
 		elif self.data['override'] == True:
-			self.start_charge()
+			self.start_charge(override=True)
 		elif self.data['override'] == False:
-			self.stop_charge()
+			self.stop_charge(overrride=True)
 
 		return self.data
 
@@ -130,8 +124,9 @@ class Battery():
 
 		return {'name': name, 'present': present}
 
-	def stop_charge(self):
-		self.charge = False
+	def stop_charge(self, override=False):
+		if not override:
+			self.charge = False
 		try:
 			self.connection.send(2, 0)
 			self.connection.send(3, 0)
@@ -140,15 +135,16 @@ class Battery():
 			print('No %s found' % MANUFACTURER)
 			print('\tError: ' + str(e))
 
-	def start_charge(self):
-		self.charge = True
+	def start_charge(self, override=False):
+		if not override:
+			self.charge = True
 		try:
 			self.connection.send(2, 1)
 			self.connection.send(3, 1)
 			self.connection.send(4, 0)
 		except SerialException as e:
-			print('No %s found' % MANUFACTURER)
-			print('\tError: ' + str(e))
+			with open(os.path.join(DATA_DIR, LOG_FILE), 'a') as o:
+				o.write('Error: ' + str(e) + '\n')
 
 if __name__ == '__main__':
 	os.system('~/.adapter/update.sh')
