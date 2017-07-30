@@ -6,7 +6,7 @@ from settings import *
 import datetime as dt
 from serial.serialutil import SerialException
 from ast import literal_eval
-import os, time, psutil
+import os, time, psutil, sys
 
 files = os.listdir(DATA_PATH)
 for file in files:
@@ -160,7 +160,10 @@ if __name__ == '__main__':
 	
 	while True:
 		try:
-			Battery()
+			if sys.platform == 'linux':
+				Battery()
+			else:
+				Battery(linux=False)
 		except Exception as e:
 			with open(os.path.join(DATA_DIR, LOG_FILE), 'a') as o:
 				o.write('Error: ' + str(e) + '\n')
