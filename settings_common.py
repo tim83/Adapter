@@ -8,7 +8,7 @@ IDLE = False
 #	Data
 #
 INTERVAL = 10 #tijd tussen updates (s)
-PERIOD = 10 # periode die op de grafiek getoond wordt (h)
+PERIOD = 7 # periode die op de grafiek getoond wordt (h)
 #
 #	Arduino
 #
