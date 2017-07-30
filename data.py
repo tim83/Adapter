@@ -19,10 +19,7 @@ class Battery():
 
 		os.makedirs(DATA_DIR, exist_ok=True)
 
-		if IDLE == False:
-			self.stop_charge()
-		elif IDLE == True:
-			self.start_charge()
+		self.charge = IDLE
 			
 		while True:
 			self.set_charge()
