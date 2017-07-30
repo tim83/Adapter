@@ -14,11 +14,8 @@ for file in files:
 		DATA_PATH += file + '/'
 
 class Battery():
-	def __init__(self, connection, single=False):
-		try:
-			self.connection = connection
-		except:
-			self.connection = None
+	def __init__(self, single=False):
+		self.connection = Connection()
 
 		os.makedirs(DATA_DIR, exist_ok=True)
 
@@ -28,7 +25,6 @@ class Battery():
 			self.start_charge()
 			
 		while True:
-			#self.data = self.get_data()
 			self.set_charge()
 			if single:
 				break
@@ -158,7 +154,7 @@ if __name__ == '__main__':
 	
 	while True:
 		try:
-			Battery(Connection())
+			Battery()
 		except Exception as e:
 			with open(os.path.join(DATA_DIR, LOG_FILE), 'a') as o:
 				o.write('Error: ' + str(e) + '\n')

@@ -90,17 +90,17 @@ class Gui(QMainWindow):
 		elif 'Aan' in signal:
 			with open(os.path.join(DATA_DIR, OVERRIDE_FILE), 'w') as f:
 				f.write(str(True))
-			Battery(Connection(), single=True)
+			Battery(single=True)
 			self.widget.update()
 		elif 'Uit' in signal:
 			with open(os.path.join(DATA_DIR, OVERRIDE_FILE), 'w') as f:
 				f.write(str(False))
-			Battery(Connection(), single=True)
+			Battery(single=True)
 			self.widget.update()
 		elif 'Automatisch' in signal:
 			with open(os.path.join(DATA_DIR, OVERRIDE_FILE), 'w') as f:
 				f.write(str(None))
-			Battery(Connection(), single=True)
+			Battery(single=True)
 			self.widget.update()
 		elif signal == 'Update':
 			if is_connected():
