@@ -74,7 +74,7 @@ class Gui(QMainWindow):
 		self.widget = Widget(self)
 		self.setCentralWidget(self.widget)
 		self.setWindowTitle(self.widget.data['name'])
-		self.setWindowIcon(QIcon.fromTheme('battery-symbolic.symbolic'))
+		self.setWindowIcon(QIcon.fromTheme('battery'))
 		style(self, fontsize=self.font)
 		self.show()
 
