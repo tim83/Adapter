@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="ddf7ffdf-78cf-4565-bc5a-8a2cb8a44390" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gui.desktop" afterPath="$PROJECT_DIR$/gui.desktop" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -279,7 +278,14 @@
       <option name="project" value="LOCAL" />
       <updated>1501419203891</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Icon">
+      <created>1501509351622</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1501509351623</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -313,7 +319,8 @@
     <MESSAGE value="Continue message even when not out zone" />
     <MESSAGE value="Edit" />
     <MESSAGE value="Windows compatible" />
-    <option name="LAST_COMMIT_MESSAGE" value="Windows compatible" />
+    <MESSAGE value="Icon" />
+    <option name="LAST_COMMIT_MESSAGE" value="Icon" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
