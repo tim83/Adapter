@@ -308,6 +308,6 @@ class Plot(QWidget):
 if __name__ == '__main__':
 	import sys
 
-	app = QApplication(sys.argv)
+	app = QApplication(['Batterij monitor'])
 	gui = Gui()
 	sys.exit(app.exec())
