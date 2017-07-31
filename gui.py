@@ -74,7 +74,7 @@ class Gui(QMainWindow):
 		self.widget = Widget(self)
 		self.setCentralWidget(self.widget)
 		self.setWindowTitle(self.widget.data['name'])
-		self.setWindowIcon(QIcon.fromTheme('battery'))
+		self.setWindowIcon(QIcon.fromTheme('battery-symbolic.symbolic'))
 		style(self, fontsize=self.font)
 		self.show()
 
@@ -211,7 +211,6 @@ class Widget(QWidget):
 		# self.progressbar.setProperty("value", int(self.data['percent']))
 
 	def stop(self):
-		self.message('Thank you for charging with TimAir')
 		self.plot.close()
 		qApp.quit()
 		exit()
