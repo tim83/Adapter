@@ -1,6 +1,7 @@
 #! /usr/bin/python3
 
 from PyQt5.QtCore import QTimer
+from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import *
 
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
@@ -21,14 +22,14 @@ def style(item, fontsize=12, fontfamily="Noto Sans", fontcolor='black'):
 	item.setStyleSheet('font-size: ' + str(fontsize) + 'pt; font-family: ' + str(fontfamily) + ', sans-serif ; color: ' + str(fontcolor) + ';')
 
 def is_connected():
-    try:
-        # connect to the host -- tells us if the host is actually
-        # reachable
-        socket.create_connection(("www.github.com", 80))
-        return True
-    except OSError:
-        pass
-    return False
+	try:
+		# connect to the host -- tells us if the host is actually
+		# reachable
+		socket.create_connection(("www.github.com", 80))
+		return True
+	except OSError:
+		pass
+	return False
 
 class Gui(QMainWindow):
 	def __init__(self):
@@ -73,6 +74,7 @@ class Gui(QMainWindow):
 		self.widget = Widget(self)
 		self.setCentralWidget(self.widget)
 		self.setWindowTitle(self.widget.data['name'])
+		self.setWindowIcon(QIcon('/usr/share/icons/Adwaita/64x64/devices/battery-symbolic.symbolic.png'))
 		style(self, fontsize=self.font)
 		self.show()
 
