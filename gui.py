@@ -74,7 +74,7 @@ class Gui(QMainWindow):
 		self.widget = Widget(self)
 		self.setCentralWidget(self.widget)
 		self.setWindowTitle(self.widget.data['name'])
-		self.setWindowIcon(QIcon('/usr/share/icons/Adwaita/64x64/devices/battery-symbolic.symbolic.png'))
+		self.setWindowIcon(QIcon('/usr/share/icons/Arc-Maia/devices/symbolic/battery-symbolic.svg')) # '/usr/share/icons/Adwaita/64x64/devices/battery-symbolic.symbolic.png'))
 		style(self, fontsize=self.font)
 		self.show()
 
