@@ -218,7 +218,7 @@ class Widget(QWidget):
 
 		time = dt.timedelta(0, self.data['remaining'])
 		if time > dt.timedelta(0):
-			self.time_left.setText(str(time).replace('days', 'dagen'))
+			self.time_left.setText(str(time).replace('days', 'dagen').replace('day', 'dag'))
 		else:
 			self.time_left.setText('\u221E')
 
