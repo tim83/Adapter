@@ -17,7 +17,7 @@ PINID_LENGHT = 2
 #
 #	Data
 #
-ENERGY_HOSTNAMES = ['pc-tim', 'laptop-tim', 'laptop-ben']
+ENERGY_HOSTNAMES = ['laptop-tim', 'laptop-ben']
 CHARGE_HOSTNAMES = ['notebook-ben']
 DATA_DIR = '/tmp/adapter'
 DATA_FILE = 'data.tsv'

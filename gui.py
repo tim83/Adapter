@@ -12,7 +12,7 @@ import matplotlib.collections as col
 
 import datetime as dt
 from ast import literal_eval
-import os, socket
+import os, socket, psutil
 
 from settings import *
 from data import Battery
@@ -121,7 +121,7 @@ class Widget(QWidget):
 		super().__init__()
 		self.mainwindow = mainwindow
 		self.stoped = False
-		self.interval = INTERVAL * 1000
+		self.interval = 1000 # INTERVAL * 1000
 
 		self.start_ui()
 		self.update()
@@ -137,13 +137,21 @@ class Widget(QWidget):
 			for l in lines:
 				if l != '':
 					d = l.split('\t')
-					self.data[d[0]] = d[1]
+					try:
+						self.data[d[0]] = literal_eval(d[1])
+					except:
+						self.data[d[0]] = d[1]
+
+		self.data['percent'] = psutil.sensors_battery().percent
+		self.data['charging'] = psutil.sensors_battery().power_plugged
+		self.data['remaining'] = psutil.sensors_battery().secsleft
+
 		return self.data
 
 	def start_ui(self):
 		self.data = self.get_data()
 
-		if not literal_eval(self.data['present']):
+		if not self.data['present']:
 			self.error('Geen batterij gevonden.')
 
 		self.layout = QGridLayout()
@@ -152,21 +160,24 @@ class Widget(QWidget):
 		self.layout.addWidget(self.override_warning, 0, 1, 1, 2)
 		self.layout.addWidget(QLabel('Opladen:'), 1, 1)
 		self.layout.addWidget(QLabel('Percentage:'), 2, 1)
-		self.layout.addWidget(QLabel('Minimum:'), 3, 1)
-		self.layout.addWidget(QLabel('Maximum:'), 4, 1)
-		self.layout.addWidget(QLabel('Maximum oplaadcapaciteit:'), 5, 1)
+		self.layout.addWidget(QLabel('Tijd te gaan:'), 3, 1)
+		#self.layout.addWidget(QLabel('Minimum:'), 3, 1)
+		#self.layout.addWidget(QLabel('Maximum:'), 4, 1)
+		#self.layout.addWidget(QLabel('Maximum oplaadcapaciteit:'), 5, 1)
 
 		self.charging = QLabel('')
 		self.percent = QLabel('')
-		self.percent_low = QLabel('')
-		self.percent_high = QLabel('')
-		self.percent_max = QLabel('')
+		self.time_left = QLabel('')
+		#self.percent_low = QLabel('')
+		#self.percent_high = QLabel('')
+		#self.percent_max = QLabel('')
 
 		self.layout.addWidget(self.charging, 1, 2)
 		self.layout.addWidget(self.percent, 2, 2)
-		self.layout.addWidget(self.percent_low, 3, 2)
-		self.layout.addWidget(self.percent_high, 4, 2)
-		self.layout.addWidget(self.percent_max, 5, 2)
+		self.layout.addWidget(self.time_left, 3, 2)
+		#self.layout.addWidget(self.percent_low, 3, 2)
+		#self.layout.addWidget(self.percent_high, 4, 2)
+		#self.layout.addWidget(self.percent_max, 5, 2)
 
 		self.plot = Plot()
 		self.layout.addWidget(self.plot, 6, 1, 2, 2)
@@ -180,12 +191,12 @@ class Widget(QWidget):
 
 	def update(self):
 		self.get_data()
-		if literal_eval(self.data['charging']):
+		if self.data['charging']:
 			self.charging.setText('\u2714')
 		else:
 			self.charging.setText('\u2718')
 
-		if literal_eval(self.data['override']) == None:
+		if self.data['override'] == None:
 			self.override_warning.setText('')
 			style(self.override_warning, fontsize=1)
 			self.mainwindow.auto_item.setText('\u2714 Automatisch')
@@ -195,7 +206,7 @@ class Widget(QWidget):
 		else:
 			self.override_warning.setText('Attentie, de lader staat op manuele modus.')
 			style(self.override_warning, fontcolor='red')
-			if literal_eval(self.data['override']):
+			if self.data['override']:
 				self.mainwindow.auto_item.setText('    Automatisch')
 				self.mainwindow.on_item.setText('\u2714 Aan')
 				self.mainwindow.off_item.setText('    Uit')
@@ -203,11 +214,17 @@ class Widget(QWidget):
 				self.mainwindow.auto_item.setText('    Automatisch')
 				self.mainwindow.on_item.setText('    Aan')
 				self.mainwindow.off_item.setText('\u2714 Uit')
+		self.percent.setText('%.2f%%' % self.data['percent'])
 
-		self.percent.setText(str(self.data['percent']) + '%')
-		self.percent_low.setText(str(self.data['percent_low']) + '%')
-		self.percent_high.setText(str(self.data['percent_high']) + '%')
-		self.percent_max.setText(str(self.data['percent_max']) + '%')
+		time = dt.timedelta(0, self.data['remaining'])
+		if time > dt.timedelta(0):
+			self.time_left.setText(str(time).replace('days', 'dagen'))
+		else:
+			self.time_left.setText('\u221E')
+
+		#self.percent_low.setText(str(self.data['percent_low']) + '%')
+		#self.percent_high.setText(str(self.data['percent_high']) + '%')
+		#self.percent_max.setText(str(self.data['percent_max']) + '%')
 		# self.progressbar.setProperty("value", int(self.data['percent']))
 
 	def stop(self):
