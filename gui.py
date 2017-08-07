@@ -179,7 +179,7 @@ class Widget(QWidget):
 		#self.layout.addWidget(self.percent_high, 4, 2)
 		#self.layout.addWidget(self.percent_max, 5, 2)
 
-		self.plot = Plot()
+		self.plot = Plot(self.interval)
 		self.layout.addWidget(self.plot, 6, 1, 2, 2)
 
 		self.stop_button = QPushButton('Sluiten')
@@ -227,6 +227,8 @@ class Widget(QWidget):
 		#self.percent_max.setText(str(self.data['percent_max']) + '%')
 		# self.progressbar.setProperty("value", int(self.data['percent']))
 
+		self.plot.plot()
+
 	def stop(self):
 		self.plot.close()
 		qApp.quit()
@@ -259,9 +261,9 @@ class Widget(QWidget):
 
 plt.style.use('ggplot')
 class Plot(QWidget):
-	def __init__(self):
+	def __init__(self, interval):
 		super().__init__()
-		self.interval = INTERVAL * 1000
+		self.interval = interval
 
 		self.figure = plt.figure()
 		self.figure.set_facecolor("#ececec")
@@ -274,7 +276,7 @@ class Plot(QWidget):
 		self.setLayout(layout)
 
 		self.show()
-		self.plot(self.interval)
+		self.plot()
 
 	def get_data(self):
 		self.data = []
@@ -287,7 +289,7 @@ class Plot(QWidget):
 				self.data.append(float(d[1]))
 		return self.time, self.data
 
-	def plot(self, interval):
+	def plot(self, *argv):
 		self.time, self.data = self.get_data()
 
 		nowTime = dt.datetime.now()
