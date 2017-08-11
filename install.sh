@@ -11,22 +11,12 @@ user=$USER
 os=$(cat /etc/os-release | grep ID= | grep -v VERSION | cut -d '=' -f2)
 if [ "$os" == "manjaro" ]
 	then
-	sudo pacman -S python3 python-pip python-wheel python-pyqt5 --needed
+	sudo pacman -S python3 python-pip python-wheel python-pyqt5 tk --needed
 	sudo pip3 install datetime
 	sudo pip3 install Pillow
 	sudo pip3 install matplotlib
 	sudo pip3 install PySerial
 	sudo pip3 install shutil
-	
-elif [ "$os" == "opensuse" ]
-	then
-	sudo zypper install python3 python3-pip
-	sudo pip3 install datetime
-	sudo pip3 install Pillow
-	sudo pip3 install matplotlib
-	sudo pip3 install PySerial
-	sudo pip3 install PyQt5
-	sudo pip3 install wheel
 else
 	echo 'Distrubutie niet gevonden.'
 	echo 'Gelieven de volgende packatten te installeren voor python3:'
