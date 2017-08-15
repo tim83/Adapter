@@ -184,7 +184,7 @@ class Widget(QWidget):
 
 		self.stop_button = QPushButton('Sluiten')
 		self.stop_button.clicked.connect(self.stop)
-		self.layout.addWidget(self.stop_button, 8, 1, 1, 2)
+		#self.layout.addWidget(self.stop_button, 8, 1, 1, 2)
 
 		self.setLayout(self.layout)
 		self.show()
@@ -266,7 +266,7 @@ class Plot(QWidget):
 		self.interval = interval
 
 		self.figure = plt.figure()
-		self.figure.set_facecolor("#ececec")
+		self.figure.set_facecolor("#f5f6f7")
 		self.canvas = FigureCanvas(self.figure)
 
 		ani = anim.FuncAnimation(self.figure, self.plot, interval=self.interval)
