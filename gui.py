@@ -223,7 +223,7 @@ class Widget(QWidget):
 			self.time_left.setText('\u221E')
 		#self.percent_low.setText(str(self.data['percent_low']) + '%')
 		#self.percent_high.setText(str(self.data['percent_high']) + '%')
-		#self.percent_max.setText(str(self.data['percent_max']) + '%')
+		#self.percent_mself.ax.setText(str(self.data['percent_max']) + '%')
 		# self.progressbar.setProperty("value", int(self.data['percent']))
 		#self.plot.plot()
 
@@ -261,18 +261,19 @@ plt.style.use('ggplot')
 class Plot(QWidget):
 	def __init__(self):
 		super().__init__()
-		self.interval = 1 #INTERVAL
+		self.interval = INTERVAL
 
 		self.figure = plt.figure()
 		self.figure.set_facecolor("#f5f6f7")
 		self.canvas = FigureCanvas(self.figure)
 
-		ani = anim.FuncAnimation(self.figure, self.plot, interval=self.interval, blit=True)
+		ani = anim.FuncAnimation(self.figure, self.plot, interval=self.interval)
 
 		layout = QVBoxLayout()
 		layout.addWidget(self.canvas)
 		self.setLayout(layout)
 
+		self.draw()
 		self.show()
 		self.plot()
 
@@ -287,6 +288,37 @@ class Plot(QWidget):
 				self.data.append(float(d[1]))
 		return self.time, self.data
 
+	def draw(self, *argv):
+		self.time, self.data = self.get_data()
+
+		nowTime = dt.datetime.now()
+		endTime = nowTime - dt.timedelta(hours=PERIOD)
+		now = mdates.date2num(nowTime)
+		end = mdates.date2num(endTime)
+
+		self.ax = self.figure.add_subplot(111)
+		self.ax.clear()
+
+		# plt.gcf().autofmt_xdate()
+		locator = mdates.AutoDateLocator(minticks=3)
+		# formatter = mdates.AutoDateFormatter(locator)
+		formatter = mdates.DateFormatter('%H:%M')
+		self.ax.xaxis.set_major_locator(locator)
+		self.ax.xaxis.set_major_formatter(formatter)
+
+		self.ax.plot(self.time, self.data, 'C4-', lw=2)
+		self.ax.set_ylabel('Batterij niveau (%)')
+		# self.ax.set_xlabel('Tijd')
+		self.ax.set_ylim(0, 100)
+		self.ax.set_xlim(end, now)
+		self.ax.fill_between(self.time, self.data, facecolor='C4', alpha=0.5)
+
+		high = col.BrokenBarHCollection([(end, now)], [HIGH_LEVEL, 100], facecolor='red', alpha=0.4)
+		low = col.BrokenBarHCollection([(end, now)], [0, LOW_LEVEL], facecolor='red', alpha=0.4)
+		self.ax.add_collection(high)
+		self.ax.add_collection(low)
+		self.canvas.draw()
+	
 	def plot(self, *argv):
 		self.time, self.data = self.get_data()
 
@@ -295,29 +327,22 @@ class Plot(QWidget):
 		now = mdates.date2num(nowTime)
 		end = mdates.date2num(endTime)
 
-		ax = self.figure.add_subplot(111)
-		ax.clear()
-
-		# plt.gcf().autofmt_xdate()
 		locator = mdates.AutoDateLocator(minticks=3)
-		# formatter = mdates.AutoDateFormatter(locator)
 		formatter = mdates.DateFormatter('%H:%M')
-		ax.xaxis.set_major_locator(locator)
-		ax.xaxis.set_major_formatter(formatter)
+		self.ax.xaxis.set_major_locator(locator)
+		self.ax.xaxis.set_major_formatter(formatter)
 
-		line = ax.plot(self.time, self.data, 'C4-', lw=2)
-		ax.set_ylabel('Batterij niveau (%)')
-		# ax.set_xlabel('Tijd')
-		ax.set_ylim(0, 100)
-		ax.set_xlim(end, now)
-		ax.fill_between(self.time, self.data, facecolor='C4', alpha=0.5)
+		self.ax.clear()
+		self.ax.plot(self.time, self.data, 'C4-', lw=2)
+		self.ax.set_xlim(end, now)
+		self.ax.set_ylabel('Batterij niveau (%)')
+		self.ax.set_ylim(0, 100)
+		self.ax.fill_between(self.time, self.data, facecolor='C4', alpha=0.5)
 
 		high = col.BrokenBarHCollection([(end, now)], [HIGH_LEVEL, 100], facecolor='red', alpha=0.4)
 		low = col.BrokenBarHCollection([(end, now)], [0, LOW_LEVEL], facecolor='red', alpha=0.4)
-		ax.add_collection(high)
-		ax.add_collection(low)
-
-		return line
+		self.ax.add_collection(high)
+		self.ax.add_collection(low)
 
 	def stop(self):
 		qApp.quit()
