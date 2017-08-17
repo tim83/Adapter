@@ -1,5 +1,8 @@
 from serial import Serial
 from serial.tools.list_ports import comports as ports
+
+import datetime as dt
+
 from settings import *
 
 class Connection():
@@ -14,7 +17,7 @@ class Connection():
 		send = 'PIN' + pinid + '=' + str(msg) + '\n'
 		self.serial.write(send.encode('utf-8'))
 		with open(os.path.join(DATA_DIR, LOG_FILE), 'a') as o:
-			o.write('To Arduino: ' + send)
+			o.write(str(dt.datetime.now()) + '\tTo Arduino: ' + send)
 
 	def get_port(self):
 		for p in ports():

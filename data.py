@@ -14,7 +14,7 @@ for file in files:
 		DATA_PATH += file + '/'
 
 class Battery():
-	def __init__(self, single=False, linux=True):
+	def __init__(self, single=True, linux=True):
 		self.connection = Connection()
 		self.linux = linux
 
@@ -146,16 +146,20 @@ class Battery():
 		self.connection.send(3, 1)
 		self.connection.send(4, 0)
 
+def run():
+	try:
+		if sys.platform == 'linux':
+			Battery()
+		else:
+			Battery(linux=False)
+	except Exception as e:
+		with open(os.path.join(DATA_DIR, LOG_FILE), 'a') as o:
+			o.write(str(dt.datetime.now()) + '\tError: ' + str(e) + '\n')
+
 
 if __name__ == '__main__':
 	os.system('~/.adapter/update.sh')
-	
+
 	while True:
-		try:
-			if sys.platform == 'linux':
-				Battery()
-			else:
-				Battery(linux=False)
-		except Exception as e:
-			with open(os.path.join(DATA_DIR, LOG_FILE), 'a') as o:
-				o.write('Error: ' + str(e) + '\n')
+		run()
+		time.sleep(INTERVAL)

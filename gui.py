@@ -1,6 +1,6 @@
 #! /usr/bin/python3
 
-from PyQt5.QtCore import QTimer
+from PyQt5.QtCore import QTimer, QThread
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import *
 
@@ -15,8 +15,8 @@ from ast import literal_eval
 import os, socket, psutil
 
 from settings import *
-from data import Battery
-from usb import Connection
+from data import run as run_data
+import usb
 
 def style(item, fontsize=12, fontfamily="Noto Sans", fontcolor='black'):
 	item.setStyleSheet('font-size: ' + str(fontsize) + 'pt; font-family: ' + str(fontfamily) + ', sans-serif ; color: ' + str(fontcolor) + ';')
@@ -92,17 +92,17 @@ class Gui(QMainWindow):
 		elif 'Aan' in signal:
 			with open(os.path.join(DATA_DIR, OVERRIDE_FILE), 'w') as f:
 				f.write(str(True))
-			Battery(single=True)
+			run_data()
 			self.widget.update()
 		elif 'Uit' in signal:
 			with open(os.path.join(DATA_DIR, OVERRIDE_FILE), 'w') as f:
 				f.write(str(False))
-			Battery(single=True)
+			run_data()
 			self.widget.update()
 		elif 'Automatisch' in signal:
 			with open(os.path.join(DATA_DIR, OVERRIDE_FILE), 'w') as f:
 				f.write(str(None))
-			Battery(single=True)
+			run_data()
 			self.widget.update()
 		elif signal == 'Update':
 			if is_connected():
@@ -121,10 +121,9 @@ class Widget(QWidget):
 		super().__init__()
 		self.mainwindow = mainwindow
 		self.stoped = False
-		self.interval = 1000 # INTERVAL * 1000
+		self.interval = 3000 # INTERVAL * 1000
 
 		self.start_ui()
-		self.update()
 
 		self.timer = QTimer(self)
 		self.timer.timeout.connect(self.update)
@@ -179,7 +178,7 @@ class Widget(QWidget):
 		#self.layout.addWidget(self.percent_high, 4, 2)
 		#self.layout.addWidget(self.percent_max, 5, 2)
 
-		self.plot = Plot(self.interval)
+		self.plot = Plot()
 		self.layout.addWidget(self.plot, 6, 1, 2, 2)
 
 		self.stop_button = QPushButton('Sluiten')
@@ -188,6 +187,7 @@ class Widget(QWidget):
 
 		self.setLayout(self.layout)
 		self.show()
+		self.update()
 
 	def update(self):
 		self.get_data()
@@ -221,13 +221,11 @@ class Widget(QWidget):
 			self.time_left.setText(str(time).replace('days', 'dagen').replace('day', 'dag'))
 		else:
 			self.time_left.setText('\u221E')
-
 		#self.percent_low.setText(str(self.data['percent_low']) + '%')
 		#self.percent_high.setText(str(self.data['percent_high']) + '%')
 		#self.percent_max.setText(str(self.data['percent_max']) + '%')
 		# self.progressbar.setProperty("value", int(self.data['percent']))
-
-		self.plot.plot()
+		#self.plot.plot()
 
 	def stop(self):
 		self.plot.close()
@@ -261,15 +259,15 @@ class Widget(QWidget):
 
 plt.style.use('ggplot')
 class Plot(QWidget):
-	def __init__(self, interval):
+	def __init__(self):
 		super().__init__()
-		self.interval = interval
+		self.interval = 1 #INTERVAL
 
 		self.figure = plt.figure()
 		self.figure.set_facecolor("#f5f6f7")
 		self.canvas = FigureCanvas(self.figure)
 
-		ani = anim.FuncAnimation(self.figure, self.plot, interval=self.interval)
+		ani = anim.FuncAnimation(self.figure, self.plot, interval=self.interval, blit=True)
 
 		layout = QVBoxLayout()
 		layout.addWidget(self.canvas)
@@ -307,7 +305,7 @@ class Plot(QWidget):
 		ax.xaxis.set_major_locator(locator)
 		ax.xaxis.set_major_formatter(formatter)
 
-		ax.plot(self.time, self.data, 'C4-', lw=2)
+		line = ax.plot(self.time, self.data, 'C4-', lw=2)
 		ax.set_ylabel('Batterij niveau (%)')
 		# ax.set_xlabel('Tijd')
 		ax.set_ylim(0, 100)
@@ -319,7 +317,7 @@ class Plot(QWidget):
 		ax.add_collection(high)
 		ax.add_collection(low)
 
-		self.canvas.draw()
+		return line
 
 	def stop(self):
 		qApp.quit()
