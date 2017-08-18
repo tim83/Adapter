@@ -327,16 +327,21 @@ class Plot(QWidget):
 		now = mdates.date2num(nowTime)
 		end = mdates.date2num(endTime)
 
+		self.ax = self.figure.add_subplot(111)
+		self.ax.clear()
+
+		# plt.gcf().autofmt_xdate()
 		locator = mdates.AutoDateLocator(minticks=3)
+		# formatter = mdates.AutoDateFormatter(locator)
 		formatter = mdates.DateFormatter('%H:%M')
 		self.ax.xaxis.set_major_locator(locator)
 		self.ax.xaxis.set_major_formatter(formatter)
 
-		self.ax.clear()
 		self.ax.plot(self.time, self.data, 'C4-', lw=2)
-		self.ax.set_xlim(end, now)
 		self.ax.set_ylabel('Batterij niveau (%)')
+		# self.ax.set_xlabel('Tijd')
 		self.ax.set_ylim(0, 100)
+		self.ax.set_xlim(end, now)
 		self.ax.fill_between(self.time, self.data, facecolor='C4', alpha=0.5)
 
 		high = col.BrokenBarHCollection([(end, now)], [HIGH_LEVEL, 100], facecolor='red', alpha=0.4)
