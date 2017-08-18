@@ -16,8 +16,12 @@ class Connection():
 		pinid = '0' * (PINID_LENGHT - len(pin)) + pin
 		send = 'PIN' + pinid + '=' + str(msg) + '\n'
 		self.serial.write(send.encode('utf-8'))
+		response = self.serial.readline().decode()
+		print(response)
 		with open(os.path.join(DATA_DIR, LOG_FILE), 'a') as o:
 			o.write(str(dt.datetime.now()) + '\tTo Arduino: ' + send)
+			if response:
+				o.write(str(dt.datetime.now()) + '\tFrom Arduino: ' + response)
 
 	def get_port(self):
 		for p in ports():
