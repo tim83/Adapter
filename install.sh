@@ -28,10 +28,10 @@ else
 	echo ' - PySerial'
 fi
 
-#sed -i "s/[HOME]/$home/g" $path/gui.desktop
 chmod +x $path/gui.desktop
 
 sudo sh -c "echo @reboot python3 $home/.adapter/data.py > /var/spool/cron/$user"
 ln -sf $path/gui.desktop $(xdg-user-dir DESKTOP)/battery-monitor.desktop
 sudo ln -sf $path/gui.desktop /usr/share/applications/
 sudo ln -sf $path/gui.py /usr/local/bin/battery-monitor
+bash $path/.adapter/update.sh
