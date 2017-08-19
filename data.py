@@ -153,12 +153,14 @@ def run():
 		else:
 			Battery(linux=False)
 	except Exception as e:
+		print(e)
 		with open(os.path.join(DATA_DIR, LOG_FILE), 'a') as o:
 			o.write(str(dt.datetime.now()) + '\tError: ' + str(e) + '\n')
 
 
 if __name__ == '__main__':
-	os.system('~/.adapter/update.sh')
+	if not DEBUG:
+		os.system('~/.adapter/update.sh')
 
 	while True:
 		run()

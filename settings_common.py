@@ -7,7 +7,7 @@ IDLE = False
 #
 #	Data
 #
-INTERVAL = 30 #tijd tussen updates (s)
+INTERVAL = 1 #tijd tussen updates (s)
 PERIOD = 7 # periode die op de grafiek getoond wordt (h)
 #
 #	Arduino
@@ -24,3 +24,7 @@ DATA_FILE = 'data.tsv'
 PLOT_FILE = 'plot.tsv'
 OVERRIDE_FILE = 'override.txt'
 LOG_FILE = 'data.log'
+#
+#   Devel
+#
+DEBUG = False
