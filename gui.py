@@ -74,7 +74,7 @@ class Gui(QMainWindow):
 		self.widget = Widget(self)
 		self.setCentralWidget(self.widget)
 		self.setWindowTitle(self.widget.data['name'])
-		if os.environ.get('DESKTOP_SESSION') == 'gnome'
+		if os.environ.get('DESKTOP_SESSION') == 'gnome':
 			QIcon.setThemeName('Arc-Maia')
 			self.setWindowIcon(QIcon.fromTheme('gnome-power-manager'))
 		else:
