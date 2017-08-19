@@ -7,7 +7,7 @@ IDLE = False
 #
 #	Data
 #
-INTERVAL = 2 #tijd tussen updates (s)
+INTERVAL = 30 #tijd tussen updates (s)
 PERIOD = 7 # periode die op de grafiek getoond wordt (h)
 #
 #	Arduino
@@ -27,4 +27,4 @@ LOG_FILE = 'data.log'
 #
 #   Devel
 #
-DEBUG = True
+DEBUG = False
