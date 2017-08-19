@@ -92,17 +92,17 @@ class Gui(QMainWindow):
 		elif 'Aan' in signal:
 			with open(os.path.join(DATA_DIR, OVERRIDE_FILE), 'w') as f:
 				f.write(str(True))
-			run_data(single=True)
+			Set_charge().start()
 			self.widget.update()
 		elif 'Uit' in signal:
 			with open(os.path.join(DATA_DIR, OVERRIDE_FILE), 'w') as f:
 				f.write(str(False))
-			run_data(single=True)
+			Set_charge().start()
 			self.widget.update()
 		elif 'Automatisch' in signal:
 			with open(os.path.join(DATA_DIR, OVERRIDE_FILE), 'w') as f:
 				f.write(str(None))
-			run_data(single=True)
+			Set_charge().start()
 			self.widget.update()
 		elif signal == 'Update':
 			if is_connected():
@@ -352,6 +352,16 @@ class Plot(QWidget):
 	def stop(self):
 		qApp.quit()
 		exit()
+
+class Set_charge(QThread):
+	def __init__(self):
+		QThread.__init__(self)
+
+	def __del__(self):
+		self.wait()
+
+	def run(self):
+		run_data(single=True)
 
 if __name__ == '__main__':
 	import sys
