@@ -9,14 +9,15 @@ class Connection():
 	def __init__(self):
 		self.port = self.get_port()
 		self.serial = Serial(self.port, 9600, timeout=0.1)
+		print('Prepairing connection')
 		self.get_response()
 
 	def get_response(self):
-		while True:
-			for n in range(0, 50):
-				response = self.serial.readline()
-				if response:
-					return response
+		for n in range(20):
+			response = self.serial.readline()
+			if response:
+				return response
+		else:
 			return None
 
 	def send(self, pin, status):
@@ -25,12 +26,13 @@ class Connection():
 		send = 'PIN' + pinid + '=' + str(status) + '\n'
 		self.serial.write(send.encode('utf-8'))
 		print(send, end='')
-		response = self.get_response().decode()
-		print(response, end='')
+		response = self.get_response()
+		if response:
+			print(response.decode(), end='')
 		with open(os.path.join(DATA_DIR, LOG_FILE), 'a') as o:
 			o.write(str(dt.datetime.now()) + '\tTo Arduino: ' + send)
 			if response:
-				o.write(str(dt.datetime.now()) + '\tFrom Arduino: ' + response)
+				o.write(str(dt.datetime.now()) + '\tFrom Arduino: ' + response.decode())
 
 	def get_port(self):
 		for p in ports():

@@ -37,10 +37,15 @@ class Battery():
 		self.data['remaining'] = psutil.sensors_battery().secsleft
 		self.data['percent_low'] = round(LOW_LEVEL, 2)
 		self.data['percent_high'] = round(HIGH_LEVEL, 2)
-		self.data['percent_max'] = round(self.get_percent()['percent_max'], 2)
-		self.data['name'] = self.get_info()['name']
-		self.data['present'] = self.get_info()['present']
 		self.data['override'] = self.get_override()
+		if self.linux:
+			self.data['percent_max'] = round(self.get_percent()['percent_max'], 2)
+			self.data['name'] = self.get_info()['name']
+			self.data['present'] = self.get_info()['present']
+		else:
+			self.data['percent_max'] = round(100.0, 2)
+			self.data['name'] = 'Batterij'
+			self.data['present'] = True
 		 
 		with open(os.path.join(DATA_DIR, PLOT_FILE), 'a') as f:
 			f.write('%f\t%f\n' % (dt.datetime.now().timestamp(), self.data['percent']))
@@ -149,9 +154,9 @@ class Battery():
 def run():
 	try:
 		if sys.platform == 'linux':
-			Battery()
+			Battery(single=False)
 		else:
-			Battery(linux=False)
+			Battery(single=False, linux=False)
 	except Exception as e:
 		print(e)
 		with open(os.path.join(DATA_DIR, LOG_FILE), 'a') as o:
