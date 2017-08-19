@@ -151,12 +151,12 @@ class Battery():
 		self.connection.send(3, 1)
 		self.connection.send(4, 0)
 
-def run():
+def run(single=False):
 	try:
 		if sys.platform == 'linux':
-			Battery(single=False)
+			Battery(single=single)
 		else:
-			Battery(single=False, linux=False)
+			Battery(single=single, linux=False)
 	except Exception as e:
 		print(e)
 		with open(os.path.join(DATA_DIR, LOG_FILE), 'a') as o:
