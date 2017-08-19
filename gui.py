@@ -74,8 +74,11 @@ class Gui(QMainWindow):
 		self.widget = Widget(self)
 		self.setCentralWidget(self.widget)
 		self.setWindowTitle(self.widget.data['name'])
-		QIcon.setThemeName('Arc-Maia')
-		self.setWindowIcon(QIcon.fromTheme('gnome-power-manager')) #'battery-symbolic.symbolic'))
+		if os.environ.get('DESKTOP_SESSION') == 'gnome'
+			QIcon.setThemeName('Arc-Maia')
+			self.setWindowIcon(QIcon.fromTheme('gnome-power-manager'))
+		else:
+			self.setWindowIcon(QIcon.fromTheme('battery-symbolic.symbolic'))
 		style(self, fontsize=self.font)
 		self.show()
 
