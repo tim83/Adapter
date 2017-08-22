@@ -3,9 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="ddf7ffdf-78cf-4565-bc5a-8a2cb8a44390" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/install.sh" afterPath="$PROJECT_DIR$/install.sh" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gui.py" afterPath="$PROJECT_DIR$/gui.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/update.sh" afterPath="$PROJECT_DIR$/update.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/upload.sh" afterPath="$PROJECT_DIR$/upload.sh" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,10 +21,13 @@
       <file leaf-file-name="gui.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gui.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="329">
-              <caret line="80" column="73" lean-forward="false" selection-start-line="80" selection-start-column="48" selection-end-line="80" selection-end-column="73" />
+            <state relative-caret-position="162">
+              <caret line="379" column="22" lean-forward="true" selection-start-line="379" selection-start-column="22" selection-end-line="379" selection-end-column="22" />
               <folding>
-                <element signature="e#21#61#0" expanded="true" />
+                <element signature="e#21#73#0" expanded="true" />
+                <element signature="e#3973#8295#0" expanded="false" />
+                <element signature="e#8343#11156#0" expanded="false" />
+                <element signature="e#11186#11306#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -34,28 +36,28 @@
       <file leaf-file-name="install.sh" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/install.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="231">
-              <caret line="32" column="40" lean-forward="true" selection-start-line="32" selection-start-column="40" selection-end-line="32" selection-end-column="40" />
+            <state relative-caret-position="576">
+              <caret line="32" column="40" lean-forward="false" selection-start-line="32" selection-start-column="40" selection-end-line="32" selection-end-column="40" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="update.sh" pinned="false" current-in-tab="false">
+      <file leaf-file-name="update.sh" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/update.sh">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="180">
-              <caret line="10" column="24" lean-forward="false" selection-start-line="10" selection-start-column="24" selection-end-line="10" selection-end-column="24" />
+              <caret line="10" column="2" lean-forward="false" selection-start-line="10" selection-start-column="2" selection-end-line="10" selection-end-column="2" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="upload.sh" pinned="false" current-in-tab="true">
+      <file leaf-file-name="upload.sh" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/upload.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="249">
-              <caret line="14" column="18" lean-forward="true" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
+            <state relative-caret-position="252">
+              <caret line="14" column="18" lean-forward="false" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -64,8 +66,8 @@
       <file leaf-file-name="data.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/data.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-175">
-              <caret line="147" column="24" lean-forward="true" selection-start-line="147" selection-start-column="24" selection-end-line="147" selection-end-column="24" />
+            <state relative-caret-position="2646">
+              <caret line="147" column="24" lean-forward="false" selection-start-line="147" selection-start-column="24" selection-end-line="147" selection-end-column="24" />
               <folding>
                 <element signature="e#21#38#0" expanded="true" />
               </folding>
@@ -86,8 +88,8 @@
       <file leaf-file-name="usb.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/usb.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="12" column="18" lean-forward="false" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
+            <state relative-caret-position="198">
+              <caret line="31" column="18" lean-forward="true" selection-start-line="31" selection-start-column="18" selection-end-line="31" selection-end-column="50" />
               <folding>
                 <element signature="e#0#25#0" expanded="true" />
               </folding>
@@ -152,10 +154,10 @@
         <option value="$PROJECT_DIR$/settings_common.py" />
         <option value="$PROJECT_DIR$/data.py" />
         <option value="$PROJECT_DIR$/gui.desktop" />
-        <option value="$PROJECT_DIR$/gui.py" />
         <option value="$PROJECT_DIR$/install.sh" />
-        <option value="$PROJECT_DIR$/update.sh" />
         <option value="$PROJECT_DIR$/upload.sh" />
+        <option value="$PROJECT_DIR$/update.sh" />
+        <option value="$PROJECT_DIR$/gui.py" />
       </list>
     </option>
   </component>
@@ -200,8 +202,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -213,6 +213,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -597,7 +599,14 @@
       <option name="project" value="LOCAL" />
       <updated>1503145707087</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="Icon edit">
+      <created>1503146163095</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1503146163095</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -643,7 +652,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/gui.py</url>
-          <line>364</line>
+          <line>374</line>
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
@@ -684,7 +693,10 @@
         <state relative-caret-position="3510">
           <caret line="211" column="47" lean-forward="false" selection-start-line="211" selection-start-column="47" selection-end-line="211" selection-end-column="47" />
           <folding>
-            <element signature="e#21#61#0" expanded="true" />
+            <element signature="e#21#73#0" expanded="true" />
+            <element signature="e#3973#8295#0" expanded="false" />
+            <element signature="e#8343#11156#0" expanded="false" />
+            <element signature="e#11186#11306#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -736,7 +748,10 @@
         <state relative-caret-position="1080">
           <caret line="76" column="69" lean-forward="false" selection-start-line="76" selection-start-column="69" selection-end-line="76" selection-end-column="69" />
           <folding>
-            <element signature="e#21#61#0" expanded="true" />
+            <element signature="e#21#73#0" expanded="true" />
+            <element signature="e#3973#8295#0" expanded="false" />
+            <element signature="e#8343#11156#0" expanded="false" />
+            <element signature="e#11186#11306#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -763,7 +778,10 @@
         <state relative-caret-position="5310">
           <caret line="310" column="41" lean-forward="false" selection-start-line="310" selection-start-column="41" selection-end-line="310" selection-end-column="41" />
           <folding>
-            <element signature="e#21#61#0" expanded="true" />
+            <element signature="e#21#73#0" expanded="true" />
+            <element signature="e#3973#8295#0" expanded="false" />
+            <element signature="e#8343#11156#0" expanded="false" />
+            <element signature="e#11186#11306#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -790,7 +808,10 @@
         <state relative-caret-position="1620">
           <caret line="105" column="30" lean-forward="false" selection-start-line="105" selection-start-column="30" selection-end-line="105" selection-end-column="30" />
           <folding>
-            <element signature="e#21#61#0" expanded="true" />
+            <element signature="e#21#73#0" expanded="true" />
+            <element signature="e#3973#8295#0" expanded="false" />
+            <element signature="e#8343#11156#0" expanded="false" />
+            <element signature="e#11186#11306#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -810,7 +831,10 @@
         <state relative-caret-position="1620">
           <caret line="105" column="30" lean-forward="false" selection-start-line="105" selection-start-column="30" selection-end-line="105" selection-end-column="30" />
           <folding>
-            <element signature="e#21#61#0" expanded="true" />
+            <element signature="e#21#73#0" expanded="true" />
+            <element signature="e#3973#8295#0" expanded="false" />
+            <element signature="e#8343#11156#0" expanded="false" />
+            <element signature="e#11186#11306#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -830,7 +854,10 @@
         <state relative-caret-position="1620">
           <caret line="105" column="30" lean-forward="false" selection-start-line="105" selection-start-column="30" selection-end-line="105" selection-end-column="30" />
           <folding>
-            <element signature="e#21#61#0" expanded="true" />
+            <element signature="e#21#73#0" expanded="true" />
+            <element signature="e#3973#8295#0" expanded="false" />
+            <element signature="e#8343#11156#0" expanded="false" />
+            <element signature="e#11186#11306#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -850,7 +877,10 @@
         <state relative-caret-position="1620">
           <caret line="105" column="30" lean-forward="false" selection-start-line="105" selection-start-column="30" selection-end-line="105" selection-end-column="30" />
           <folding>
-            <element signature="e#21#61#0" expanded="true" />
+            <element signature="e#21#73#0" expanded="true" />
+            <element signature="e#3973#8295#0" expanded="false" />
+            <element signature="e#8343#11156#0" expanded="false" />
+            <element signature="e#11186#11306#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -870,7 +900,10 @@
         <state relative-caret-position="1620">
           <caret line="105" column="30" lean-forward="true" selection-start-line="105" selection-start-column="30" selection-end-line="105" selection-end-column="30" />
           <folding>
-            <element signature="e#21#61#0" expanded="true" />
+            <element signature="e#21#73#0" expanded="true" />
+            <element signature="e#3973#8295#0" expanded="false" />
+            <element signature="e#8343#11156#0" expanded="false" />
+            <element signature="e#11186#11306#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -890,7 +923,10 @@
         <state relative-caret-position="1422">
           <caret line="94" column="29" lean-forward="false" selection-start-line="94" selection-start-column="29" selection-end-line="94" selection-end-column="29" />
           <folding>
-            <element signature="e#21#61#0" expanded="true" />
+            <element signature="e#21#73#0" expanded="true" />
+            <element signature="e#3973#8295#0" expanded="false" />
+            <element signature="e#8343#11156#0" expanded="false" />
+            <element signature="e#11186#11306#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -910,7 +946,10 @@
         <state relative-caret-position="1422">
           <caret line="94" column="29" lean-forward="true" selection-start-line="94" selection-start-column="29" selection-end-line="94" selection-end-column="29" />
           <folding>
-            <element signature="e#21#61#0" expanded="true" />
+            <element signature="e#21#73#0" expanded="true" />
+            <element signature="e#3973#8295#0" expanded="false" />
+            <element signature="e#8343#11156#0" expanded="false" />
+            <element signature="e#11186#11306#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -951,7 +990,10 @@
         <state relative-caret-position="2376">
           <caret line="145" column="41" lean-forward="true" selection-start-line="145" selection-start-column="41" selection-end-line="145" selection-end-column="41" />
           <folding>
-            <element signature="e#21#61#0" expanded="true" />
+            <element signature="e#21#73#0" expanded="true" />
+            <element signature="e#3973#8295#0" expanded="false" />
+            <element signature="e#8343#11156#0" expanded="false" />
+            <element signature="e#11186#11306#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1033,16 +1075,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/usb.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="12" column="18" lean-forward="false" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/usb-papa.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="234">
@@ -1061,46 +1093,59 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-175">
-          <caret line="147" column="24" lean-forward="true" selection-start-line="147" selection-start-column="24" selection-end-line="147" selection-end-column="24" />
-          <folding>
-            <element signature="e#21#38#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gui.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
-          <caret line="80" column="73" lean-forward="false" selection-start-line="80" selection-start-column="48" selection-end-line="80" selection-end-column="73" />
-          <folding>
-            <element signature="e#21#61#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/install.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="32" column="40" lean-forward="true" selection-start-line="32" selection-start-column="40" selection-end-line="32" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/update.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" column="24" lean-forward="false" selection-start-line="10" selection-start-column="24" selection-end-line="10" selection-end-column="24" />
+        <state relative-caret-position="576">
+          <caret line="32" column="40" lean-forward="false" selection-start-line="32" selection-start-column="40" selection-end-line="32" selection-end-column="40" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/upload.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="249">
-          <caret line="14" column="18" lean-forward="true" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
+        <state relative-caret-position="252">
+          <caret line="14" column="18" lean-forward="false" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2646">
+          <caret line="147" column="24" lean-forward="false" selection-start-line="147" selection-start-column="24" selection-end-line="147" selection-end-column="24" />
+          <folding>
+            <element signature="e#21#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/usb.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="31" column="18" lean-forward="true" selection-start-line="31" selection-start-column="18" selection-end-line="31" selection-end-column="50" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gui.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="379" column="22" lean-forward="true" selection-start-line="379" selection-start-column="22" selection-end-line="379" selection-end-column="22" />
+          <folding>
+            <element signature="e#21#73#0" expanded="true" />
+            <element signature="e#3973#8295#0" expanded="false" />
+            <element signature="e#8343#11156#0" expanded="false" />
+            <element signature="e#11186#11306#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/update.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="10" column="2" lean-forward="false" selection-start-line="10" selection-start-column="2" selection-end-line="10" selection-end-column="2" />
           <folding />
         </state>
       </provider>

@@ -1,6 +1,6 @@
 #! /usr/bin/python3
 
-from PyQt5.QtCore import QTimer, QThread
+from PyQt5.QtCore import QTimer, QThread, pyqtSignal
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import *
 
@@ -16,7 +16,11 @@ import os, socket, psutil
 
 from settings import *
 from data import run as run_data
-import usb
+import logging
+# filename=os.path.join(DATA_DIR, LOG_FILE)
+logging.basicConfig(format='[%(asctime)s %(name)s:%(levelname)s] %(message)s')
+log = logging.getLogger(__name__)
+log.level = logging.DEBUG
 
 def style(item, fontsize=12, fontfamily="Noto Sans", fontcolor='black'):
 	item.setStyleSheet('font-size: ' + str(fontsize) + 'pt; font-family: ' + str(fontfamily) + ', sans-serif ; color: ' + str(fontcolor) + ';')
@@ -109,11 +113,17 @@ class Gui(QMainWindow):
 			Set_charge().start()
 			self.widget.update()
 		elif signal == 'Update':
-			if is_connected():
-				os.system('~/.adapter/update.sh')
-				self.widget.message('Het systeem is geupdate.')
+			log.debug('Starting update')
+			self.progressbar = QProgressDialog()
+			self.progressbar.setRange(0, 0)
+			update = Update()
+			update.start()
+			self.progressbar.setRange(0,1)
+			if update.error:
+				self.widget.error(update.error, fatal=False)
 			else:
-				self.widget.error('Geen internetconnectie', fatal=False, detail='Probeer het programma opnieuw op te starten als het probleem zich blijft voordoen.')
+				self.widget.message('Het systeem is geupdate, herstart om de update te activeren.')
+			log.debug('Finished update')
 
 	def stop(self):
 		self.widget.stop()
@@ -366,6 +376,14 @@ class Set_charge(QThread):
 
 	def run(self):
 		run_data(single=True)
+
+class Update(QThread):
+	error = False
+	def run(self):
+		if is_connected():
+			os.system('~/.adapter/update.sh')
+		else:
+			self.error = 'Geen internet connectie'
 
 if __name__ == '__main__':
 	import sys
