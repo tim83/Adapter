@@ -18,8 +18,8 @@ from settings import *
 from data import run as run_data
 import logging
 # filename=os.path.join(DATA_DIR, LOG_FILE)
-logging.basicConfig(format='[%(asctime)s %(name)s:%(levelname)s] %(message)s')
-log = logging.getLogger(__name__)
+logging.basicConfig(format='[%(asctime)s - %(name)s.%(funcName)s:%(lineno)d - %(levelname)s] %(message)s')
+log = logging.getLogger('GUI')
 log.level = logging.DEBUG
 
 def style(item, fontsize=12, fontfamily="Noto Sans", fontcolor='black'):
@@ -32,8 +32,7 @@ def is_connected():
 		socket.create_connection(("www.github.com", 80))
 		return True
 	except OSError:
-		pass
-	return False
+		return False
 
 class Gui(QMainWindow):
 	def __init__(self):
@@ -113,17 +112,13 @@ class Gui(QMainWindow):
 			Set_charge().start()
 			self.widget.update()
 		elif signal == 'Update':
-			log.debug('Starting update')
-			self.progressbar = QProgressDialog()
-			self.progressbar.setRange(0, 0)
-			update = Update()
-			update.start()
-			self.progressbar.setRange(0,1)
-			if update.error:
-				self.widget.error(update.error, fatal=False)
+			if is_connected():
+				log.debug('Starting update')
+				self.update_thread = Update()
+				self.update_thread.start()
 			else:
-				self.widget.message('Het systeem is geupdate, herstart om de update te activeren.')
-			log.debug('Finished update')
+				log.warning('Geen internetconnectie')
+				self.widget.error('Geen internet connectie', fatal = False)
 
 	def stop(self):
 		self.widget.stop()
@@ -145,15 +140,18 @@ class Widget(QWidget):
 
 	def get_data(self):
 		self.data = {}
-		with open(os.path.join(DATA_DIR, DATA_FILE), 'r') as f:
-			lines = f.read().split('\n')
-			for l in lines:
-				if l != '':
-					d = l.split('\t')
-					try:
-						self.data[d[0]] = literal_eval(d[1])
-					except:
-						self.data[d[0]] = d[1]
+		try:
+			with open(os.path.join(DATA_DIR, DATA_FILE), 'r') as f:
+				lines = f.read().split('\n')
+				for l in lines:
+					if l != '':
+						d = l.split('\t')
+						try:
+							self.data[d[0]] = literal_eval(d[1])
+						except:
+							self.data[d[0]] = d[1]
+		except FileNotFoundError:
+			self.error('Het achtergrond proces is niet niet actief.', fatal=True)
 
 		self.data['percent'] = psutil.sensors_battery().percent
 		self.data['charging'] = psutil.sensors_battery().power_plugged
@@ -247,29 +245,30 @@ class Widget(QWidget):
 		exit()
 
 	def error(self, error, fatal=True, detail=True):
-		self.box = QMessageBox()
-		self.box.setIcon(QMessageBox.Critical)
-		self.box.setText("Error: %s" % error)
+		box = QMessageBox()
+		box.setIcon(QMessageBox.Critical)
+		box.setText("Error: %s" % error)
 		if detail == True:
-			self.box.setDetailedText(str(self.data))
+			box.setDetailedText(str(self.data))
 		elif type(detail) == str:
-			self.box.setDetailedText(detail)
-		self.box.setWindowTitle("Error")
-		self.box.setStandardButtons(QMessageBox.Close)
-		self.box.show()
-		style(self.box)
+			box.setDetailedText(detail)
+		box.setWindowTitle("Error")
+		box.setStandardButtons(QMessageBox.Close)
+		box.show()
+		style(box)
 
 		if fatal:
 			self.box.buttonClicked.connect(self.stop)
 
-	def message(self, error):
-		self.box = QMessageBox()
-		self.box.setIcon(QMessageBox.Information)
-		self.box.setText(error)
-		self.box.setWindowTitle("Batterij montior")
-		self.box.setStandardButtons(QMessageBox.Close)
-		self.box.show()
-		style(self.box)
+	def message(self, message):
+		box = QMessageBox()
+		box.setIcon(QMessageBox.Information)
+		box.setText(message)
+		box.setWindowTitle("Batterij montior")
+		box.setStandardButtons(QMessageBox.Close)
+		box.show()
+		style(box)
+		return box
 
 plt.style.use('ggplot')
 class Plot(QWidget):
@@ -378,12 +377,14 @@ class Set_charge(QThread):
 		run_data(single=True)
 
 class Update(QThread):
-	error = False
 	def run(self):
 		if is_connected():
+			log.debug('Start update script')
 			os.system('~/.adapter/update.sh')
-		else:
-			self.error = 'Geen internet connectie'
+			log.debug('Finished update script')
+		log.debug('Terminating ...')
+		self.quit()
+		log.debug('Terminated')
 
 if __name__ == '__main__':
 	import sys
