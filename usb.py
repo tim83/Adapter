@@ -1,25 +1,22 @@
 from serial import Serial
 from serial.tools.list_ports import comports as ports
-import datetime as dt
 import logging, os
 
 from settings import *
 
 logging.basicConfig(format='[%(asctime)s - %(name)s - %(levelname)s] %(message)s', filename=os.path.join(DATA_DIR, LOG_FILE))
 log = logging.getLogger('USB')
-out_log = log.getChild('send') # logging.getLogger('-> Ard')
-in_log = log.getChild('response') # logging.getLogger('<- Ard')
+out_log = log.getChild('send')
+in_log = log.getChild('receive')
 
 if DEBUG:
 	log.level = logging.DEBUG
-	#out_log.level = logging.DEBUG
-	#in_log.level = logging.DEBUG
 
 class Connection():
 	def __init__(self):
 		self.port = self.get_port()
 		self.serial = Serial(self.port, 9600, timeout=0.1)
-		log.info('Prepairing connection')
+		log.info('Preparing connection')
 		self.get_response()
 
 	def get_response(self):
@@ -38,10 +35,6 @@ class Connection():
 		response = self.get_response()
 		out_log.info(send)
 		in_log.info(response.decode())
-		# with open(os.path.join(DATA_DIR, LOG_FILE), 'a') as o:
-		# 	o.write(str(dt.datetime.now()) + '\tTo Arduino: ' + send)
-		# 	if response:
-		# 		o.write(str(dt.datetime.now()) + '\tFrom Arduino: ' + response.decode())
 
 	def get_port(self):
 		for p in ports():

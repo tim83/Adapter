@@ -23,8 +23,8 @@ DATA_DIR = '/tmp/adapter'
 DATA_FILE = 'data.tsv'
 PLOT_FILE = 'plot.tsv'
 OVERRIDE_FILE = 'override.txt'
-LOG_FILE = 'data.log'
+LOG_FILE = 'log.txt'
 #
 #   Devel
 #
-DEBUG = True
+DEBUG = False

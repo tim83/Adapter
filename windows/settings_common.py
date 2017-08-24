@@ -7,7 +7,7 @@ IDLE = False
 #
 #	Data
 #
-INTERVAL = 30 #tijd tussen updates (s)
+INTERVAL = 5 #tijd tussen updates (s)
 PERIOD = 7 # periode die op de grafiek getoond wordt (h)
 #
 #	Arduino
@@ -17,13 +17,13 @@ PINID_LENGHT = 2
 #
 #	Data
 #
-ENERGY_HOSTNAMES = ['laptop-tim', 'laptop-ben']
-CHARGE_HOSTNAMES = ['notebook-ben']
-DATA_DIR = '/tmp/adapter'
+#ENERGY_HOSTNAMES = ['laptop-tim', 'laptop-ben']
+#CHARGE_HOSTNAMES = ['notebook-ben']
+DATA_DIR = 'C:\\tmp\\adapter'
 DATA_FILE = 'data.tsv'
 PLOT_FILE = 'plot.tsv'
 OVERRIDE_FILE = 'override.txt'
-LOG_FILE = 'data.log'
+LOG_FILE = 'log.txt'
 #
 #   Devel
 #
