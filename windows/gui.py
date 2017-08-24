@@ -12,15 +12,15 @@ import matplotlib.collections as col
 
 import datetime as dt
 from ast import literal_eval
-import os, socket, psutil, logging
+import os, socket, psutil
 
 from settings import *
 from data import run as run_data
-
-logging.basicConfig(format='[%(asctime)s - %(name)s - %(levelname)s] %(message)s', filename=os.path.join(DATA_DIR, LOG_FILE))
+import logging
+# filename=os.path.join(DATA_DIR, LOG_FILE)
+logging.basicConfig(format='[%(asctime)s - %(name)s.%(funcName)s:%(lineno)d - %(levelname)s] %(message)s')
 log = logging.getLogger('GUI')
-if DEBUG:
-	log.level = logging.DEBUG
+log.level = logging.DEBUG
 
 def style(item, fontsize=12, fontfamily="Noto Sans", fontcolor='black'):
 	item.setStyleSheet('font-size: ' + str(fontsize) + 'pt; font-family: ' + str(fontfamily) + ', sans-serif ; color: ' + str(fontcolor) + ';')
@@ -36,7 +36,6 @@ def is_connected():
 
 class Gui(QMainWindow):
 	def __init__(self):
-		log.info('Starting GUI')
 		super().__init__()
 		self.font = 12
 

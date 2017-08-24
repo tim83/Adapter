@@ -6,12 +6,7 @@ from settings import *
 import datetime as dt
 from serial.serialutil import SerialException
 from ast import literal_eval
-import os, time, psutil, sys, logging
-
-logging.basicConfig(format='[%(asctime)s - %(name)s - %(levelname)s] %(message)s', filename=os.path.join(DATA_DIR, LOG_FILE))
-log = logging.getLogger('data')
-if DEBUG:
-	log.level = logging.DEBUG
+import os, time, psutil, sys
 
 files = os.listdir(DATA_PATH)
 for file in files:
@@ -20,7 +15,6 @@ for file in files:
 
 class Battery():
 	def __init__(self, single=True, linux=True):
-		log.info('Starting data')
 		self.connection = Connection()
 		self.linux = linux
 
@@ -164,9 +158,9 @@ def run(single=False):
 		else:
 			Battery(single=single, linux=False)
 	except Exception as e:
-		log.error(str(e))
-		#with open(os.path.join(DATA_DIR, LOG_FILE), 'a') as o:
-		#	o.write(str(dt.datetime.now()) + '\tError: ' + str(e) + '\n')
+		print(e)
+		with open(os.path.join(DATA_DIR, LOG_FILE), 'a') as o:
+			o.write(str(dt.datetime.now()) + '\tError: ' + str(e) + '\n')
 
 
 if __name__ == '__main__':
