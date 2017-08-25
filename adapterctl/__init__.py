@@ -1,9 +1,9 @@
 #! /usr/bin/python3
 
+import argparse
+from ast import literal_eval
 from configparser import ConfigParser
 from os.path import join, dirname, expanduser
-from ast import literal_eval
-import argparse
 
 PROJECT_DIR = dirname(__file__)
 
@@ -21,13 +21,13 @@ for section in config.sections():
 			value = literal_eval(str_value)
 		except (ValueError, SyntaxError):
 			value = str_value
-		#print('{section} - {option}: {value} ({type})'.format(section=section, option=option, value=value, type=type(value)))
+		# print('{section} - {option}: {value} ({type})'.format(section=section, option=option, value=value, type=type(value)))
 		name = option.upper()
 		if type(value) == str:
 			exec('{var} = \'{value}\''.format(var=name, value=value))
 		else:
 			exec('{var} = {value}'.format(var=name, value=value))
-		exec('print(\'{name} = {value}\')'.format(name=name, value=value))
+
 
 def get_logger(name):
 	import logging, os
@@ -48,6 +48,7 @@ def get_logger(name):
 		log.level = logging.INFO
 
 	return log
+
 
 if __name__ == '__main__':
 	parser = argparse.ArgumentParser()
