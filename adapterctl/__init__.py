@@ -71,13 +71,13 @@ if __name__ == '__main__':
 
 	if args.actie.lower() in ['background', 'data']:
 		exec_data = True
-		import data
+		import adapterctl.data
 	elif args.actie.lower() == 'gui':
 		exec_gui = True
-		import gui
+		import adapterctl.gui
 	elif args.actie.lower() == 'usb':
 		exec_usb = True
-		import usb
+		import adapterctl.usb
 	else:
 		parser.print_help()
 else:

@@ -6,10 +6,10 @@ from ast import literal_eval
 import os, time, psutil, sys, logging
 
 if __name__ == '__main__':
-	from __init__ import *
+	from adapterctl.__init__ import *
 else:
 	from __main__ import *
-from usb import Connection
+from adapterctl.usb import Connection
 
 # logging.basicConfig(format='[%(asctime)s - %(name)s - %(levelname)s] %(message)s', filename=os.path.join(TMP_DIR, LOG_FILE))
 # log = logging.getLogger('data')

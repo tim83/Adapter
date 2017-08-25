@@ -5,7 +5,7 @@ import logging, os
 #from settings import *
 
 if __name__ == '__main__':
-	from __init__ import *
+	from adapterctl.__init__ import *
 else:
 	from __main__ import *
 

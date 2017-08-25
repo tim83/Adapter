@@ -16,10 +16,10 @@ import os, socket, psutil, logging
 
 #from settings import *
 if __name__ == '__main__':
-	from __init__ import *
+	from adapterctl.__init__ import *
 else:
 	from __main__ import *
-from data import run as run_data
+from adapterctl.data import run as run_data
 
 # logging.basicConfig(format='[%(asctime)s - %(name)s - %(levelname)s] %(message)s', filename=os.path.join(TMP_DIR, LOG_FILE))
 # log = logging.getLogger('GUI')
@@ -75,10 +75,10 @@ class Gui(QMainWindow):
 		self.small_item.setShortcut('Ctrl+-')
 		self.view_menu.addAction(self.small_item)
 
-		self.tools_menu = self.menu.addMenu('Hulpmiddelen')
-		self.update_item = QAction('Update', self)
-		self.update_item.setShortcut('Ctrl+U')
-		self.tools_menu.addAction(self.update_item)
+		# self.tools_menu = self.menu.addMenu('Hulpmiddelen')
+		# self.update_item = QAction('Update', self)
+		# self.update_item.setShortcut('Ctrl+U')
+		# self.tools_menu.addAction(self.update_item)
 
 		self.menu.triggered.connect(self.selected)
 
