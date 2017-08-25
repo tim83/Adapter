@@ -2,3 +2,4 @@
 /dist/
 /*.egg-info
 adapterctl/custom.ini
+.idea

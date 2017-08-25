@@ -1,32 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ddf7ffdf-78cf-4565-bc5a-8a2cb8a44390" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/adapterctl/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/adapterctl/default.ini" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/old/LICENSE" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/old/README.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/old/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/old/data.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/old/default.ini" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/old/gui.desktop" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/old/gui.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/old/usb.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/setup.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/data.py" afterPath="$PROJECT_DIR$/adapterctl/data.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/gui.py" afterPath="$PROJECT_DIR$/adapterctl/gui.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/install.sh" afterPath="$PROJECT_DIR$/old/install.sh" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/settings.py" afterPath="$PROJECT_DIR$/old/settings.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/settings_charge.py" afterPath="$PROJECT_DIR$/old/settings_charge.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/settings_common.py" afterPath="$PROJECT_DIR$/old/settings_common.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/settings_energy.py" afterPath="$PROJECT_DIR$/old/settings_energy.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/update.sh" afterPath="$PROJECT_DIR$/old/update.sh" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/upload.sh" afterPath="$PROJECT_DIR$/old/upload.sh" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/usb-papa.py" afterPath="$PROJECT_DIR$/old/usb-papa.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/usb.py" afterPath="$PROJECT_DIR$/adapterctl/usb.py" />
+    <list default="true" id="ddf7ffdf-78cf-4565-bc5a-8a2cb8a44390" name="Default" comment="Package layout">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gui.desktop" afterPath="$PROJECT_DIR$/gui.desktop" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -39,18 +16,7 @@
     <favorites_list name="adapter" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="setup.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/setup.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="6" column="29" lean-forward="false" selection-start-line="6" selection-start-column="29" selection-end-line="6" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -114,8 +80,8 @@
         <option value="$PROJECT_DIR$/__init__.py" />
         <option value="$PROJECT_DIR$/usb.py" />
         <option value="$PROJECT_DIR$/setup.py" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/gui.desktop" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -612,14 +578,20 @@
       <option name="project" value="LOCAL" />
       <updated>1503566216775</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="Package layout">
+      <created>1503657016473</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1503657016473</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1366" height="741" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25531915" sideWeight="0.4918415" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25531915" sideWeight="0.4918415" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41264558" sideWeight="0.50303954" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290735" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -643,6 +615,7 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <MESSAGE value="Continue message even when not out zone" />
     <MESSAGE value="Edit" />
     <MESSAGE value="Windows compatible" />
@@ -653,7 +626,8 @@
     <MESSAGE value="Icon edit" />
     <MESSAGE value="Update progressbar" />
     <MESSAGE value="Windows comapatability" />
-    <option name="LAST_COMMIT_MESSAGE" value="Windows comapatability" />
+    <MESSAGE value="Package layout" />
+    <option name="LAST_COMMIT_MESSAGE" value="Package layout" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1004,14 +978,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="3" column="8" lean-forward="true" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/adapterctl/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1024,6 +990,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
           <caret line="4" column="44" lean-forward="false" selection-start-line="4" selection-start-column="44" selection-end-line="4" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" column="5" lean-forward="false" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="5" />
           <folding />
         </state>
       </provider>
