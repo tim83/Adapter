@@ -1,3 +1,5 @@
+#! /usr/bin/python3
+
 from distutils.core import setup
 
 setup(
@@ -8,5 +10,18 @@ setup(
 	license='GNU General Public License',
 	author='Tim Mees',
 	author_email='tim.mees83g@gmail.com',
-	description=' Een programma om op linux een arduino aan te sturren om zo dmv selectief laden de batterijduur te verlengen '
+	description=' Een programma om op linux een arduino aan te sturren om zo dmv selectief laden de batterijduur te verlengen ',
+	install_requires=[
+		'datetime',
+		'configparser',
+		'argparse',
+		'psutil',
+		'sys',
+		'logging',
+		'PyQt5',
+		'matplotlib',
+		'socket',
+		'PySerial'
+	],
+	scripts=['bin/adapterctl']
 )

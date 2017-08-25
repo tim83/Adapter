@@ -1,5 +1,6 @@
 *.pyc
 /dist/
 /*.egg-info
-adapterctl/custom.ini
-.idea
+/*.egg
+/adapterctl/custom.ini
+/.idea
