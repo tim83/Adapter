@@ -4,7 +4,7 @@ from distutils.core import setup
 from os.path import expanduser
 
 setup(
-	name='adapter',
+	name='adapterctl',
 	version='0.1',
 	packages=['adapterctl'],
 	url='https://github.com/tim83/adapter',

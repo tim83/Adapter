@@ -27,6 +27,7 @@ for section in config.sections():
 			exec('{var} = \'{value}\''.format(var=name, value=value))
 		else:
 			exec('{var} = {value}'.format(var=name, value=value))
+		exec('print(\'{name} = {value}\')'.format(name=name, value=value))
 
 def get_logger(name):
 	import logging, os
