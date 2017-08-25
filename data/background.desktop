@@ -1,10 +1,12 @@
 [Desktop Entry]
 Version=1.0
-Name=Batterij monitor
+Name=Batterij daemon
 Comment=Een applicatie om de data van de batterij monitor weer te geven.
-Exec=python3 HOME/.adapter/adapterctl gui -q
+Exec=adapterctl background -q
 Icon=gnome-power-manager
-Path=HOME/.adapter/
 Terminal=false
 Type=Application
 Categories=Utility;Application;
+
+X-GNOME-Autostart-enabled=true
+X-GNOME-Autostart-Delay=0

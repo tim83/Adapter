@@ -1,6 +1,7 @@
 #! /usr/bin/python3
 
 from distutils.core import setup
+from os.path import expanduser
 
 setup(
 	name='adapter',
@@ -16,12 +17,13 @@ setup(
 		'configparser',
 		'argparse',
 		'psutil',
-		'sys',
-		'logging',
 		'PyQt5',
 		'matplotlib',
-		'socket',
 		'PySerial'
 	],
-	scripts=['bin/adapterctl']
+	scripts=['bin/adapterctl'],
+	data_files = [
+		('share/applications', ['data/org.adapterctl.gui.desktop']),
+		(expanduser('~/.config/autostart'), ['data/org.adapterctl.background.desktop']),
+	],
 )
