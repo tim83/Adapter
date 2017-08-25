@@ -177,9 +177,9 @@ def run(single=False):
 
 
 if __name__ == '__main__' or exec_data:
-	if not DEBUG:
-		log.info('updating system')
-		os.system('~/.adapter/update.sh')
+	# if not DEBUG:
+	# 	log.info('updating system')
+	# 	os.system('~/.adapter/update.sh')
 
 	log.info('Starting data')
 	while True:
