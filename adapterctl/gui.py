@@ -14,13 +14,20 @@ import datetime as dt
 from ast import literal_eval
 import os, socket, psutil, logging
 
-from settings import *
+#from settings import *
+if __name__ == '__main__':
+	from __init__ import *
+else:
+	from __main__ import *
 from data import run as run_data
 
-logging.basicConfig(format='[%(asctime)s - %(name)s - %(levelname)s] %(message)s', filename=os.path.join(DATA_DIR, LOG_FILE))
-log = logging.getLogger('GUI')
-if DEBUG:
-	log.level = logging.DEBUG
+# logging.basicConfig(format='[%(asctime)s - %(name)s - %(levelname)s] %(message)s', filename=os.path.join(TMP_DIR, LOG_FILE))
+# log = logging.getLogger('GUI')
+# if DEBUG:
+# 	log.level = logging.DEBUG
+# elif VERBOSE:
+# 	log.level = logging.INFO
+log = get_logger('GUI')
 
 def style(item, fontsize=12, fontfamily="Noto Sans", fontcolor='black'):
 	item.setStyleSheet('font-size: ' + str(fontsize) + 'pt; font-family: ' + str(fontfamily) + ', sans-serif ; color: ' + str(fontcolor) + ';')
@@ -98,17 +105,17 @@ class Gui(QMainWindow):
 			self.font -= 1
 			style(self, fontsize=self.font)
 		elif 'Aan' in signal:
-			with open(os.path.join(DATA_DIR, OVERRIDE_FILE), 'w') as f:
+			with open(os.path.join(TMP_DIR, OVERRIDE_FILE), 'w') as f:
 				f.write(str(True))
 			Set_charge().start()
 			self.widget.update()
 		elif 'Uit' in signal:
-			with open(os.path.join(DATA_DIR, OVERRIDE_FILE), 'w') as f:
+			with open(os.path.join(TMP_DIR, OVERRIDE_FILE), 'w') as f:
 				f.write(str(False))
 			Set_charge().start()
 			self.widget.update()
 		elif 'Automatisch' in signal:
-			with open(os.path.join(DATA_DIR, OVERRIDE_FILE), 'w') as f:
+			with open(os.path.join(TMP_DIR, OVERRIDE_FILE), 'w') as f:
 				f.write(str(None))
 			Set_charge().start()
 			self.widget.update()
@@ -142,7 +149,7 @@ class Widget(QWidget):
 	def get_data(self):
 		self.data = {}
 		try:
-			with open(os.path.join(DATA_DIR, DATA_FILE), 'r') as f:
+			with open(os.path.join(TMP_DIR, DATA_FILE), 'r') as f:
 				lines = f.read().split('\n')
 				for l in lines:
 					if l != '':
@@ -294,7 +301,7 @@ class Plot(QWidget):
 	def get_data(self):
 		self.data = []
 		self.time = []
-		with open(os.path.join(DATA_DIR, PLOT_FILE), 'r') as f:
+		with open(os.path.join(TMP_DIR, PLOT_FILE), 'r') as f:
 			for l in f.readlines():
 				d = l.split('\t')
 				t = dt.datetime.fromtimestamp(float(d[0]))
@@ -327,8 +334,8 @@ class Plot(QWidget):
 		self.ax.set_xlim(end, now)
 		self.ax.fill_between(self.time, self.data, facecolor='C4', alpha=0.5)
 
-		high = col.BrokenBarHCollection([(end, now)], [HIGH_LEVEL, 100], facecolor='red', alpha=0.4)
-		low = col.BrokenBarHCollection([(end, now)], [0, LOW_LEVEL], facecolor='red', alpha=0.4)
+		high = col.BrokenBarHCollection([(end, now)], [HIGH, 100], facecolor='red', alpha=0.4)
+		low = col.BrokenBarHCollection([(end, now)], [0, LOW], facecolor='red', alpha=0.4)
 		self.ax.add_collection(high)
 		self.ax.add_collection(low)
 		self.canvas.draw()
@@ -358,8 +365,8 @@ class Plot(QWidget):
 		self.ax.set_xlim(end, now)
 		self.ax.fill_between(self.time, self.data, facecolor='C4', alpha=0.5)
 
-		high = col.BrokenBarHCollection([(end, now)], [HIGH_LEVEL, 100], facecolor='red', alpha=0.4)
-		low = col.BrokenBarHCollection([(end, now)], [0, LOW_LEVEL], facecolor='red', alpha=0.4)
+		high = col.BrokenBarHCollection([(end, now)], [HIGH, 100], facecolor='red', alpha=0.4)
+		low = col.BrokenBarHCollection([(end, now)], [0, LOW], facecolor='red', alpha=0.4)
 		self.ax.add_collection(high)
 		self.ax.add_collection(low)
 
@@ -387,7 +394,7 @@ class Update(QThread):
 		self.quit()
 		log.debug('Terminated')
 
-if __name__ == '__main__':
+if __name__ == '__main__' or exec_gui:
 	import sys
 
 	app = QApplication(['Batterij monitor'])

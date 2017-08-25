@@ -2,15 +2,20 @@ from serial import Serial
 from serial.tools.list_ports import comports as ports
 import logging, os
 
-from settings import *
+#from settings import *
 
-logging.basicConfig(format='[%(asctime)s - %(name)s - %(levelname)s] %(message)s', filename=os.path.join(DATA_DIR, LOG_FILE))
-log = logging.getLogger('USB')
+if __name__ == '__main__':
+	from __init__ import *
+else:
+	from __main__ import *
+
+# logging.basicConfig(format='[%(asctime)s - %(name)s - %(levelname)s] %(message)s', filename=os.path.join(TMP_DIR, LOG_FILE))
+
+log = get_logger('USB')
 out_log = log.getChild('send')
 in_log = log.getChild('receive')
 
-if DEBUG:
-	log.level = logging.DEBUG
+
 
 class Connection():
 	def __init__(self):
@@ -33,8 +38,8 @@ class Connection():
 		send = 'PIN' + pinid + '=' + str(status) + '\n'
 		self.serial.write(send.encode('utf-8'))
 		response = self.get_response()
-		out_log.info(send)
-		in_log.info(response.decode())
+		out_log.info(send.replace('\n', ''))
+		in_log.info(response.decode().replace('\n', ''))
 
 	def get_port(self):
 		for p in ports():
@@ -42,7 +47,7 @@ class Connection():
 				return p.device
 				break
 
-if __name__ == '__main__':
+if __name__ == '__main__' or exec_usb:
 	con = Connection()
 	con.send(2, 0)
 	con.send(3, 0)

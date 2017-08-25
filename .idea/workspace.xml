@@ -2,17 +2,31 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ddf7ffdf-78cf-4565-bc5a-8a2cb8a44390" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/adapterctl/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/adapterctl/default.ini" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/old/LICENSE" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/old/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/old/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/old/data.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/old/default.ini" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/old/gui.desktop" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/old/gui.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/old/usb.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/setup.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/data.py" afterPath="$PROJECT_DIR$/adapterctl/data.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/gui.py" afterPath="$PROJECT_DIR$/adapterctl/gui.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/install.sh" afterPath="$PROJECT_DIR$/old/install.sh" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/settings.py" afterPath="$PROJECT_DIR$/old/settings.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/settings_charge.py" afterPath="$PROJECT_DIR$/old/settings_charge.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/settings_common.py" afterPath="$PROJECT_DIR$/old/settings_common.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/settings_energy.py" afterPath="$PROJECT_DIR$/old/settings_energy.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/update.sh" afterPath="$PROJECT_DIR$/old/update.sh" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/upload.sh" afterPath="$PROJECT_DIR$/old/upload.sh" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/usb-papa.py" afterPath="$PROJECT_DIR$/old/usb-papa.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/usb.py" afterPath="$PROJECT_DIR$/adapterctl/usb.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data.py" afterPath="$PROJECT_DIR$/data.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gui.py" afterPath="$PROJECT_DIR$/gui.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/settings.py" afterPath="$PROJECT_DIR$/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/settings_common.py" afterPath="$PROJECT_DIR$/settings_common.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/usb.py" afterPath="$PROJECT_DIR$/usb.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/windows/data.py" afterPath="$PROJECT_DIR$/windows/data.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/windows/gui.py" afterPath="$PROJECT_DIR$/windows/gui.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/windows/settings.py" afterPath="$PROJECT_DIR$/windows/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/windows/settings_common.py" afterPath="$PROJECT_DIR$/windows/settings_common.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/windows/usb.py" afterPath="$PROJECT_DIR$/windows/usb.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gui.desktop" afterPath="$PROJECT_DIR$/gui.desktop" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -25,12 +39,24 @@
     <favorites_list name="adapter" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf>
+      <file leaf-file-name="setup.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/setup.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="108">
+              <caret line="6" column="29" lean-forward="false" selection-start-line="6" selection-start-column="29" selection-end-line="6" selection-end-column="29" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
+        <option value="Setup Script" />
       </list>
     </option>
   </component>
@@ -46,12 +72,20 @@
       <find>ax.</find>
       <find>self.connection</find>
       <find>run_data</find>
+      <find>'</find>
+      <find>DATA_DIR</find>
+      <find>LOW_LEVEL</find>
+      <find>open(DATA_PATH</find>
     </findStrings>
     <replaceStrings>
       <replace>override</replace>
       <replace>run_data</replace>
       <replace>self.ax.</replace>
       <replace>con</replace>
+      <replace>'</replace>
+      <replace>TMP_DIR</replace>
+      <replace>LOW</replace>
+      <replace>open(os.path.join(DATA_PATH</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -62,21 +96,26 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/usb-papa.py" />
-        <option value="$PROJECT_DIR$/gui.desktop" />
         <option value="$PROJECT_DIR$/install.sh" />
         <option value="$PROJECT_DIR$/upload.sh" />
         <option value="$PROJECT_DIR$/update.sh" />
         <option value="$PROJECT_DIR$/progressbar.py" />
-        <option value="$PROJECT_DIR$/gui.py" />
-        <option value="$PROJECT_DIR$/data.py" />
-        <option value="$PROJECT_DIR$/usb.py" />
         <option value="$PROJECT_DIR$/windows/usb.py" />
         <option value="$PROJECT_DIR$/settings.py" />
-        <option value="$PROJECT_DIR$/settings_common.py" />
         <option value="$PROJECT_DIR$/windows/settings_common.py" />
         <option value="$PROJECT_DIR$/windows/data.py" />
         <option value="$PROJECT_DIR$/windows/gui.py" />
         <option value="$PROJECT_DIR$/windows/settings.py" />
+        <option value="$PROJECT_DIR$/default.cfg" />
+        <option value="$PROJECT_DIR$/settings_common.py" />
+        <option value="$PROJECT_DIR$/default.ini" />
+        <option value="$PROJECT_DIR$/gui.py" />
+        <option value="$PROJECT_DIR$/data.py" />
+        <option value="$PROJECT_DIR$/__init__.py" />
+        <option value="$PROJECT_DIR$/usb.py" />
+        <option value="$PROJECT_DIR$/setup.py" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/gui.desktop" />
       </list>
     </option>
   </component>
@@ -103,6 +142,11 @@
             <id>ReST</id>
           </State>
         </expanded-state>
+        <selected-state>
+          <State>
+            <id>BashSupport</id>
+          </State>
+        </selected-state>
       </profile-state>
     </entry>
   </component>
@@ -121,7 +165,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -132,26 +175,33 @@
             <path>
               <item name="adapter" type="b2602c69:ProjectViewProjectNode" />
               <item name="adapter" type="462c0819:PsiDirectoryNode" />
-              <item name="windows" type="462c0819:PsiDirectoryNode" />
+              <item name="adapterctl" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="settings.editor.selected.configurable" value="fileTemplates" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../countdown/functions.py" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+  </component>
+  <component name="PyDebuggerOptionsProvider">
+    <option name="mySaveCallSignatures" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/windows" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/old" />
+      <recent name="$PROJECT_DIR$/adapterctl" />
       <recent name="$PROJECT_DIR$/windows" />
       <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/windows" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -167,6 +217,23 @@
     </option>
   </component>
   <component name="RunManager" selected="Python.data">
+    <configuration name="__init__" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="adapter" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/__init__.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+    </configuration>
     <configuration name="data" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -179,8 +246,8 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="adapter" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/windows/data.py" />
-      <option name="PARAMETERS" value="" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/__init__.py" />
+      <option name="PARAMETERS" value="data -d" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
     </configuration>
@@ -196,42 +263,8 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="adapter" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/windows/gui.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-    </configuration>
-    <configuration name="progressbar" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="adapter" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/progressbar.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-    </configuration>
-    <configuration name="usb-papa" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="/usr/bin/python2.7" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="adapter" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/usb-papa.py" />
-      <option name="PARAMETERS" value="" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/__init__.py" />
+      <option name="PARAMETERS" value="gui -d" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
     </configuration>
@@ -247,25 +280,23 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="adapter" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/windows/usb.py" />
-      <option name="PARAMETERS" value="" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/__init__.py" />
+      <option name="PARAMETERS" value="usb -d" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
     </configuration>
-    <list size="5">
+    <list size="4">
       <item index="0" class="java.lang.String" itemvalue="Python.data" />
       <item index="1" class="java.lang.String" itemvalue="Python.gui" />
       <item index="2" class="java.lang.String" itemvalue="Python.usb" />
-      <item index="3" class="java.lang.String" itemvalue="Python.usb-papa" />
-      <item index="4" class="java.lang.String" itemvalue="Python.progressbar" />
+      <item index="3" class="java.lang.String" itemvalue="Python.__init__" />
     </list>
     <recent_temporary>
-      <list size="5">
+      <list size="4">
         <item index="0" class="java.lang.String" itemvalue="Python.data" />
         <item index="1" class="java.lang.String" itemvalue="Python.gui" />
-        <item index="2" class="java.lang.String" itemvalue="Python.progressbar" />
+        <item index="2" class="java.lang.String" itemvalue="Python.__init__" />
         <item index="3" class="java.lang.String" itemvalue="Python.usb" />
-        <item index="4" class="java.lang.String" itemvalue="Python.usb-papa" />
       </list>
     </recent_temporary>
   </component>
@@ -574,29 +605,37 @@
       <option name="project" value="LOCAL" />
       <updated>1503565683085</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="Windows comapatability">
+      <created>1503566216775</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1503566216775</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1366" height="741" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24597365" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25531915" sideWeight="0.4918415" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28753993" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="0" y="294" width="1366" height="206" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41264558" sideWeight="0.50303954" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290735" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28618968" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="0" y="294" width="1366" height="206" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290735" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.327787" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.8338658" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41264558" sideWeight="0.4969605" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.399361" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25531915" sideWeight="0.5081585" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -613,16 +652,11 @@
     <MESSAGE value="stop_charge fail fixed" />
     <MESSAGE value="Icon edit" />
     <MESSAGE value="Update progressbar" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update progressbar" />
+    <MESSAGE value="Windows comapatability" />
+    <option name="LAST_COMMIT_MESSAGE" value="Windows comapatability" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/gui.py</url>
-          <line>376</line>
-        </line-breakpoint>
-      </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
@@ -631,76 +665,10 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/gui.desktop">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="30" lean-forward="false" selection-start-line="5" selection-start-column="30" selection-end-line="5" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gui.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1080">
-          <caret line="76" column="69" lean-forward="false" selection-start-line="76" selection-start-column="69" selection-end-line="76" selection-end-column="69" />
-          <folding>
-            <element signature="e#3857#8233#0" expanded="false" />
-            <element signature="e#3891#4127#0" expanded="false" />
-            <element signature="e#4152#4731#0" expanded="false" />
-            <element signature="e#4756#6060#0" expanded="false" />
-            <element signature="e#6083#7513#0" expanded="false" />
-            <element signature="e#7534#7574#0" expanded="false" />
-            <element signature="e#7628#7995#0" expanded="false" />
-            <element signature="e#8028#8233#0" expanded="false" />
-            <element signature="e#8281#11094#0" expanded="false" />
-            <element signature="e#11124#11244#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/data.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="16" column="49" lean-forward="false" selection-start-line="16" selection-start-column="49" selection-end-line="16" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gui.desktop">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="30" lean-forward="false" selection-start-line="5" selection-start-column="30" selection-end-line="5" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gui.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5310">
-          <caret line="310" column="41" lean-forward="false" selection-start-line="310" selection-start-column="41" selection-end-line="310" selection-end-column="41" />
-          <folding>
-            <element signature="e#3857#8233#0" expanded="false" />
-            <element signature="e#3891#4127#0" expanded="false" />
-            <element signature="e#4152#4731#0" expanded="false" />
-            <element signature="e#4756#6060#0" expanded="false" />
-            <element signature="e#6083#7513#0" expanded="false" />
-            <element signature="e#7534#7574#0" expanded="false" />
-            <element signature="e#7628#7995#0" expanded="false" />
-            <element signature="e#8028#8233#0" expanded="false" />
-            <element signature="e#8281#11094#0" expanded="false" />
-            <element signature="e#11124#11244#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="16" column="49" lean-forward="false" selection-start-line="16" selection-start-column="49" selection-end-line="16" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gui.desktop">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="30" lean-forward="false" selection-start-line="5" selection-start-column="30" selection-end-line="5" selection-end-column="30" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -708,18 +676,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1620">
           <caret line="105" column="30" lean-forward="false" selection-start-line="105" selection-start-column="30" selection-end-line="105" selection-end-column="30" />
-          <folding>
-            <element signature="e#3857#8233#0" expanded="false" />
-            <element signature="e#3891#4127#0" expanded="false" />
-            <element signature="e#4152#4731#0" expanded="false" />
-            <element signature="e#4756#6060#0" expanded="false" />
-            <element signature="e#6083#7513#0" expanded="false" />
-            <element signature="e#7534#7574#0" expanded="false" />
-            <element signature="e#7628#7995#0" expanded="false" />
-            <element signature="e#8028#8233#0" expanded="false" />
-            <element signature="e#8281#11094#0" expanded="false" />
-            <element signature="e#11124#11244#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -734,18 +691,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1620">
           <caret line="105" column="30" lean-forward="false" selection-start-line="105" selection-start-column="30" selection-end-line="105" selection-end-column="30" />
-          <folding>
-            <element signature="e#3857#8233#0" expanded="false" />
-            <element signature="e#3891#4127#0" expanded="false" />
-            <element signature="e#4152#4731#0" expanded="false" />
-            <element signature="e#4756#6060#0" expanded="false" />
-            <element signature="e#6083#7513#0" expanded="false" />
-            <element signature="e#7534#7574#0" expanded="false" />
-            <element signature="e#7628#7995#0" expanded="false" />
-            <element signature="e#8028#8233#0" expanded="false" />
-            <element signature="e#8281#11094#0" expanded="false" />
-            <element signature="e#11124#11244#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -760,44 +706,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1620">
           <caret line="105" column="30" lean-forward="false" selection-start-line="105" selection-start-column="30" selection-end-line="105" selection-end-column="30" />
-          <folding>
-            <element signature="e#3857#8233#0" expanded="false" />
-            <element signature="e#3891#4127#0" expanded="false" />
-            <element signature="e#4152#4731#0" expanded="false" />
-            <element signature="e#4756#6060#0" expanded="false" />
-            <element signature="e#6083#7513#0" expanded="false" />
-            <element signature="e#7534#7574#0" expanded="false" />
-            <element signature="e#7628#7995#0" expanded="false" />
-            <element signature="e#8028#8233#0" expanded="false" />
-            <element signature="e#8281#11094#0" expanded="false" />
-            <element signature="e#11124#11244#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gui.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1620">
-          <caret line="105" column="30" lean-forward="false" selection-start-line="105" selection-start-column="30" selection-end-line="105" selection-end-column="30" />
-          <folding>
-            <element signature="e#3857#8233#0" expanded="false" />
-            <element signature="e#3891#4127#0" expanded="false" />
-            <element signature="e#4152#4731#0" expanded="false" />
-            <element signature="e#4756#6060#0" expanded="false" />
-            <element signature="e#6083#7513#0" expanded="false" />
-            <element signature="e#7534#7574#0" expanded="false" />
-            <element signature="e#7628#7995#0" expanded="false" />
-            <element signature="e#8028#8233#0" expanded="false" />
-            <element signature="e#8281#11094#0" expanded="false" />
-            <element signature="e#11124#11244#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -812,18 +721,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1620">
           <caret line="105" column="30" lean-forward="true" selection-start-line="105" selection-start-column="30" selection-end-line="105" selection-end-column="30" />
-          <folding>
-            <element signature="e#3857#8233#0" expanded="false" />
-            <element signature="e#3891#4127#0" expanded="false" />
-            <element signature="e#4152#4731#0" expanded="false" />
-            <element signature="e#4756#6060#0" expanded="false" />
-            <element signature="e#6083#7513#0" expanded="false" />
-            <element signature="e#7534#7574#0" expanded="false" />
-            <element signature="e#7628#7995#0" expanded="false" />
-            <element signature="e#8028#8233#0" expanded="false" />
-            <element signature="e#8281#11094#0" expanded="false" />
-            <element signature="e#11124#11244#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -838,18 +736,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1422">
           <caret line="94" column="29" lean-forward="false" selection-start-line="94" selection-start-column="29" selection-end-line="94" selection-end-column="29" />
-          <folding>
-            <element signature="e#3857#8233#0" expanded="false" />
-            <element signature="e#3891#4127#0" expanded="false" />
-            <element signature="e#4152#4731#0" expanded="false" />
-            <element signature="e#4756#6060#0" expanded="false" />
-            <element signature="e#6083#7513#0" expanded="false" />
-            <element signature="e#7534#7574#0" expanded="false" />
-            <element signature="e#7628#7995#0" expanded="false" />
-            <element signature="e#8028#8233#0" expanded="false" />
-            <element signature="e#8281#11094#0" expanded="false" />
-            <element signature="e#11124#11244#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -864,18 +751,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1422">
           <caret line="94" column="29" lean-forward="true" selection-start-line="94" selection-start-column="29" selection-end-line="94" selection-end-column="29" />
-          <folding>
-            <element signature="e#3857#8233#0" expanded="false" />
-            <element signature="e#3891#4127#0" expanded="false" />
-            <element signature="e#4152#4731#0" expanded="false" />
-            <element signature="e#4756#6060#0" expanded="false" />
-            <element signature="e#6083#7513#0" expanded="false" />
-            <element signature="e#7534#7574#0" expanded="false" />
-            <element signature="e#7628#7995#0" expanded="false" />
-            <element signature="e#8028#8233#0" expanded="false" />
-            <element signature="e#8281#11094#0" expanded="false" />
-            <element signature="e#11124#11244#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -911,18 +787,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2376">
           <caret line="145" column="41" lean-forward="true" selection-start-line="145" selection-start-column="41" selection-end-line="145" selection-end-column="41" />
-          <folding>
-            <element signature="e#3857#8233#0" expanded="false" />
-            <element signature="e#3891#4127#0" expanded="false" />
-            <element signature="e#4152#4731#0" expanded="false" />
-            <element signature="e#4756#6060#0" expanded="false" />
-            <element signature="e#6083#7513#0" expanded="false" />
-            <element signature="e#7534#7574#0" expanded="false" />
-            <element signature="e#7628#7995#0" expanded="false" />
-            <element signature="e#8028#8233#0" expanded="false" />
-            <element signature="e#8281#11094#0" expanded="false" />
-            <element signature="e#11124#11244#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -975,24 +840,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/settings_energy.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="3" column="21" lean-forward="false" selection-start-line="3" selection-start-column="21" selection-end-line="3" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/usb-papa.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="234">
           <caret line="17" column="24" lean-forward="false" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gui.desktop">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="24" lean-forward="false" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
         </state>
       </provider>
     </entry>
@@ -1021,42 +872,8 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/progressbar.py" />
-    <entry file="file://$PROJECT_DIR$/execute.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/execute.py" />
     <entry file="file://$PROJECT_DIR$/gui.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gui.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="24" selection-end-column="29" />
-          <folding>
-            <element signature="e#3857#8233#0" expanded="false" />
-            <element signature="e#3891#4127#0" expanded="false" />
-            <element signature="e#4152#4731#0" expanded="false" />
-            <element signature="e#4756#6060#0" expanded="false" />
-            <element signature="e#6083#7513#0" expanded="false" />
-            <element signature="e#7534#7574#0" expanded="false" />
-            <element signature="e#7628#7995#0" expanded="false" />
-            <element signature="e#8028#8233#0" expanded="false" />
-            <element signature="e#8281#11094#0" expanded="false" />
-            <element signature="e#11124#11244#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/usb.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1068,19 +885,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
           <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding>
-            <element signature="e#13#42#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding>
-            <element signature="e#21#38#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1088,7 +893,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="5" column="21" lean-forward="false" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1096,9 +900,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-5958">
           <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding>
-            <element signature="e#21#73#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1106,7 +907,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="29" lean-forward="false" selection-start-line="0" selection-start-column="29" selection-end-line="0" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1114,9 +914,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-607">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="4" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1124,14 +921,117 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="293">
           <caret line="26" column="1" lean-forward="true" selection-start-line="26" selection-start-column="1" selection-end-line="26" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/settings_charge.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/settings_energy.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" column="21" lean-forward="false" selection-start-line="3" selection-start-column="21" selection-end-line="3" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gui.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="14" column="25" lean-forward="false" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/default.ini">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="6" column="23" lean-forward="true" selection-start-line="6" selection-start-column="23" selection-end-line="6" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="124">
+          <caret line="69" column="9" lean-forward="false" selection-start-line="69" selection-start-column="9" selection-end-line="69" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/usb.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="34" column="30" lean-forward="false" selection-start-line="34" selection-start-column="30" selection-end-line="34" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/adapterctl/usb.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3186">
+          <caret line="177" column="0" lean-forward="false" selection-start-line="177" selection-start-column="0" selection-end-line="177" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/old/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/settings_common.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="213">
-          <caret line="25" column="19" lean-forward="false" selection-start-line="25" selection-start-column="19" selection-end-line="25" selection-end-column="19" />
+        <state relative-caret-position="126">
+          <caret line="19" column="11" lean-forward="false" selection-start-line="19" selection-start-column="11" selection-end-line="19" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" column="8" lean-forward="true" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/adapterctl/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gui.desktop">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" column="44" lean-forward="false" selection-start-line="4" selection-start-column="44" selection-end-line="4" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/setup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="6" column="29" lean-forward="false" selection-start-line="6" selection-start-column="29" selection-end-line="6" selection-end-column="29" />
           <folding />
         </state>
       </provider>

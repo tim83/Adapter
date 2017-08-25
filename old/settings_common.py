@@ -19,7 +19,7 @@ PINID_LENGHT = 2
 #
 #ENERGY_HOSTNAMES = ['laptop-tim', 'laptop-ben']
 #CHARGE_HOSTNAMES = ['notebook-ben']
-DATA_DIR = '/tmp/adapter'
+TMP_DIR = '/tmp/adapter'
 DATA_FILE = 'data.tsv'
 PLOT_FILE = 'plot.tsv'
 OVERRIDE_FILE = 'override.txt'
@@ -28,3 +28,4 @@ LOG_FILE = 'log.txt'
 #   Devel
 #
 DEBUG = False
+VERBOSE = False
