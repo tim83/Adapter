@@ -7,7 +7,7 @@ setup(
 	name='adapterctl',
 	version='0.21',
 	packages=['adapterctl'],
-	url='https://github.com/tim83/adapter',
+	url='https://github.com/tim83/adapterctl',
 	license='GNU General Public License',
 	author='Tim Mees',
 	author_email='tim.mees83g@gmail.com',
@@ -27,3 +27,5 @@ setup(
 		(expanduser('~/.config/autostart'), ['data/org.adapterctl.background.desktop']),
 	],
 )
+
+# upload: ./setup.py sdist upload
