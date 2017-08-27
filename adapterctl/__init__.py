@@ -7,12 +7,14 @@ import argparse, sys, os
 
 PROJECT_DIR = dirname(__file__)
 
+print(PROJECT_DIR)
 config = ConfigParser()
 config.read([
 	join(PROJECT_DIR, 'default.ini'),
 	join(PROJECT_DIR, 'custom.ini'),
 	expanduser('~/.config/adapter.ini')
 ])
+print(config)
 
 for section in config.sections():
 	for option in config.options(section):
@@ -21,7 +23,7 @@ for section in config.sections():
 			value = literal_eval(str_value)
 		except (ValueError, SyntaxError):
 			value = str_value
-		# print('{section} - {option}: {value} ({type})'.format(section=section, option=option, value=value, type=type(value)))
+		print('{section} - {option}: {value} ({type})'.format(section=section, option=option, value=value, type=type(value)))
 		name = option.upper()
 		if type(value) == str:
 			exec('{var} = \'{value}\''.format(var=name, value=value))
