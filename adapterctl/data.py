@@ -176,7 +176,7 @@ def run(single=False):
 		#	o.write(str(dt.datetime.now()) + '\tError: ' + str(e) + '\n')
 
 
-if __name__ == '__main__' or exec_data:
+if __name__ == '__main__':
 	# if not DEBUG:
 	# 	log.info('updating system')
 	# 	os.system('~/.adapter/update.sh')

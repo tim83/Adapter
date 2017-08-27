@@ -1,9 +1,9 @@
 #! /usr/bin/python3
 
-import argparse
 from ast import literal_eval
 from configparser import ConfigParser
 from os.path import join, dirname, expanduser
+import argparse, sys, os
 
 PROJECT_DIR = dirname(__file__)
 
@@ -28,6 +28,7 @@ for section in config.sections():
 		else:
 			exec('{var} = {value}'.format(var=name, value=value))
 
+os.makedirs(TMP_DIR, exist_ok=True)
 
 def get_logger(name):
 	import logging, os
@@ -67,22 +68,24 @@ if __name__ == '__main__':
 	if args.debug:
 		DEBUG = True
 
-	exec_gui = False
-	exec_data = False
-	exec_usb = False
-
 	if args.actie.lower() in ['background', 'data']:
-		exec_data = True
-		import adapterctl.data
+		from adapterctl.data import run, time
+		while True:
+			run()
+			time.sleep(INTERVAL)
+
 	elif args.actie.lower() == 'gui':
-		exec_gui = True
-		import adapterctl.gui
+		from adapterctl.gui import QApplication, Gui
+
+		app = QApplication(['Batterij monitor'])
+		gui = Gui()
+		sys.exit(app.exec())
 	elif args.actie.lower() == 'usb':
-		exec_usb = True
-		import adapterctl.usb
+		from adapterctl.usb import Connection
+
+		con = Connection()
+		con.send(2, 0)
+		con.send(3, 0)
+		con.send(4, 1)
 	else:
 		parser.print_help()
-else:
-	exec_gui = False
-	exec_data = False
-	exec_usb = False

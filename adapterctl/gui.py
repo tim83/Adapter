@@ -394,7 +394,7 @@ class Update(QThread):
 		self.quit()
 		log.debug('Terminated')
 
-if __name__ == '__main__' or exec_gui:
+if __name__ == '__main__':
 	import sys
 
 	app = QApplication(['Batterij monitor'])

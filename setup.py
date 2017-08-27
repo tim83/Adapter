@@ -5,7 +5,7 @@ from os.path import expanduser
 
 setup(
 	name='adapterctl',
-	version='0.1',
+	version='0.21',
 	packages=['adapterctl'],
 	url='https://github.com/tim83/adapter',
 	license='GNU General Public License',
