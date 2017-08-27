@@ -5,7 +5,7 @@ from os.path import expanduser
 
 setup(
 	name='adapterctl',
-	version='0.21',
+	version='0.3',
 	packages=['adapterctl'],
 	url='https://github.com/tim83/adapterctl',
 	license='GNU General Public License',
@@ -26,6 +26,10 @@ setup(
 		('share/applications', ['data/org.adapterctl.gui.desktop']),
 		(expanduser('~/.config/autostart'), ['data/org.adapterctl.background.desktop']),
 	],
+	include_package_data = True,
+    package_data = {
+        '': ['*.ini'],
+    },
 )
 
 # upload: ./setup.py sdist upload

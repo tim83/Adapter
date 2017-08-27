@@ -47,7 +47,7 @@ class Connection():
 				return p.device
 				break
 
-if __name__ == '__main__' or exec_usb:
+if __name__ == '__main__':
 	con = Connection()
 	con.send(2, 0)
 	con.send(3, 0)

@@ -1,9 +1,9 @@
 #! /usr/bin/python3
 
+from ast import literal_eval
 from configparser import ConfigParser
 from os.path import join, dirname, expanduser
-from ast import literal_eval
-import argparse
+import argparse, sys, os
 
 PROJECT_DIR = dirname(__file__)
 
@@ -21,12 +21,14 @@ for section in config.sections():
 			value = literal_eval(str_value)
 		except (ValueError, SyntaxError):
 			value = str_value
-		#print('{section} - {option}: {value} ({type})'.format(section=section, option=option, value=value, type=type(value)))
+		# print('{section} - {option}: {value} ({type})'.format(section=section, option=option, value=value, type=type(value)))
 		name = option.upper()
 		if type(value) == str:
 			exec('{var} = \'{value}\''.format(var=name, value=value))
 		else:
 			exec('{var} = {value}'.format(var=name, value=value))
+
+os.makedirs(TMP_DIR, exist_ok=True)
 
 def get_logger(name):
 	import logging, os
@@ -48,6 +50,7 @@ def get_logger(name):
 
 	return log
 
+
 if __name__ == '__main__':
 	parser = argparse.ArgumentParser()
 	parser.add_argument('actie', help='Welke module gestart moet worden (background, gui)')
@@ -65,22 +68,24 @@ if __name__ == '__main__':
 	if args.debug:
 		DEBUG = True
 
-	exec_gui = False
-	exec_data = False
-	exec_usb = False
-
 	if args.actie.lower() in ['background', 'data']:
-		exec_data = True
-		import adapterctl.data
+		from adapterctl.data import run, time
+		while True:
+			run()
+			time.sleep(INTERVAL)
+
 	elif args.actie.lower() == 'gui':
-		exec_gui = True
-		import adapterctl.gui
+		from adapterctl.gui import QApplication, Gui
+
+		app = QApplication(['Batterij monitor'])
+		gui = Gui()
+		sys.exit(app.exec())
 	elif args.actie.lower() == 'usb':
-		exec_usb = True
-		import adapterctl.usb
+		from adapterctl.usb import Connection
+
+		con = Connection()
+		con.send(2, 0)
+		con.send(3, 0)
+		con.send(4, 1)
 	else:
 		parser.print_help()
-else:
-	exec_gui = False
-	exec_data = False
-	exec_usb = False
