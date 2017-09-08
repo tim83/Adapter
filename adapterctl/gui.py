@@ -27,7 +27,7 @@ from adapterctl.data import run as run_data
 # 	log.level = logging.DEBUG
 # elif VERBOSE:
 # 	log.level = logging.INFO
-log = get_logger('GUI')
+log = cfg.get_logger('GUI')
 
 def style(item, fontsize=12, fontfamily="Noto Sans", fontcolor='black'):
 	item.setStyleSheet('font-size: ' + str(fontsize) + 'pt; font-family: ' + str(fontfamily) + ', sans-serif ; color: ' + str(fontcolor) + ';')
@@ -109,19 +109,19 @@ class Gui(QMainWindow):
 			style(self, fontsize=self.font)
 		elif 'Aan' in signal:
 			log.debug('Settings override to on')
-			with open(os.path.join(TMP_DIR, OVERRIDE_FILE), 'w') as f:
+			with open(os.path.join(cfg.TMP_DIR, cfg.OVERRIDE_FILE), 'w') as f:
 				f.write(str(True))
 			Set_charge().start()
 			self.widget.update()
-		elif 'Uit' in signal
+		elif 'Uit' in signal:
 			log.debug('Settings override to off')
-			with open(os.path.join(TMP_DIR, OVERRIDE_FILE), 'w') as f:
+			with open(os.path.join(cfg.TMP_DIR, cfg.OVERRIDE_FILE), 'w') as f:
 				f.write(str(False))
 			Set_charge().start()
 			self.widget.update()
 		elif 'Automatisch' in signal:
 			log.debug('Settings override to auto')
-			with open(os.path.join(TMP_DIR, OVERRIDE_FILE), 'w') as f:
+			with open(os.path.join(cfg.TMP_DIR, cfg.OVERRIDE_FILE), 'w') as f:
 				f.write(str(None))
 			Set_charge().start()
 			self.widget.update()
@@ -155,7 +155,7 @@ class Widget(QWidget):
 	def get_data(self):
 		self.data = {}
 		try:
-			with open(os.path.join(TMP_DIR, DATA_FILE), 'r') as f:
+			with open(os.path.join(cfg.TMP_DIR, cfg.DATA_FILE), 'r') as f:
 				lines = f.read().split('\n')
 				for l in lines:
 					if l != '':
@@ -288,7 +288,7 @@ plt.style.use('ggplot')
 class Plot(QWidget):
 	def __init__(self):
 		super().__init__()
-		self.interval = INTERVAL
+		self.interval = cfg.INTERVAL
 
 		self.figure = plt.figure()
 		self.figure.set_facecolor("#f5f6f7")
@@ -307,7 +307,7 @@ class Plot(QWidget):
 	def get_data(self):
 		self.data = []
 		self.time = []
-		with open(os.path.join(TMP_DIR, PLOT_FILE), 'r') as f:
+		with open(os.path.join(cfg.TMP_DIR, cfg.PLOT_FILE), 'r') as f:
 			for l in f.readlines():
 				d = l.split('\t')
 				t = dt.datetime.fromtimestamp(float(d[0]))
@@ -319,7 +319,7 @@ class Plot(QWidget):
 		self.time, self.data = self.get_data()
 
 		nowTime = dt.datetime.now()
-		endTime = nowTime - dt.timedelta(hours=PERIOD)
+		endTime = nowTime - dt.timedelta(hours=cfg.PERIOD)
 		now = mdates.date2num(nowTime)
 		end = mdates.date2num(endTime)
 
@@ -340,8 +340,8 @@ class Plot(QWidget):
 		self.ax.set_xlim(end, now)
 		self.ax.fill_between(self.time, self.data, facecolor='C4', alpha=0.5)
 
-		high = col.BrokenBarHCollection([(end, now)], [HIGH, 100], facecolor='red', alpha=0.4)
-		low = col.BrokenBarHCollection([(end, now)], [0, LOW], facecolor='red', alpha=0.4)
+		high = col.BrokenBarHCollection([(end, now)], [cfg.HIGH, 100], facecolor='red', alpha=0.4)
+		low = col.BrokenBarHCollection([(end, now)], [0, cfg.LOW], facecolor='red', alpha=0.4)
 		self.ax.add_collection(high)
 		self.ax.add_collection(low)
 		self.canvas.draw()
@@ -350,7 +350,7 @@ class Plot(QWidget):
 		self.time, self.data = self.get_data()
 
 		nowTime = dt.datetime.now()
-		endTime = nowTime - dt.timedelta(hours=PERIOD)
+		endTime = nowTime - dt.timedelta(hours=cfg.PERIOD)
 		now = mdates.date2num(nowTime)
 		end = mdates.date2num(endTime)
 
@@ -371,8 +371,8 @@ class Plot(QWidget):
 		self.ax.set_xlim(end, now)
 		self.ax.fill_between(self.time, self.data, facecolor='C4', alpha=0.5)
 
-		high = col.BrokenBarHCollection([(end, now)], [HIGH, 100], facecolor='red', alpha=0.4)
-		low = col.BrokenBarHCollection([(end, now)], [0, LOW], facecolor='red', alpha=0.4)
+		high = col.BrokenBarHCollection([(end, now)], [cfg.HIGH, 100], facecolor='red', alpha=0.4)
+		low = col.BrokenBarHCollection([(end, now)], [0, cfg.LOW], facecolor='red', alpha=0.4)
 		self.ax.add_collection(high)
 		self.ax.add_collection(low)
 

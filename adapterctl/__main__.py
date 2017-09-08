@@ -2,11 +2,11 @@
 
 from adapterctl.__init__ import *
 from os.path import join
-import argparse, sys
+import argparse, sys, logging
 
-log = get_logger('args')
+log = cfg.get_logger('args')
 
-log.debug('Parsing arguments')
+log.info('Parsing arguments')
 parser = argparse.ArgumentParser()
 parser.add_argument('actie', help='Welke module gestart moet worden (background, gui)')
 parser.add_argument('-v', '--verbose', help='Geef feedback', action='store_true')
@@ -18,39 +18,39 @@ args = parser.parse_args()
 
 log.debug(args)
 
-if args.verbose or VERBOSE:
+if args.verbose or cfg.VERBOSE:
 	log.info('Mode: verbose')
-	VERBOSE = True
-elif args.quiet or not VERBOSE:
+	cfg.VERBOSE = True
+elif args.quiet or not cfg.VERBOSE:
 	log.info('Mode: quiet')
-	VERBOSE = False
-elif args.debug or DEBUG:
+	cfg.VERBOSE = False
+elif args.debug or cfg.DEBUG:
 	log.info('Mode: debug')
-	DEBUG = True
+	cfg.DEBUG = True
 
-if args.status.lower() == 'on':
+if args.status != None and args.status.lower() == 'on':
 	log.debug('Settings override to on')
-	with open(join(TMP_DIR, OVERRIDE_FILE), 'w') as f:
+	with open(join(cfg.TMP_DIR, cfg.OVERRIDE_FILE), 'w') as f:
 		f.write(str(True))
-elif args.status.lower() == 'off':
+elif args.status != None and args.status.lower() == 'off':
 	log.debug('Settings override to off')
-	with open(join(TMP_DIR, OVERRIDE_FILE), 'w') as f:
+	with open(join(cfg.TMP_DIR, cfg.OVERRIDE_FILE), 'w') as f:
 		f.write(str(False))
-elif args.status == 'auto':
+elif args.status != None and args.status == 'auto':
 	log.debug('Settings override to auto')
-	with open(join(TMP_DIR, OVERRIDE_FILE), 'w') as f:
+	with open(join(cfg.TMP_DIR, cfg.OVERRIDE_FILE), 'w') as f:
 		f.write(str(None))
 
 if args.actie.lower() in ['background', 'data']:
 	log.info('Starting background')
 	from adapterctl.data import run
 	import time
-	if args.single:
+	if args.once:
 		run()
 	else:
 		while True:
 			run()
-			time.sleep(INTERVAL)
+			time.sleep(cfg.INTERVAL)
 
 elif args.actie.lower() == 'gui':
 	log.info('Starting GUI')

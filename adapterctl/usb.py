@@ -11,7 +11,7 @@ else:
 
 # logging.basicConfig(format='[%(asctime)s - %(name)s - %(levelname)s] %(message)s', filename=os.path.join(TMP_DIR, LOG_FILE))
 
-log = get_logger('USB')
+log = cfg.get_logger('USB')
 out_log = log.getChild('send')
 in_log = log.getChild('receive')
 
@@ -34,16 +34,16 @@ class Connection():
 
 	def send(self, pin, status):
 		pin = str(pin)
-		pinid = '0' * (PINID_LENGHT - len(pin)) + pin
+		pinid = '0' * (cfg.PINID_LENGHT - len(pin)) + pin
 		send = 'PIN' + pinid + '=' + str(status) + '\n'
 		self.serial.write(send.encode('utf-8'))
 		response = self.get_response()
 		out_log.info(send.replace('\n', ''))
-		in_log.info(response.decode().replace('\n', ''))
+		in_log.debug(response.decode().replace('\n', ''))
 
 	def get_port(self):
 		for p in ports():
-			if MANUFACTURER in p.manufacturer:
+			if cfg.MANUFACTURER in p.manufacturer:
 				return p.device
 				break
 
