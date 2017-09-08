@@ -3,7 +3,10 @@
 from ast import literal_eval
 from configparser import ConfigParser
 from os.path import join, dirname, expanduser
-import argparse, sys, os
+import os
+
+if not __name__ == '__main__':
+	from __main__ import *
 
 PROJECT_DIR = dirname(__file__)
 
@@ -49,43 +52,3 @@ def get_logger(name):
 		log.level = logging.INFO
 
 	return log
-
-
-if __name__ == '__main__':
-	parser = argparse.ArgumentParser()
-	parser.add_argument('actie', help='Welke module gestart moet worden (background, gui)')
-	parser.add_argument('-v', '--verbose', help='Geef feedback', action='store_true')
-	parser.add_argument('-q', '--quiet', help='Geef geen output', action='store_true')
-	parser.add_argument('-d', '--debug', help='Activeer debug mode', action='store_true')
-	args = parser.parse_args()
-
-	if args.verbose:
-		VERBOSE = True
-
-	if args.quiet:
-		VERBOSE = False
-
-	if args.debug:
-		DEBUG = True
-
-	if args.actie.lower() in ['background', 'data']:
-		from adapterctl.data import run, time
-		while True:
-			run()
-			time.sleep(INTERVAL)
-
-	elif args.actie.lower() == 'gui':
-		from adapterctl.gui import QApplication, Gui
-
-		app = QApplication(['Batterij monitor'])
-		gui = Gui()
-		sys.exit(app.exec())
-	elif args.actie.lower() == 'usb':
-		from adapterctl.usb import Connection
-
-		con = Connection()
-		con.send(2, 0)
-		con.send(3, 0)
-		con.send(4, 1)
-	else:
-		parser.print_help()

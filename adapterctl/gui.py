@@ -97,24 +97,30 @@ class Gui(QMainWindow):
 		signal = data.text().replace('&','')
 
 		if signal == 'Afsluiten':
+			log.critical('Exiting')
 			self.stop()
 		elif signal == 'Lettergrootte vergroten':
 			self.font += 1
+			log.debug('Fontsize to %d' % self.font)
 			style(self, fontsize=self.font)
 		elif signal == 'Lettergrootte verkleinen':
 			self.font -= 1
+			log.debug('Fontsize to %d' % self.font)
 			style(self, fontsize=self.font)
 		elif 'Aan' in signal:
+			log.debug('Settings override to on')
 			with open(os.path.join(TMP_DIR, OVERRIDE_FILE), 'w') as f:
 				f.write(str(True))
 			Set_charge().start()
 			self.widget.update()
-		elif 'Uit' in signal:
+		elif 'Uit' in signal
+			log.debug('Settings override to off')
 			with open(os.path.join(TMP_DIR, OVERRIDE_FILE), 'w') as f:
 				f.write(str(False))
 			Set_charge().start()
 			self.widget.update()
 		elif 'Automatisch' in signal:
+			log.debug('Settings override to auto')
 			with open(os.path.join(TMP_DIR, OVERRIDE_FILE), 'w') as f:
 				f.write(str(None))
 			Set_charge().start()
