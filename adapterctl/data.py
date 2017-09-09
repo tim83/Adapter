@@ -26,7 +26,7 @@ for file in files:
 		DATA_PATH = os.path.join(DATA_PATH, file)
 
 class Battery():
-	def __init__(self, connection, linux=True):
+	def __init__(self, connection, single=False, linux=True):
 		log.info('Starting data')
 		#self.connection = Connection()
 		self.connection = connection
@@ -34,8 +34,13 @@ class Battery():
 
 		os.makedirs(TMP_DIR, exist_ok=True)
 
-		self.charge = charge
-		self.set_charge()
+		self.charge = IDLE
+
+		while True:
+			self.set_charge()
+			if single:
+				break
+			time.sleep(INTERVAL)
 
 	def get_data(self):
 		self.data = {}
@@ -147,7 +152,6 @@ class Battery():
 	def stop_charge(self, override=False):
 		if not override:
 			self.charge = False
-			charge = False
 
 		self.connection.send(2, 0)
 		self.connection.send(3, 0)
@@ -156,7 +160,6 @@ class Battery():
 	def start_charge(self, override=False):
 		if not override:
 			self.charge = True
-			charge = True
 
 		self.connection.send(2, 1)
 		self.connection.send(3, 1)
@@ -164,13 +167,7 @@ class Battery():
 
 def run(single=False):
 	try:
-		if not single:
-			while True:
-				connection = Connection()
-				Battery(connection)
-				time.sleep(INTERVAL)
-		else:
-			Battery(Connection())
+		Battery(Connection(), single=single)
 	except Exception as e:
 		log.error(str(e))
 		#with open(os.path.join(TMP_DIR, LOG_FILE), 'a') as o:
