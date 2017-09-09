@@ -39,7 +39,7 @@ class Connection():
 		self.serial.write(send.encode('utf-8'))
 		response = self.get_response()
 		out_log.info(send.replace('\n', ''))
-		in_log.debug(response.decode().replace('\n', ''))
+		in_log.info(response.decode().replace('\n', ''))
 
 	def get_port(self):
 		for p in ports():

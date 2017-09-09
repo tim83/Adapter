@@ -21,34 +21,15 @@ log.debug(args)
 if args.verbose or VERBOSE:
 	log.info('Mode: verbose')
 	VERBOSE = True
+	log.level = logging.INFO
 elif args.quiet or not VERBOSE:
 	log.info('Mode: quiet')
 	VERBOSE = False
+	log.level = logging.WARNING
 elif args.debug or DEBUG:
 	log.info('Mode: debug')
 	DEBUG = True
-
-def get_logger(name):
-	import logging, os
-	logFormatter = logging.Formatter('[%(asctime)s - %(name)s - %(levelname)s] %(message)s')
-	log = logging.getLogger(name)
-
-	fileHandler = logging.FileHandler(os.path.join(TMP_DIR, LOG_FILE))
-	fileHandler.setFormatter(logFormatter)
-	log.addHandler(fileHandler)
-
-	consoleHandler = logging.StreamHandler()
-	consoleHandler.setFormatter(logFormatter)
-	log.addHandler(consoleHandler)
-
-	if DEBUG:
-		log.level = logging.DEBUG
-	elif VERBOSE:
-		log.level = logging.INFO
-
-	return log
-
-log = get_logger('args')
+	log.level = logging.DEBUG
 
 if args.status != None and args.status.lower() == 'on':
 	log.debug('Settings override to on')
@@ -68,7 +49,7 @@ if args.actie.lower() in ['background', 'data']:
 	from adapterctl.data import run
 	import time
 	if args.once:
-		run(single=True)
+		run()
 	else:
 		while True:
 			run()
