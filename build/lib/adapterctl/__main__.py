@@ -21,15 +21,34 @@ log.debug(args)
 if args.verbose or VERBOSE:
 	log.info('Mode: verbose')
 	VERBOSE = True
-	log.level = logging.INFO
 elif args.quiet or not VERBOSE:
 	log.info('Mode: quiet')
 	VERBOSE = False
-	log.level = logging.WARNING
 elif args.debug or DEBUG:
 	log.info('Mode: debug')
 	DEBUG = True
-	log.level = logging.DEBUG
+
+def get_logger(name):
+	import logging, os
+	logFormatter = logging.Formatter('[%(asctime)s - %(name)s - %(levelname)s] %(message)s')
+	log = logging.getLogger(name)
+
+	fileHandler = logging.FileHandler(os.path.join(TMP_DIR, LOG_FILE))
+	fileHandler.setFormatter(logFormatter)
+	log.addHandler(fileHandler)
+
+	consoleHandler = logging.StreamHandler()
+	consoleHandler.setFormatter(logFormatter)
+	log.addHandler(consoleHandler)
+
+	if DEBUG:
+		log.level = logging.DEBUG
+	elif VERBOSE:
+		log.level = logging.INFO
+
+	return log
+
+log = get_logger('args')
 
 if args.status != None and args.status.lower() == 'on':
 	log.debug('Settings override to on')
@@ -49,7 +68,7 @@ if args.actie.lower() in ['background', 'data']:
 	from adapterctl.data import run
 	import time
 	if args.once:
-		run()
+		run(single=True)
 	else:
 		while True:
 			run()
@@ -70,6 +89,18 @@ elif args.actie.lower() == 'usb':
 	con.send(2, 0)
 	con.send(3, 0)
 	con.send(4, 1)
+elif args.actie.lower() == 'bokeh':
+	# from bokeh.server.server import Server
+	# from bokeh.application import Application
+	# from bokeh.application.handlers import FunctionHandler
+	# from adapterctl import bokeh as bokeh_py
+	# bokeh_app = Application(FunctionHandler(bokeh_py))
+	# server = Server({'/': bokeh_app}, num_procs=4)
+	# server.start()
+	import os
+	
+	path = os.path.dirname(os.path.realpath(__file__))
+	os.system('bash ' + os.path.join(path, 'startbokeh.sh') + ' ' + path)
 else:
 	log.info('Printing helptext')
 	parser.print_help()

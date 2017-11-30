@@ -30,8 +30,8 @@ for section in config.sections():
 			exec('{var} = \'{value}\''.format(var=name, value=value))
 		else:
 			exec('{var} = {value}'.format(var=name, value=value))
-
 os.makedirs(TMP_DIR, exist_ok=True)
+
 
 def get_logger(name):
 	import logging, os

@@ -5,20 +5,13 @@ from serial.serialutil import SerialException
 from ast import literal_eval
 import os, time, psutil, sys, logging
 
-if __name__ == '__main__':
-	from adapterctl.__init__ import *
-else:
-	from __main__ import *
+# if __name__ == '__main__':
+from adapterctl.__init__ import *
+# else:
+# 	from __main__ import *
 from adapterctl.usb import Connection
 
-# logging.basicConfig(format='[%(asctime)s - %(name)s - %(levelname)s] %(message)s', filename=os.path.join(TMP_DIR, LOG_FILE))
-# log = logging.getLogger('data')
 log = get_logger('data')
-
-# if DEBUG:
-# 	log.level = logging.DEBUG
-# elif VERBOSE:
-# 	log.level = logging.INFO
 
 files = os.listdir(DATA_PATH)
 for file in files:
@@ -27,11 +20,8 @@ for file in files:
 
 class Battery():
 	def __init__(self, connection, single=False, linux=True):
-		log.info('Starting data')
-		#self.connection = Connection()
-		self.connection = connection
 		self.linux = linux
-
+		self.connection = connection
 		os.makedirs(TMP_DIR, exist_ok=True)
 
 		self.charge = IDLE
@@ -44,10 +34,15 @@ class Battery():
 
 	def get_data(self):
 		self.data = {}
-
-		self.data['charging'] = psutil.sensors_battery().power_plugged
-		self.data['percent'] =  psutil.sensors_battery().percent
-		self.data['remaining'] = psutil.sensors_battery().secsleft
+		
+		try:
+			self.data['charging'] = psutil.sensors_battery().power_plugged
+			self.data['percent'] =  psutil.sensors_battery().percent
+			self.data['remaining'] = psutil.sensors_battery().secsleft
+		except AttributeError:
+			self.data['charging'] = self.get_status()
+			self.data['percent'] =  self.get_percent()['percent']
+			self.data['remaining'] = self.get_secs_left()
 		self.data['percent_low'] = round(LOW, 2)
 		self.data['percent_high'] = round(HIGH, 2)
 		self.data['override'] = self.get_override()
@@ -123,7 +118,17 @@ class Battery():
 		percent = (int(now)/int(max))*100
 		percent_max = (int(max)/int(max_design))*100
 
-		return {'percent': round(percent, 2), 'percent_max': percent_max}
+		return {'percent': percent, 'percent_max': percent_max}
+
+	def get_secs_left(self):
+		import subprocess
+		result = subprocess.Popen('acpi -b | cut -d \' \' -f5', stdout=subprocess.PIPE, shell=True)
+		read = result.stdout.read().decode('utf-8')[:-1]
+		time = dt.datetime.strptime(read, '%H:%M:%S').time()
+		diff = dt.timedelta(hours=time.hour, minutes=time.minute, seconds=time.second)
+		secs = diff.total_seconds()
+		print(secs)
+		return secs
 
 	def get_info(self):
 		with open(os.path.join(DATA_PATH, MANUFACTURER_FILE)) as file:
@@ -152,34 +157,33 @@ class Battery():
 	def stop_charge(self, override=False):
 		if not override:
 			self.charge = False
-
-		self.connection.send(2, 0)
-		self.connection.send(3, 0)
-		self.connection.send(4, 1)
+		if self.connection:
+			self.connection.send(2, 0)
+			self.connection.send(3, 0)
+			self.connection.send(4, 1)
 
 	def start_charge(self, override=False):
 		if not override:
 			self.charge = True
-
-		self.connection.send(2, 1)
-		self.connection.send(3, 1)
-		self.connection.send(4, 0)
+		if self.connection:
+			self.connection.send(2, 1)
+			self.connection.send(3, 1)
+			self.connection.send(4, 0)
 
 def run(single=False):
 	try:
-		Battery(Connection(), single=single)
+		try:
+			connection = Connection()
+		except:
+			connection = None
+			log.warning('No controler connected')
+		Battery(connection, single=single)
 	except Exception as e:
 		log.error(str(e))
-		#with open(os.path.join(TMP_DIR, LOG_FILE), 'a') as o:
-		#	o.write(str(dt.datetime.now()) + '\tError: ' + str(e) + '\n')
 
 
 if __name__ == '__main__':
-	# if not DEBUG:
-	# 	log.info('updating system')
-	# 	os.system('~/.adapter/update.sh')
-
 	log.info('Starting data')
 	while True:
-		run()
+		run(single=True)
 		time.sleep(INTERVAL)

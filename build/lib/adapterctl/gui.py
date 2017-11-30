@@ -113,7 +113,7 @@ class Gui(QMainWindow):
 				f.write(str(True))
 			Set_charge().start()
 			self.widget.update()
-		elif 'Uit' in signal
+		elif 'Uit' in signal:
 			log.debug('Settings override to off')
 			with open(os.path.join(TMP_DIR, OVERRIDE_FILE), 'w') as f:
 				f.write(str(False))
@@ -272,7 +272,7 @@ class Widget(QWidget):
 		style(box)
 
 		if fatal:
-			self.box.buttonClicked.connect(self.stop)
+			box.buttonClicked.connect(self.stop)
 
 	def message(self, message):
 		box = QMessageBox()

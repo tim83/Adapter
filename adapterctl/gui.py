@@ -272,7 +272,7 @@ class Widget(QWidget):
 		style(box)
 
 		if fatal:
-			self.box.buttonClicked.connect(self.stop)
+			box.buttonClicked.connect(self.stop)
 
 	def message(self, message):
 		box = QMessageBox()

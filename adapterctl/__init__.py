@@ -32,6 +32,7 @@ for section in config.sections():
 			exec('{var} = {value}'.format(var=name, value=value))
 os.makedirs(TMP_DIR, exist_ok=True)
 
+
 def get_logger(name):
 	import logging, os
 	logFormatter = logging.Formatter('[%(asctime)s - %(name)s - %(levelname)s] %(message)s')

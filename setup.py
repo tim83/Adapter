@@ -5,7 +5,7 @@ from os.path import expanduser
 
 setup(
 	name='adapterctl',
-	version='0.43',
+	version='0.44',
 	packages=['adapterctl'],
 	url='https://github.com/tim83/adapterctl',
 	license='GNU General Public License',
@@ -19,7 +19,7 @@ setup(
 		'psutil',
 		'PyQt5',
 		'matplotlib',
-		'PySerial'
+		'PySerial', 'bokeh'
 	],
 	scripts=['bin/adapterctl'],
 	data_files = [
@@ -29,6 +29,7 @@ setup(
 	include_package_data = True,
     package_data = {
         '': ['*.ini'],
+	    '': ['startbokeh.sh']
     },
 )
 

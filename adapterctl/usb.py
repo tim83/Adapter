@@ -4,10 +4,10 @@ import logging, os
 
 #from settings import *
 
-if __name__ == '__main__':
-	from adapterctl.__init__ import *
-else:
-	from __main__ import *
+# if __name__ == '__main__':
+from adapterctl.__init__ import *
+# else:
+# 	from __main__ import *
 
 # logging.basicConfig(format='[%(asctime)s - %(name)s - %(levelname)s] %(message)s', filename=os.path.join(TMP_DIR, LOG_FILE))
 
@@ -42,7 +42,9 @@ class Connection():
 		in_log.debug(response.decode().replace('\n', ''))
 
 	def get_port(self):
+		print(ports())
 		for p in ports():
+			print(p.device)
 			if MANUFACTURER in p.manufacturer:
 				return p.device
 				break

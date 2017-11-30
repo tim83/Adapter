@@ -89,6 +89,18 @@ elif args.actie.lower() == 'usb':
 	con.send(2, 0)
 	con.send(3, 0)
 	con.send(4, 1)
+elif args.actie.lower() == 'bokeh':
+	# from bokeh.server.server import Server
+	# from bokeh.application import Application
+	# from bokeh.application.handlers import FunctionHandler
+	# from adapterctl import bokeh as bokeh_py
+	# bokeh_app = Application(FunctionHandler(bokeh_py))
+	# server = Server({'/': bokeh_app}, num_procs=4)
+	# server.start()
+	import os
+	
+	path = os.path.dirname(os.path.realpath(__file__))
+	os.system('bash ' + os.path.join(path, 'startbokeh.sh') + ' ' + path)
 else:
 	log.info('Printing helptext')
 	parser.print_help()
