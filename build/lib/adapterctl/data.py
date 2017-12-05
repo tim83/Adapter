@@ -3,7 +3,7 @@
 import datetime as dt
 from serial.serialutil import SerialException
 from ast import literal_eval
-import os, time, psutil, sys, logging
+import os, time, psutil, sys, logging, signal
 
 # if __name__ == '__main__':
 from adapterctl.__init__ import *
@@ -22,13 +22,18 @@ class Battery():
 	def __init__(self, connection, single=False, linux=True):
 		self.linux = linux
 		self.connection = connection
+		
 		os.makedirs(TMP_DIR, exist_ok=True)
+		with open(os.path.join(TMP_DIR, PID_FILE), 'w') as f:
+			f.write(str(os.getpid()))
+			
+		signal.signal(signal.SIGALRM, self.set_charge)
 
 		self.charge = IDLE
 
 		while True:
 			self.set_charge()
-			if single:
+			if single or self.connection == None:
 				break
 			time.sleep(INTERVAL)
 
@@ -64,7 +69,7 @@ class Battery():
 
 		return self.data
 
-	def set_charge(self):
+	def set_charge(self, *args):
 		self.data = self.get_data()
 
 		if self.data['override'] == None:
@@ -122,11 +127,11 @@ class Battery():
 
 	def get_secs_left(self):
 		import subprocess
-		result = subprocess.Popen('acpi -b | cut -d ' ' -f5', stdout=subprocess.PIPE)
-		time = dt.datetime.strptime(result.stdout.read(), '%H:%M:%S').time()
+		result = subprocess.Popen('acpi -b | cut -d \' \' -f5', stdout=subprocess.PIPE, shell=True)
+		read = result.stdout.read().decode('utf-8')[:-1]
+		time = dt.datetime.strptime(read, '%H:%M:%S').time()
 		diff = dt.timedelta(hours=time.hour, minutes=time.minute, seconds=time.second)
 		secs = diff.total_seconds()
-		print(secs)
 		return secs
 
 	def get_info(self):

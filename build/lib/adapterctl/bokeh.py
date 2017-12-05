@@ -6,7 +6,8 @@
 # 	from __main__ import *
 import datetime as dt
 from ast import literal_eval
-import os, socket, psutil, logging
+import os, socket, psutil, logging, signal, subprocess
+from time import sleep
 from adapterctl.__init__ import *
 import random as r
 log = get_logger('Bokeh')
@@ -16,7 +17,17 @@ from adapterctl.data import run as run_data
 def append_data():
 	#with open(os.path.join(TMP_DIR, PLOT_FILE), 'a') as f:
 	#	f.write('%f\t%f\n' % (dt.datetime.now().timestamp(), r.randint(0,100))) # psutil.sensors_battery().percent))
-	run_data(single=True)
+	
+	# run_data(single=True)
+	
+	try:	
+		with open(os.path.join(TMP_DIR, PID_FILE), 'r') as f:
+			pid = f.read()
+	
+		os.kill(int(pid), signal.SIGALRM)
+	except:
+		subprocess.Popen(['adapterctl', 'data'])
+		sleep(1)
 	
 
 def get_plot_data():
@@ -74,8 +85,12 @@ def update_data():
 		charging = '\u2714'
 	else:
 		charging = '\u2718'
-	time = str(dt.timedelta(seconds=data['remaining']))
-	stats.text = 'Opladen:\t{charge}\nPercentage:\t{percent}%\nTijd resterend:\t{time}'.format(charge=charging, percent=round(data['percent'], 2), time=time.replace('days', 'dagen').replace('day', 'dag'))
+	if type(data['remaining']) == str:
+		time = str(dt.timedelta(seconds=0))
+	else:
+		time = str(dt.timedelta(seconds=data['remaining']))
+	time_nl = time.replace('days', 'dagen').replace('day', 'dag')
+	stats.text = 'Opladen:\t{charge}\nPercentage:\t{percent}%\nTijd resterend:\t{time}'.format(charge=charging, percent=round(data['percent'], 2), time=time_nl)
 	o = data['override']
 	if o == True:
 		mode.value = 'Opladen'
@@ -109,5 +124,6 @@ update()
 
 text = widgetbox(mode, stats)
 curdoc().add_root(row(text, plot, width=1300))
-curdoc(). add_periodic_callback(update, 1000*60*60*INTERVAL)
+curdoc().session_context.server_context.application_context.url = '/'
+curdoc(). add_periodic_callback(update, 1000*INTERVAL)
 curdoc().title = "Batterijmonitor"

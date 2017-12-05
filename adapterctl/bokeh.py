@@ -6,7 +6,8 @@
 # 	from __main__ import *
 import datetime as dt
 from ast import literal_eval
-import os, socket, psutil, logging
+import os, socket, psutil, logging, signal, subprocess
+from time import sleep
 from adapterctl.__init__ import *
 import random as r
 log = get_logger('Bokeh')
@@ -16,7 +17,17 @@ from adapterctl.data import run as run_data
 def append_data():
 	#with open(os.path.join(TMP_DIR, PLOT_FILE), 'a') as f:
 	#	f.write('%f\t%f\n' % (dt.datetime.now().timestamp(), r.randint(0,100))) # psutil.sensors_battery().percent))
-	run_data(single=True)
+	
+	# run_data(single=True)
+	
+	try:	
+		with open(os.path.join(TMP_DIR, PID_FILE), 'r') as f:
+			pid = f.read()
+	
+		os.kill(int(pid), signal.SIGALRM)
+	except:
+		subprocess.Popen(['adapterctl', 'data'])
+		sleep(1)
 	
 
 def get_plot_data():
