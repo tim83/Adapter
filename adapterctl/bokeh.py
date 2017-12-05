@@ -70,7 +70,7 @@ append_data()
 time, data  = get_plot_data()
 source = ColumnDataSource(data=dict(time=time, data=data))
 
-plot = figure(plot_height=400, plot_width=800, title="Batterijgeschiedenis", x_range=[dt.datetime.now() - dt.timedelta(0,PERIOD),dt.datetime.now()], y_range=[0,100])
+plot = figure(plot_height=400, plot_width=800, title="Batterijgeschiedenis", x_range=[dt.datetime.now() - dt.timedelta(0,PERIOD),dt.datetime.now()], y_range=[0,100], tools=['box_zoom','pan','reset'])
 plot.line('time', 'data', source=source, line_width=3, line_alpha=0.6)
 
 top_box = BoxAnnotation(bottom=HIGH, fill_color='red', fill_alpha=0.1)
