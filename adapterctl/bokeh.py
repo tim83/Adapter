@@ -62,7 +62,7 @@ def get_data():
 
 from bokeh.io import curdoc
 from bokeh.layouts import row, widgetbox, column
-from bokeh.models import ColumnDataSource, TableColumn, DataTable
+from bokeh.models import ColumnDataSource, TableColumn, DataTable, BoxAnnotation
 from bokeh.models.widgets import Slider, TextInput, Select, PreText
 from bokeh.plotting import figure
 
@@ -72,6 +72,11 @@ source = ColumnDataSource(data=dict(time=time, data=data))
 
 plot = figure(plot_height=400, plot_width=800, title="Batterijgeschiedenis", x_range=[dt.datetime.now() - dt.timedelta(0,PERIOD),dt.datetime.now()], y_range=[0,100])
 plot.line('time', 'data', source=source, line_width=3, line_alpha=0.6)
+
+top_box = BoxAnnotation(bottom=HIGH, fill_color='red', fill_alpha=0.1)
+bottom_box = BoxAnnotation(top=LOW, fill_color='red', fill_alpha=0.1)
+plot.add_layout(top_box)
+plot.add_layout(bottom_box)
 
 def update_plot():
 	time, data  = get_plot_data()
