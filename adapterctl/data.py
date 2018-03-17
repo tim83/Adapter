@@ -29,7 +29,7 @@ class Battery():
 		with open(os.path.join(TMP_DIR, PID_FILE), 'w') as f:
 			f.write(str(os.getpid()))
 			
-		signal.signal(signal.SIGALRM, self.set_charge)
+		#signal.signal(signal.SIGALRM, self.set_charge)
 
 		self.charge = IDLE
 
