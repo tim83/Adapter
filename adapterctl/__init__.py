@@ -3,7 +3,7 @@
 from ast import literal_eval
 from configparser import ConfigParser
 from os.path import join, dirname, expanduser
-import os
+import os, sys
 
 if not __name__ == '__main__':
 	from __main__ import *
@@ -31,6 +31,11 @@ for section in config.sections():
 		else:
 			exec('{var} = {value}'.format(var=name, value=value))
 os.makedirs(TMP_DIR, exist_ok=True)
+
+if sys.platform.startswith('win'):
+	WINDOWS = True
+else:
+	WINDOWS = False
 
 
 def get_logger(name):

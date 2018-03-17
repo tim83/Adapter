@@ -13,14 +13,16 @@ from adapterctl.usb import Connection
 
 log = get_logger('data')
 
-files = os.listdir(DATA_PATH)
-for file in files:
-	if "BAT" in file:
-		DATA_PATH = os.path.join(DATA_PATH, file)
+
+if not WINDOWS:
+	files = os.listdir(DATA_PATH)
+	for file in files:
+		if "BAT" in file:
+			DATA_PATH = os.path.join(DATA_PATH, file)
 
 class Battery():
-	def __init__(self, connection, single=False, linux=True):
-		self.linux = linux
+	def __init__(self, connection, single=False):
+		self.linux = not WINDOWS
 		self.connection = connection
 		
 		os.makedirs(TMP_DIR, exist_ok=True)
