@@ -5,11 +5,8 @@ setup.py
 adapterctl/__init__.py
 adapterctl/__main__.py
 adapterctl/bokeh.py
-adapterctl/bokeh.py~
 adapterctl/data.py
-adapterctl/data.py~
 adapterctl/default.ini
-adapterctl/default.ini~
 adapterctl/gui.py
 adapterctl/startbokeh.sh
 adapterctl/usb.py
