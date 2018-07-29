@@ -5,7 +5,7 @@ from os.path import expanduser
 
 setup(
 	name='adapterctl',
-	version='0.45.3',
+	version='0.45.4',
 	packages=['adapterctl'],
 	url='https://github.com/tim83/adapterctl',
 	license='GNU General Public License',
@@ -29,6 +29,7 @@ setup(
 	include_package_data = True,
     package_data = {
         '': ['*.ini'],
+        '': ['default.ini'],
 	    '': ['startbokeh.sh']
     },
 )
