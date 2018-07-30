@@ -1,1 +1,9 @@
-Çáøìµ¢“”Z³îj{%bştøÿ"–×•ÊŒU—uº×íá®˜Õ-1wĞà;Íò¿¸¾-HU–†«Ö#‡‘,Õfõè½ùûISç6©ï@6ìÕ,Šßí
+#! /bin/bash
+
+if [ $1 ]
+then
+    path=$1
+else
+    path='.'
+fi
+bokeh serve --show $path/bokeh.py
