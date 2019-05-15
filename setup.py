@@ -5,7 +5,7 @@ from os.path import expanduser
 
 setup(
 	name='adapterctl',
-	version='0.45.6',
+	version='0.45.7',
 	packages=['adapterctl'],
 	url='https://github.com/tim83/adapterctl',
 	license='GNU General Public License',
@@ -22,16 +22,16 @@ setup(
 		'PySerial', 'bokeh'
 	],
 	scripts=['bin/adapterctl'],
-	data_files = [
+	data_files=[
 		('share/applications', ['data/org.adapterctl.gui.desktop']),
 		(expanduser('~/.config/autostart'), ['data/org.adapterctl.background.desktop']),
 	],
-	include_package_data = True,
-    package_data = {
-        '': ['*.ini'],
-        '': ['default.ini'],
-	    '': ['startbokeh.sh']
-    },
+	include_package_data=True,
+	package_data={
+		'config': ['*.ini'],
+		'config_default': ['default.ini'],
+		'start_script': ['startbokeh.sh']
+	},
 )
 
 # upload: ./setup.py sdist upload

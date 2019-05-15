@@ -224,7 +224,7 @@ class Widget(QWidget):
 
 		if self.data['override'] == None:
 			self.override_warning.setText('')
-			style(self.override_warning, fontsize=1)
+			style(self.override_warning, fsetEditTriggers(QAbstractItemView.NoEditTriggers)ontsize=1)
 			self.mainwindow.auto_item.setText('\u2714 Automatisch')
 			self.mainwindow.on_item.setText('    Aan')
 			self.mainwindow.off_item.setText('    Uit')
