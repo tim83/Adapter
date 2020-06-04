@@ -5,7 +5,7 @@ from os.path import expanduser
 
 setup(
 	name='adapterctl',
-	version='0.45.8',
+	version='0.45.10',
 	packages=['adapterctl'],
 	url='https://github.com/tim83/adapterctl',
 	license='GNU General Public License',
@@ -23,6 +23,7 @@ setup(
 	],
 	scripts=['bin/adapterctl'],
 	data_files=[
+		('', ['adapterctl/default.ini']),
 		('share/applications', ['data/org.adapterctl.gui.desktop']),
 		(expanduser('~/.config/autostart'), ['data/org.adapterctl.background.desktop']),
 	],
